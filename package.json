@@ -1,0 +1,23 @@
+{
+  "name": "snapshot2017",
+  "version": "1.0.0",
+  "description": "A snapshot of 2017 web development",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunhan0/Snapshot2017.git"
+  },
+  "author": "Yunhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yunhan0/Snapshot2017/issues"
+  },
+  "homepage": "https://github.com/yunhan0/Snapshot2017#readme",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-router": "^7.1.1"
+  }
+}
