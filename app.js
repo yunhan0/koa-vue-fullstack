@@ -1,10 +1,10 @@
-var Koa = require('koa');
-var Router = require('koa-router');
+const Koa = require('koa');
+const Router = require('koa-router');
  
-var app = new Koa();
-var router = new Router();
+let app = new Koa();
+let router = new Router();
  
-router.get('/', function (ctx, next) {
+router.get('/', (ctx, next) => {
   ctx.body = "Hello from koa";
 });
 

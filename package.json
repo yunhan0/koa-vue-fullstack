@@ -18,6 +18,8 @@
   "homepage": "https://github.com/yunhan0/Snapshot2017#readme",
   "dependencies": {
     "koa": "^2.2.0",
-    "koa-router": "^7.1.1"
+    "koa-router": "^7.1.1",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
   }
 }
