@@ -1,2 +1,2 @@
-# Snapshot2017
-A snapshot of 2017 Web development, I am going to use Node + Koa + NPM + Webpack + React 
+# Snapshot!
+A snapshot of web dev, I am going to use Node + Koa + Webpack + Vue

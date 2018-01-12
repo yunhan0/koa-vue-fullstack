@@ -2,7 +2,7 @@
   "name": "snapshot2017",
   "version": "1.0.0",
   "description": "A snapshot of 2017 web development",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/yunhan0/Snapshot2017#readme",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "html-webpack-plugin": "^2.30.1",
     "koa": "^2.2.0",
     "koa-router": "^7.1.1",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "mongoose": "^4.13.9",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   }
 }
