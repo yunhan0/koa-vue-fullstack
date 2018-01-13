@@ -3,11 +3,11 @@
  */
 'use strict';
 
-import http from 'http';
-import https from 'https';
-import koa from 'koa';
-import koaRouter from 'koa-router';
-import mongoose from 'mongoose';
+const http = require('http');
+const https = require('https');
+const koa = require('koa');
+const koaRouter = require('koa-router');
+const mongoose = require('mongoose');
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/snapshot', { useMongoClient: true });
