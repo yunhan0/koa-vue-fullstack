@@ -12,10 +12,15 @@ module.exports = {
     },
     module: {
         rules: [
-          { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-          { test: /\.vue$/, loader: 'vue-loader' }
+			{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+			{ test: /\.vue$/, loader: 'vue-loader' },
+			{ test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+			{
+			test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+			loader: 'url-loader?limit=1024'
+			}
         ]
-    }   
+    }
     // plugins: [
     //     new webpack.optimize.UglifyJsPlugin(),
     //     new HtmlWebpackPlugin({template: './src/index.html'})

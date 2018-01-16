@@ -4,22 +4,26 @@
   "description": "A snapshot of client dev using webpack, vue, babel",
   "author": "Yunhan",
   "license": "ISC",
-  "main": "src/main.js",  
+  "main": "src/main.js",
   "scripts": {
     "dev": "webpack-dev-server",
     "start": "npm run dev"
   },
   "dependencies": {
-    "vue": "^2.5.13",
-    "vue-loader": "^13.7.0",
-    "vue-template-compiler": "^2.5.13",
-    "webpack": "^2.3.3"
+    "iview": "^2.8.0",
+    "vue": "^2.5.13"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.1"
   }
 }
