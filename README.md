@@ -2,9 +2,11 @@
 A snapshot of web dev 
 
 ### Environment:
-- Node
-- Koa
-- Mongo
-- Webpack
-- Vue
-- AntD
+- Server
+    - Node
+    - Koa
+    - Mongo
+- Client
+    - Webpack
+    - Vue
+    - AntD
