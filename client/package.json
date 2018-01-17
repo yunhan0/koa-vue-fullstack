@@ -10,8 +10,9 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "iview": "^2.8.0",
-    "vue": "^2.5.13"
+    "element-ui": "^2.0.11",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

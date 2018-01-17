@@ -1,7 +1,7 @@
 <template>
-  <p align="center">
-    Footer
-  </p>
+  <div>
+    Page 1
+  </div>
 </template>
 
 <script>
