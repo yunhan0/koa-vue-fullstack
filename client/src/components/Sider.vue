@@ -3,7 +3,8 @@
     default-active="2"
     class="el-menu-vertical-demo"
     @open="handleOpen"
-    @close="handleClose">
+    @close="handleClose"
+    style="height:100%">
     <el-submenu index="1">
       <template slot="title">
         <i class="el-icon-location"></i>
