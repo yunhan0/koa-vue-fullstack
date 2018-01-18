@@ -10,7 +10,8 @@ module.exports = function(env) {
 		entry: './src/main.js',
 		output: {
 			path: path.resolve(__dirname, 'dist'),
-			filename: 'bundle.js'
+			filename: '[name].bundle.js',
+			chunkFilename: '[name].bundle.js' // Used for code spliting
 		},
 		module: {
 			rules: [
@@ -33,7 +34,8 @@ module.exports = function(env) {
 			]
 		},
 		plugins: [
-			new HtmlWebpackPlugin({template: './index.html'})
+			new HtmlWebpackPlugin({template: './index.html'}),
+			new webpack.HotModuleReplacementPlugin
 		]
 	}
 
@@ -41,8 +43,8 @@ module.exports = function(env) {
 		case 'dev':
 			console.log('=== In the development mode ===');
 			CONFIG.devServer = {
-				contentBase: './dist',
-				port: 9000
+				// contentBase: '', # Confuse
+				hot: true
 			}
 		break;
 		case 'prod':
