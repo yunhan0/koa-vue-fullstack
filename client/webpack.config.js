@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // Minify your JavaScript
 const UglifyJSPlufin = require('uglifyjs-webpack-plugin');
+// Extract text from a bundle, or bundles, into a separate file.
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 module.exports = function(env) {
@@ -25,7 +27,11 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.css$/,
-					use: [ 'style-loader', 'css-loader' ]
+					use: env === 'prod' ? ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use: [ 'css-loader' ]
+					})
+					:[ 'style-loader', 'css-loader' ]
 				},
 				{
 					test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -34,14 +40,14 @@ module.exports = function(env) {
 			]
 		},
 		plugins: [
-			new HtmlWebpackPlugin({template: './index.html'}),
-			new webpack.HotModuleReplacementPlugin
+			new HtmlWebpackPlugin({template: './index.html'})
 		]
 	}
 
 	switch (env) {
 		case 'dev':
 			console.log('=== In the development mode ===');
+			CONFIG.plugins.push(new webpack.HotModuleReplacementPlugin());
 			CONFIG.devServer = {
 				// contentBase: '', # Confuse
 				hot: true
@@ -50,6 +56,7 @@ module.exports = function(env) {
 		case 'prod':
 			console.log('=== In the production mode ===');
 			CONFIG.plugins.push(new webpack.optimize.UglifyJsPlugin());
+			CONFIG.plugins.push(new ExtractTextPlugin('[name].css'));
 		break;
 	}
 
