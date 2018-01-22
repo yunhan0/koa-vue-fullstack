@@ -13,7 +13,7 @@ module.exports = function(env) {
 		output: {
 			path: path.resolve(__dirname, 'dist'),
 			filename: '[name].bundle.js',
-			chunkFilename: '[name].bundle.js' // Used for code spliting
+			chunkFilename: '[name].[chunkhash:8].js' // Used for code spliting
 		},
 		module: {
 			rules: [
