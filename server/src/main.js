@@ -4,10 +4,8 @@
 'use strict';
 
 const http = require('http');
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
 const koa = require('koa');
-const koaRouter = require('koa-router');
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
@@ -22,15 +20,9 @@ db.once('open', function() {
 
 // Setup server
 const app = new koa();
+
 http.createServer(app.callback()).listen(3000);
 // https.createServer(app.callback()).listen(3001);
 
-let router = new koaRouter();
-
-router.get('/', (ctx, next) => {
-  ctx.body = "Hello world";
-});
-
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
+// Routing
+require('./routes')(app);

@@ -7,26 +7,37 @@
  */
 
 'use strict';
-const koaRouter = require('koa-router');
+const Router = require('koa-router');
+var _thing = require('./thing.model');
 
-let router = new koaRouter();
-
-router.get('/', (ctx, next) => {
-    // index
+let router = new Router({
+	prefix: '/things'
 });
 
-router.post('/', (ctx, next) => {
-    // create
-});
+router
+    .get('/', (ctx, next) => {
+        // index
+        ctx.body = 'Thing index!';
+    })
 
-router.get('/:id', (ctx, next) => {
-    // show
-});
+    .post('/', (ctx, next) => {
+        // create
+        ctx.body = 'Thing create!';
+    })
 
-router.put('/:id', (ctx, next) => {
-    // update
-});
+    .get('/:id', (ctx, next) => {
+        // show
+        ctx.body = 'Thing show!';
+    })
 
-router.delete('/:id', (ctx, next) => {
-    // delete
-});
+    .put('/:id', (ctx, next) => {
+        // update
+        ctx.body = 'Thing update!';
+    })
+
+    .delete('/:id', (ctx, next) => {
+        // delete
+        ctx.body = 'Thing delete!';
+    });
+
+module.exports = router;
