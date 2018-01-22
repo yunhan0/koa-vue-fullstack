@@ -2,11 +2,12 @@
 A snapshot of web dev.
 
 ### Environment:
-|- Server
-    |- Node
-    |- [Koa](http://koajs.com/)
-    |- Mongo
-|- Client
-    |- Webpack
-    |- [Vue](https://vuejs.org/)
-    |- [Element UI](https://github.com/ElemeFE/element)
+- Server
+    - Node
+    - [Koa](http://koajs.com/)
+    - Mongo
+- Client
+    - Webpack
+    - [Vue](https://vuejs.org/)
+    - [Element UI](https://github.com/ElemeFE/element)
+    - [Axios](https://github.com/axios/axios) (HTTP Client Library)
