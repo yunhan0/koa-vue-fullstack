@@ -8,16 +8,16 @@
 
 'use strict';
 const Router = require('koa-router');
-var _thing = require('./thing.model');
+var Thing = require('./thing.model');
 
 let router = new Router({
 	prefix: '/api/things'
 });
 
 router
-    .get('/', (ctx, next) => {
-        // index
-        ctx.body = 'Thing index!';
+    .get('/', async (ctx, next) => {
+		// index
+		ctx.body = await Thing.find({});
     })
 
     .post('/', (ctx, next) => {

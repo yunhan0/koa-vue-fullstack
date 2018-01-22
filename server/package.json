@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "A snapshot of server dev using node, koa, and mongoose",
   "author": "Yunhan",
-  "license": "ISC",  
+  "license": "ISC",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.1",
     "koa": "^2.2.0",
     "koa-router": "^7.1.1",
     "mongoose": "^4.13.9"
