@@ -11,7 +11,7 @@ const Router = require('koa-router');
 var _thing = require('./thing.model');
 
 let router = new Router({
-	prefix: '/things'
+	prefix: '/api/things'
 });
 
 router

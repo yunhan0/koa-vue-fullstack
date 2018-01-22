@@ -17,6 +17,7 @@ db.once('open', function() {
 });
 
 // Populate databases with sample data
+require('./config/seed');
 
 // Setup server
 const app = new koa();
