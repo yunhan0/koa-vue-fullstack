@@ -17,7 +17,7 @@ let router = new Router({
 router
     .get('/', async (ctx, next) => {
 		// index
-		ctx.body = await Thing.find({});
+		ctx.body = await Thing.find({}, 'name');
     })
 
     .post('/', (ctx, next) => {
@@ -26,8 +26,8 @@ router
     })
 
     .get('/:id', (ctx, next) => {
-        // show
-        ctx.body = 'Thing show!';
+		// show
+		ctx.body = await Thing.find({id: ctx.params.id});
     })
 
     .put('/:id', (ctx, next) => {

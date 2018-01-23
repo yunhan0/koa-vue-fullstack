@@ -22,7 +22,7 @@ export default {
   created() {
     axios.get('http://localhost:3000/api/things')
     .then(response => {
-      this.things = response.data
+      this.things = response.data;
     })
     .catch(e => {
       console.log(e);

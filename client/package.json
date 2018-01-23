@@ -7,7 +7,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "webpack-dev-server --env=dev",
-    "build": "webpack --env=prod"
+    "build": "rm -rf dist && webpack --env=prod"
   },
   "dependencies": {
     "axios": "^0.17.1",
