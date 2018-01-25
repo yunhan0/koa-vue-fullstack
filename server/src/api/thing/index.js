@@ -25,7 +25,7 @@ router
         ctx.body = 'Thing create!';
     })
 
-    .get('/:id', (ctx, next) => {
+    .get('/:id', async (ctx, next) => {
 		// show
 		ctx.body = await Thing.find({id: ctx.params.id});
     })

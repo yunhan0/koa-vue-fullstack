@@ -6,12 +6,15 @@
   "license": "ISC",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js"
+    "start": "nodemon src/main.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "koa": "^2.2.0",
     "koa-router": "^7.1.1",
     "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
   }
 }
