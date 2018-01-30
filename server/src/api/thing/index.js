@@ -20,14 +20,14 @@ router
 		ctx.body = await Thing.find({}, 'name');
     })
 
-    .post('/', (ctx, next) => {
+    .post('/', async (ctx, next) => {
         // create
-        ctx.body = 'Thing create!';
+        ctx.body = await Thing.create(ctx.request.body);
     })
 
     .get('/:id', async (ctx, next) => {
 		// show
-		ctx.body = await Thing.find({id: ctx.params.id});
+		ctx.body = await Thing.find({_id: ctx.params.id});
     })
 
     .put('/:id', (ctx, next) => {
@@ -35,9 +35,9 @@ router
         ctx.body = 'Thing update!';
     })
 
-    .delete('/:id', (ctx, next) => {
+    .delete('/:id', async (ctx, next) => {
         // delete
-        ctx.body = 'Thing delete!';
+        ctx.body = await Thing.remove({_id: ctx.params.id});
     });
 
 module.exports = router;

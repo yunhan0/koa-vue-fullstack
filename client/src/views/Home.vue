@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import { Carousel, CarouselItem } from 'element-ui';
+
 export default {
+  components: {
+    "el-carousel" : Carousel,
+    "el-carousel-item" : CarouselItem
+  },  
   data () {
     return {
     

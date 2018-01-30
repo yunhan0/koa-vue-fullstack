@@ -9,7 +9,10 @@ const path = require('path');
 
 module.exports = function(env) {
 	var CONFIG = {
-		entry: './src/main.js',
+		entry: {
+			app: './src/main.js',
+			vendor: ['vue', 'vue-router']
+		},
 		output: {
 			path: path.resolve(__dirname, 'dist'),
 			filename: '[name].bundle.js',
@@ -19,11 +22,11 @@ module.exports = function(env) {
 			rules: [
 				{
 					test: /\.js$/, exclude: /node_modules/,
-					loader: 'babel-loader'
+					use: 'babel-loader'
 				},
 				{
 					test: /\.vue$/,
-					loader: 'vue-loader'
+					use: 'vue-loader'
 				},
 				{
 					test: /\.css$/,
@@ -35,12 +38,16 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-					loader: 'url-loader?limit=1024'
+					use: 'url-loader?limit=1024'
 				}
 			]
 		},
 		plugins: [
-			new HtmlWebpackPlugin({template: './index.html'})
+			new HtmlWebpackPlugin({template: './index.html'}),
+			new webpack.optimize.CommonsChunkPlugin({
+				name: "vendor",
+				minChunks: Infinity
+			  })
 		]
 	}
 

@@ -4,11 +4,37 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import Routes from './routes';
 
-/** Element UI **/
-import 'element-ui/lib/theme-chalk/index.css';
-import Element from 'element-ui';
+/** Partially import from Element UI **/
+import {
+    Container, Aside, Header, Footer, Main, Menu, Submenu, MenuItem, MenuItemGroup, 
+    Button, Input, Form, FormItem
+} from 'element-ui';
 
-Vue.use(Element);
+// i18n for Element UI
+import lang from 'element-ui/lib/locale/lang/en';
+import locale from 'element-ui/lib/locale';
+
+// configure language
+locale.use(lang);
+
+// Element UI components
+Vue.prototype.$ELEMENT = { size: 'small', locale };
+Vue.use(Container);
+Vue.use(Aside);
+Vue.use(Header);
+Vue.use(Footer);
+Vue.use(Main);
+Vue.use(Menu);
+Vue.use(Submenu);
+Vue.use(MenuItem);
+Vue.use(MenuItemGroup);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Button);
+
+
+/** Router **/
 Vue.use(VueRouter);
 
 const router = new VueRouter({
