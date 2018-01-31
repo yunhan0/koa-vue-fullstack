@@ -55,8 +55,8 @@ var thingResource = new ThingResource();
 
 export default {
   components: {
-    "el-table" : Table,
-    "el-table-column" : TableColumn
+    "el-table": Table,
+    "el-table-column": TableColumn
   },
   data() {
     return {

@@ -5,9 +5,8 @@ import VueRouter from 'vue-router';
 import Routes from './routes';
 
 /** Partially import from Element UI **/
-import {
-    Container, Aside, Header, Footer, Main, Menu, Submenu, MenuItem, MenuItemGroup, 
-    Button, Input, Form, FormItem
+import { Menu, Submenu, MenuItem, MenuItemGroup, Button, Input, 
+    Form, FormItem
 } from 'element-ui';
 
 // i18n for Element UI
@@ -19,11 +18,6 @@ locale.use(lang);
 
 // Element UI components
 Vue.prototype.$ELEMENT = { size: 'small', locale };
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Header);
-Vue.use(Footer);
-Vue.use(Main);
 Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItem);
