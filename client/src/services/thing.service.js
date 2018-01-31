@@ -27,5 +27,5 @@ export default class ThingResource {
 
     update(id) { // Remove a thing
 
-    }
+    };
 }
