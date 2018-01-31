@@ -33,7 +33,6 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Button);
 
-
 /** Router **/
 Vue.use(VueRouter);
 

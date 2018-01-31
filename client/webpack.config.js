@@ -45,7 +45,7 @@ module.exports = function(env) {
 		plugins: [
 			new HtmlWebpackPlugin({template: './index.html'}),
 			new webpack.optimize.CommonsChunkPlugin({
-				name: "vendor",
+				name: 'vendor',
 				minChunks: Infinity
 			  })
 		]
