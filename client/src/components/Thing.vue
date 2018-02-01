@@ -96,7 +96,7 @@ export default {
     },
     read: function(index) { // Request single item
       thingResource.get(this.things[index]._id).then(response => {
-        this.things.splice(index, 1, response.data[0]);
+        this.things.splice(index, 1, response.data);
       })
       .catch(e => {
         console.log(e);

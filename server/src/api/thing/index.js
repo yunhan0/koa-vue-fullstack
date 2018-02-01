@@ -20,7 +20,8 @@ router
         try {
             ctx.body = await Thing.find({}, 'name');
         } catch(err) {
-            ctx.throw(500, err);
+            err.status = err.status || 500;
+            throw err;
         }
     })
 
@@ -31,35 +32,45 @@ router
             ctx.status = 201; // Status code 201 : created
             ctx.body = newThing;
         } catch(err) {
-            ctx.throw(500, err);
+            err.status = err.status || 500;
+            throw err;
         }
     })
 
     // get single item
     .get('/:id', async (ctx, next) => {
         try {
-            ctx.body = await Thing.find({_id: ctx.params.id});
+            let entity = await Thing.findById({_id: ctx.params.id});
+            // Handle not found error
+            if (!entity) { ctx.throw(404, "not found"); }
+            ctx.body = entity;
         } catch(err) {
-// TODO: handle not found err.
-            ctx.throw(500, err);
+            err.status = err.status || 500;
+            throw err;
         }
     })
 
     // update
     .put('/:id', (ctx, next) => {
         try {
-            ctx.body = 'Thing update!';
+            ctx.body = 'Thing update!'; 
         } catch(err) {
-            ctx.throw(500, err);
+            err.status = err.status || 500;
+            throw err;
         }
     })
 
     // delete
     .delete('/:id', async (ctx, next) => {
         try {
-            ctx.body = await Thing.remove({_id: ctx.params.id});
+            let entity = await Thing.findById({_id: ctx.params.id});
+            // Handle not found error
+            if (!entity) { ctx.throw(404, "not found"); }
+            // let ret = await entity.remove();
+            // ctx.body = ret;
         } catch(err) {
-            ctx.throw(500, err);
+            err.status = err.status || 500;
+            throw err;
         }
     });
 

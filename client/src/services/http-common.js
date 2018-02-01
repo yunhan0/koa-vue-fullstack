@@ -6,5 +6,5 @@ import axios from 'axios';
 
 // A new instance of axios with a custom config.
 export const HTTP = axios.create({
-  baseURL: 'http://localhost:3000/api/'
+    baseURL: 'http://localhost:3000/api/'
 });
