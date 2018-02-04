@@ -23,15 +23,12 @@ require('./config/seed');
 
 // Setup server
 const app = new koa();
+// Koa bodyparser
+app.use(bodyParser());
+// TODO: Cross Origin Resource Sharing
+app.use(cors());
+// Routing
+require('./routes')(app);
 
 http.createServer(app.callback()).listen(3000);
 // https.createServer(app.callback()).listen(3001);
-
-// Koa bodyparser
-app.use(bodyParser());
-
-// TODO: Cross Origin Resource Sharing
-app.use(cors());
-
-// Routing
-require('./routes')(app);

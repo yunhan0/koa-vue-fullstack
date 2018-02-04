@@ -20,7 +20,6 @@ router
         try {
             ctx.body = await Thing.find({}, 'name');
         } catch(err) {
-            err.status = err.status || 500;
             throw err;
         }
     })
@@ -32,7 +31,6 @@ router
             ctx.status = 201; // Status code 201 : created
             ctx.body = newThing;
         } catch(err) {
-            err.status = err.status || 500;
             throw err;
         }
     })
@@ -45,7 +43,6 @@ router
             if (!entity) { ctx.throw(404, "not found"); }
             ctx.body = entity;
         } catch(err) {
-            err.status = err.status || 500;
             throw err;
         }
     })
@@ -55,7 +52,6 @@ router
         try {
             ctx.body = 'Thing update!'; 
         } catch(err) {
-            err.status = err.status || 500;
             throw err;
         }
     })
@@ -66,10 +62,8 @@ router
             let entity = await Thing.findById({_id: ctx.params.id});
             // Handle not found error
             if (!entity) { ctx.throw(404, "not found"); }
-            // let ret = await entity.remove();
-            // ctx.body = ret;
+            ctx.body = await entity.remove();
         } catch(err) {
-            err.status = err.status || 500;
             throw err;
         }
     });
