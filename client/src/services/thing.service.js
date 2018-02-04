@@ -25,7 +25,7 @@ export default class ThingResource {
         return HTTP.delete('things/' + id);
     };
 
-    update(id) { // Remove a thing
+    update(id) { // Update a thing
 
     };
 }

@@ -4,7 +4,7 @@
     <p> CRUD (Create Read Update Delete) operations on a demo database collection called "things"</p>
     <!-- Component: Thing -->
     <thing></thing>
-  </div> 
+  </div>
 </template>
 
 <script>

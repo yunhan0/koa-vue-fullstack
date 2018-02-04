@@ -1,17 +1,36 @@
 # KVMN Full-Stack Snapshot
-A boilerplate project for creating KVMN(Koa, VueJS, MongoDB, and Node) stack applications. Let you quickly set up and understand a web project.
+This is a lightweight boilerplate for creating KVMN(Koa, VueJS, MongoDB, and Node) stack applications.
 
 ### Environment:
 - Server
-    - Node
     - [Koa](http://koajs.com/)
+    - Koa Router, Koa Cors, Koa Bodyparser
     - Mongoose
+    - Node
 - Client
     - [Vue](https://vuejs.org/)
     - [Element UI](https://github.com/ElemeFE/element)
     - [Axios](https://github.com/axios/axios) (HTTP Client Library)
     - Webpack
     - WebpackDevServer (Development mode only)
+
+### Installation:
+The server and client are completely seperated in this project, so go to each client and server folder and run:
+
+    npm install
+
+### Running Dev Client:
+
+    npm start
+
+### Running Production Client:
+
+    npm run build
+
+### Running Server:
+
+    npm start
+
 
 ### License:
 [BSD license](https://opensource.org/licenses/bsd-license.php)
