@@ -50,9 +50,6 @@
 import ThingResource from '../services/thing.service';
 import { Table, TableColumn } from 'element-ui';
 
-// Create a new instance of thing resource 
-var thingResource = new ThingResource();
-
 export default {
   components: {
     "el-table": Table,
@@ -69,7 +66,7 @@ export default {
   },
   // Request data when the component is created.
   created() {
-    thingResource.show().then(response => {
+    ThingResource.show().then(response => {
       this.things = response.data;
     })
     .catch(e => {
@@ -80,7 +77,7 @@ export default {
     create: function(formName) { // Create item
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          thingResource.create(this.thingForm).then(response => {
+          ThingResource.create(this.thingForm).then(response => {
             this.things.push(response.data);
             // reset form data
             this.$refs[formName].resetFields();
@@ -95,7 +92,7 @@ export default {
       });
     },
     read: function(index) { // Request single item
-      thingResource.get(this.things[index]._id).then(response => {
+      ThingResource.get(this.things[index]._id).then(response => {
         this.things.splice(index, 1, response.data);
       })
       .catch(e => {
@@ -105,7 +102,7 @@ export default {
     update: function(index) { }, // Update item
     
     remove: function(index) { // Delete item
-      thingResource.delete(this.things[index]._id).then(response => {
+      ThingResource.delete(this.things[index]._id).then(response => {
         this.things.splice(index, 1);
       })
       .catch(e => {
