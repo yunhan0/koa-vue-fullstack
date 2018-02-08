@@ -4,6 +4,7 @@
 
 'use strict';
 const Thing = require('../api/thing/thing.model');
+const User = require('../api/user/user.model');
 
 const seeding = async() => {
     await Thing.collection.remove();
@@ -11,6 +12,8 @@ const seeding = async() => {
         { name: 'Our first Koa and Node app', info: 'detailed info goes here' }, 
         { name: 'Mongoose is here', info: 'detailed info goes here' }
     );
+    await User.collection.remove();
+    await User.create({ email: 'test@example.com', password: 'hello' });
     console.log('Finish populating database');
 }
 

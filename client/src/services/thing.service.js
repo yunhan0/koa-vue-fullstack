@@ -10,7 +10,7 @@ import { HTTP } from '../services/http-common';
 
 /*
  * Service should be singleton,
- * hence we could declare a declare a simple object literal.
+ * hence we could declare a simple object literal.
  */
 let ThingResource = {
     show() { // Show all the things

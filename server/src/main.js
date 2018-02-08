@@ -6,7 +6,6 @@
 const http = require('http');
 // const https = require('https');
 const koa = require('koa');
-const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 
@@ -25,8 +24,8 @@ require('./config/seed');
 const app = new koa();
 // Koa bodyparser
 app.use(bodyParser());
-// TODO: Cross Origin Resource Sharing
-app.use(cors());
+// Security
+require('./config/security')(app);
 // Routing
 require('./routes')(app);
 
