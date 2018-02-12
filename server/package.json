@@ -6,10 +6,12 @@
   "license": "ISC",
   "main": "src/main.js",
   "scripts": {
+    "test": "mocha src/test/index.js",
     "start": "nodemon src/main.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
+    "bcrypt": "^1.0.3",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-lusca": "^2.2.0",

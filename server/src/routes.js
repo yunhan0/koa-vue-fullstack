@@ -20,5 +20,6 @@ module.exports = function(app) {
     app
         .use(require('./api/thing').routes())
         .use(require('./api/thing').allowedMethods())
-        .use(require('./api/user').routes());
+        .use(require('./api/user').routes())
+        .use(require('./api/auth').routes());
 };

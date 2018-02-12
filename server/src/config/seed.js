@@ -13,7 +13,7 @@ const seeding = async() => {
         { name: 'Mongoose is here', info: 'detailed info goes here' }
     );
     await User.collection.remove();
-    await User.create({ email: 'test@example.com', password: 'hello' });
+    await User.create({ email: 'test@example.com', password: 'helloworld' });
     console.log('Finish populating database');
 }
 
