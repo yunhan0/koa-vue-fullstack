@@ -1,6 +1,8 @@
 'use strict';
 
 const Router = require('koa-router');
+const jwt = require('jsonwebtoken');
+const secret = '0RGxxAOfOW'; // Randomly generated;
 var User = require('../user/user.model');
 
 let router = new Router({
@@ -22,11 +24,18 @@ router
             if(!authenticated) {
                 ctx.throw(401, 'This password is not correct.');
             } else {
-                ctx.body = user; // should return back a token..
+                // Sign token
+                let token = await jwt.sign({id: user._id, role: user.role}, secret, {
+                   expiresIn: '1d'
+                });
+                ctx.cookies.set('access_token', token, {
+                    httpOnly: false
+                });
+                ctx.body = 'authentication done';
             }
         } catch(err) {
             throw err;
         }
     });
-    
+
 module.exports = router;

@@ -15,6 +15,10 @@ var userSchema = mongoose.Schema({
         type: String,
         required: [true, 'password is required'],
         min: [6, 'password must be at least 6 characters']
+    },
+    role: {
+        type: String,
+        default: 'user' // Other roles so far: admin.
     }
 });
 /* 
@@ -49,10 +53,6 @@ userSchema.methods.comparePassword = async function(myPlaintextPassword) {
         throw err;        
     }
 }
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
 // Compiling our schema into a Model.
 module.exports = mongoose.model('User', userSchema);
