@@ -3,11 +3,11 @@ const cors = require('@koa/cors');
 // Application security for koa.
 const lusca = require('koa-lusca');
 // Simple session middleware for koa
-const session = require('koa-session');
+// const session = require('koa-session');
 
 module.exports = function(app) {
     app.use(cors());
-    app.use(session(app));
+    // app.use(session(app));
     app.use(lusca({
         /*
         * The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed 

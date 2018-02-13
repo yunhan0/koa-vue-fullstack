@@ -2,11 +2,11 @@
 
 const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
-const secret = '0RGxxAOfOW'; // Randomly generated;
+const secret = require('./jwt').secret;
 var User = require('../user/user.model');
 
 let router = new Router({
-	prefix: '/auth'
+	prefix: '/api/auth'
 });
 
 router
@@ -28,10 +28,7 @@ router
                 let token = await jwt.sign({id: user._id, role: user.role}, secret, {
                    expiresIn: '1d'
                 });
-                ctx.cookies.set('access_token', token, {
-                    httpOnly: false
-                });
-                ctx.body = 'authentication done';
+                ctx.body = {token: token};
             }
         } catch(err) {
             throw err;

@@ -1,5 +1,7 @@
 'use strict';
 const Router = require('koa-router');
+const jwt = require('jsonwebtoken');
+const secret = require('../auth/jwt').secret;
 var User = require('./user.model');
 
 let router = new Router({
@@ -19,10 +21,13 @@ router
     // create
     .post('/', async (ctx, next) => {
         try {
-            let user = new User(ctx.request.body);
-            await user.save();
+            let user = await User.create(ctx.request.body);
+            // Sign token
+            let token = await jwt.sign({id: user._id, role: user.role}, secret, {
+                expiresIn: '1d'
+            });
             ctx.status = 201; // Status code 201 : created
-            ctx.body = user;
+            ctx.body = {token: token};
         } catch(err) {
             throw err;
         }
