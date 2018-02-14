@@ -1,54 +1,33 @@
 <template>
   <el-aside width="200px">
     <el-menu
-      default-active="2"
+      default-active="/home"
       class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      style="height:100%">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
+      style="height:100%"
+      :router="true">
+      <el-menu-item index="/home">
         <i class="el-icon-menu"></i>
-        <span>Navigator Two</span>
+        <span> Home </span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="/page1">
         <i class="el-icon-setting"></i>
-        <span>Navigator Three</span>
+        <span>Page 1</span>
       </el-menu-item>
-    </el-menu>
+    </el-menu>   
   </el-aside>
 </template>
 
 <script>
-import { Aside } from 'element-ui';
+import { Aside, Menu, MenuItem } from 'element-ui';
 
 export default {
   components: {
-    "el-aside": Aside
+    'el-aside': Aside,
+    'el-menu': Menu,
+    'el-menu-item': MenuItem    
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
+
   }
 }
 </script>

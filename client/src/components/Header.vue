@@ -1,32 +1,32 @@
 <template>
   <el-header>
-    <el-menu
-      :default-active="activeIndex"
-      mode="horizontal"
-      @select="handleSelect"
-      :router="true">
-      <el-menu-item index="/">
-        Home
-      </el-menu-item>
-      <el-menu-item index="/page1">
-        Page 1
-      </el-menu-item>
-      <el-submenu index="3">
-        <template slot="title"> Page 2 </template>
-        <el-menu-item index="3-1">item 1</el-menu-item>
-        <el-menu-item index="3-2">item 2</el-menu-item>
-        <el-menu-item index="3-3">item 3</el-menu-item>
+    <el-menu mode="horizontal">
+      <span class="title">
+        KVMN Snapshot
+      </span>
+      <el-submenu index="1" style="float: right">
+        <template slot="title"> User </template>
+        <el-menu-item index="1-1" @click="logout"> 
+          Logout 
+        </el-menu-item>
+        <el-menu-item index="1-2"> 
+          Settings 
+        </el-menu-item>        
       </el-submenu>
-    </el-menu>
+    </el-menu>  
   </el-header>
 </template>
 
 <script>
-import { Header } from 'element-ui';
+import { Header, Menu, Submenu, MenuItem } from 'element-ui';
+import AuthService from '../services/auth.service';
 
 export default {
   components: {
-    "el-header": Header
+    'el-header': Header,
+    'el-menu': Menu,
+    'el-submenu': Submenu,
+    'el-menu-item': MenuItem
   },
   data() {
     return {
@@ -34,13 +34,18 @@ export default {
     };
   },
   methods: {
-    handleSelect(key, keyPath) {
-
+    logout: function() {
+      AuthService.logout();
+      this.$router.push('/');
     }
   }
 }
 </script>
 
 <style scoped>
-
+.title {
+  font-size: 1.2em;
+  line-height: 60px;
+  outline: none;
+}
 </style>

@@ -5,9 +5,8 @@ import VueRouter from 'vue-router';
 import Routes from './routes';
 
 /** Partially import from Element UI **/
-import { Menu, Submenu, MenuItem, MenuItemGroup, Button, Input, 
-    Form, FormItem
-} from 'element-ui';
+import { Menu, Button, Input, Form, FormItem, Row, Col, Loading } 
+from 'element-ui';
 
 // i18n for Element UI
 import lang from 'element-ui/lib/locale/lang/en';
@@ -18,14 +17,13 @@ locale.use(lang);
 
 // Element UI components
 Vue.prototype.$ELEMENT = { size: 'small', locale };
-Vue.use(Menu);
-Vue.use(Submenu);
-Vue.use(MenuItem);
-Vue.use(MenuItemGroup);
+Vue.use(Row);
+Vue.use(Col);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Button);
+Vue.use(Loading.directive);
 
 /** Router **/
 Vue.use(VueRouter);

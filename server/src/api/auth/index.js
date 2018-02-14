@@ -33,6 +33,12 @@ router
         } catch(err) {
             throw err;
         }
-    });
+    })
+    .post('/forget', async(ctx, next) => {
+
+    })
+    .post('/reset', async(ctx, next) => {
+        
+    })
 
 module.exports = router;

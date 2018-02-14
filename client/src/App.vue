@@ -1,16 +1,18 @@
 <template>
-  <el-container style="height: 100vh">
-    <!-- Sidebar -->
-    <app-sider></app-sider>
-    <el-container direction="vertical">
-      <!-- Header -->
-      <app-header></app-header>
-      <!-- Main -->
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-      <!-- Footer -->
-      <app-footer></app-footer>
+  <el-container direction="vertical" style="height: 100vh">
+    <!-- Header -->
+    <app-header></app-header>
+    <el-container>
+      <!-- Sidebar -->
+      <app-sider></app-sider>
+      <el-container direction="vertical">
+        <!-- Main -->
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+        <!-- Footer -->
+        <app-footer></app-footer>
+      </el-container>
     </el-container>
   </el-container>
 </template>

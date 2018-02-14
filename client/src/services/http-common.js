@@ -15,9 +15,19 @@ HTTP.interceptors.request.use(function (config) {
         config.headers.common['access_token'] = localStorage.getItem('token');
     }
     return config;
+}, function(error) {
+    return Promise.reject(error);
 });
 
 // Add a response interceptor
+HTTP.interceptors.response.use(function (response) {
+    // console.log("!", response);
+    return response;
+}, function(error) {
+    if (error.response.status === 403) {
 
+    }
+    return Promise.reject(error);
+});
 
 export default HTTP;
