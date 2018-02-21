@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import AuthService from '../services/auth.service';
+import Auth from '../services/auth.service';
+
 export default {
   data() {
     return {
@@ -42,13 +43,13 @@ export default {
     login: function(formName) {
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            AuthService.login(this.loginForm)
-            .then(res => {
-              localStorage.setItem('token', res.data.token);
-              this.$router.push('home');
-            }).catch(err => {
-              console.log(err);
-            });          
+            Auth.login(this.loginForm)
+            .then(() => {
+              this.$router.push('/home');
+            })
+            .catch(err => {
+              console.log(err);              
+            });
         } else {
           console.log('error submit!!');
           return false;
