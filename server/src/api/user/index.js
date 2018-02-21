@@ -2,6 +2,7 @@
 const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
 const secret = require('../auth/jwt').secret;
+const auth = require('../auth/service');
 var User = require('./user.model');
 
 let router = new Router({
@@ -10,7 +11,7 @@ let router = new Router({
 
 router
     // index
-    .get('/', async (ctx, next) => {
+    .get('/', auth.hasRole('admin'), async (ctx, next) => {
         try {
             ctx.body = await User.find({}, '-password');
         } catch(err) {

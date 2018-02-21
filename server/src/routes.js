@@ -1,5 +1,3 @@
-const authentication = require('./api/auth/service').isAuthenticated;
-
 module.exports = function(app) {
     // Customized error handling, default error code: 500
     app.use(async (ctx, next) => {
@@ -20,7 +18,7 @@ module.exports = function(app) {
         });       
     app.use(require('./api/auth').routes());
     // route middleware to verify a token
-    app.use(authentication);
+    app.use(require('./api/auth/service').isAuthenticated);
     app
         .use(require('./api/user').routes())
         .use(require('./api/thing').routes())

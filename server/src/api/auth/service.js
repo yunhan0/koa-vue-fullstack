@@ -11,7 +11,7 @@ module.exports = {
                 let decoded = await jwt.verify(token, secret);
                 let user = await User.findById({_id: decoded.id}, '-password');
                 if (!user) { 
-                    ctx.throw(404, "user not found");
+                    ctx.throw(404, "User not found");
                 }
                 // Attach user to state
                 ctx.state.user = user;
@@ -21,6 +21,18 @@ module.exports = {
             }
         } catch (err) {
             throw err;
+        }
+    },
+    hasRole: (role) => {
+        return async (ctx, next) => {
+            try {
+                if (ctx.state.user.role !== role) {
+                    ctx.throw(403, "Forbidden");
+                }
+                await next();
+            } catch (err) {
+                throw err;
+            }
         }
     }
 }
