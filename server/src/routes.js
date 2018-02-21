@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken');
-const secret = require('./api/auth/jwt').secret;
+const authentication = require('./api/auth/service').isAuthenticated;
 
 module.exports = function(app) {
     // Customized error handling, default error code: 500
@@ -21,21 +20,7 @@ module.exports = function(app) {
         });       
     app.use(require('./api/auth').routes());
     // route middleware to verify a token
-    app.use(async (ctx, next) => {
-        try {
-            let token = ctx.request.body.token || ctx.query.token || ctx.headers['access_token'];
-            // decode token
-            console.log(token);
-            if(token) {
-                await jwt.verify(token, secret);
-                await next();
-            } else {
-                ctx.throw(403, 'No token provided');
-            }
-        } catch (err) {
-            throw err;
-        }
-    });         
+    app.use(authentication);
     app
         .use(require('./api/user').routes())
         .use(require('./api/thing').routes())

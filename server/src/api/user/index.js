@@ -12,7 +12,7 @@ router
     // index
     .get('/', async (ctx, next) => {
         try {
-            ctx.body = await User.find({}, '-salt -password');
+            ctx.body = await User.find({}, '-password');
         } catch(err) {
             throw err;
         }
@@ -33,13 +33,22 @@ router
         }
     })
 
+    // get my info
+    .get('/me', async (ctx, next) => {
+        try {
+            ctx.body = ctx.state.user;
+        } catch(err) {
+            throw err;
+        }
+    })
+
     // get single user
     .get('/:id', async (ctx, next) => {
         try {
-            let entity = await User.findById({_id: ctx.params.id}, '-salt -password');
+            let user = await User.findById({_id: ctx.params.id}, '-password');
             // Handle not found error
-            if (!entity) { ctx.throw(404, "not found"); }
-            ctx.body = entity;
+            if (!user) { ctx.throw(404, "not found"); }
+            ctx.body = user;
         } catch(err) {
             throw err;
         }

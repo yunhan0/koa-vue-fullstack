@@ -5,12 +5,11 @@ import HTTP from '../services/http-common';
  * hence we could declare a simple object literal.
  */
 let UserResource = {
-    get(id) { // Get a specific thing
-        return HTTP.get('users/' + id);
+    get() { // Get current user
+        return HTTP.get('users/me');
     },
 
     create(body) {
-        console.log(body);
         return HTTP.post('users/', body);
     }
 };

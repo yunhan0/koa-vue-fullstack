@@ -19,7 +19,7 @@
 
 <script>
 import { Header, Menu, Submenu, MenuItem } from 'element-ui';
-import AuthService from '../services/auth.service';
+import Auth from '../services/auth.service';
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     logout: function() {
-      AuthService.logout();
+      Auth.logout();
       this.$router.push('/');
     }
   }

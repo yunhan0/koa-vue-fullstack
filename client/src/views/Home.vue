@@ -12,7 +12,7 @@ import Thing from '../components/Thing.vue';
 
 export default {
   components: {
-    "thing" : Thing
+    'thing' : Thing
   },
   data() {
     return {
