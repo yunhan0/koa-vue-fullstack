@@ -17,7 +17,7 @@ module.exports = {
                 ctx.state.user = user;
                 await next();
             } else {
-                ctx.throw(403, 'No token provided');
+                ctx.throw(401, 'No token provided');
             }
         } catch (err) {
             throw err;
