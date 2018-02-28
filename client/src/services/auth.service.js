@@ -6,31 +6,22 @@ import User from './user.service';
  * hence we could declare a simple object literal.
  */
 let AuthService = {
-    authenticated: false,
-
     login(body) {
         return HTTP.post('auth/login', body)
             .then(res => {
-                this.authenticated = true;
                 localStorage.setItem('token', res.data.token);
                 return User.get();
             })
-            .then(user => {
-                return new Promise(resolve => { resolve(); });
+            .then(response => {
+                return response.data;
             })
             .catch(err => {
-                return new Promise(reject => { reject(err); });
+                throw err;
             });
     },
 
     signup(body) {
         return User.create(body);
-    },
-
-    logout() {
-        this.authenticated = false;
-        localStorage.removeItem('token');
-        // currentUser = {};
     },
 
     forget() {
@@ -39,6 +30,15 @@ let AuthService = {
 
     reset() {
 
+    },
+
+    getCurrentUser() {
+        return User.get().then(response => {
+            return response.data;
+        })
+        .catch(err => {
+            throw err;
+        });
     }
 };
 

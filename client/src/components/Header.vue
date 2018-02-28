@@ -4,9 +4,9 @@
       <span class="title">
         KVMN Snapshot
       </span>
-      <el-submenu index="1" style="float: right">
-        <template slot="title"> User </template>
-        <el-menu-item index="1-1" @click="logout"> 
+      <el-submenu index="1" style="float: right" v-if="isAuthenticated">
+        <template slot="title"> {{ getCurrentUser.email }} </template>
+        <el-menu-item index="1-1" @click="logout()"> 
           Logout 
         </el-menu-item>
         <el-menu-item index="1-2"> 
@@ -19,7 +19,7 @@
 
 <script>
 import { Header, Menu, Submenu, MenuItem } from 'element-ui';
-import Auth from '../services/auth.service';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -33,9 +33,12 @@ export default {
       activeIndex: '1'
     };
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'getCurrentUser'])
+  },
   methods: {
     logout: function() {
-      Auth.logout();
+      this.$store.dispatch('logout');
       this.$router.push('/');
     }
   }

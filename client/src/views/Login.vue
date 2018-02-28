@@ -17,33 +17,31 @@
       </el-form-item>      
       <!-- Button -->
       <el-form-item>
-        <el-button type="primary" @click="login('loginForm')"> Login </el-button>
+        <el-button type="primary" @click="submit('loginForm')"> Login </el-button>
       </el-form-item>
     </el-form>
   </div>  
 </template>
 
 <script>
-import Auth from '../services/auth.service';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
     return {
       loginForm: {
-        email: '',
-        password: ''
+        email: 'test@example.com',
+        password: 'helloworld'
       },
     }
   },
-  // Request data when the component is created.
-  created() {
-    
-  },
   methods: {
-    login: function(formName) {
+    ...mapActions(['login']),
+
+    submit: function(formName) {
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            Auth.login(this.loginForm)
+            this.login(this.loginForm)
             .then(() => {
               this.$router.push('/home');
             })

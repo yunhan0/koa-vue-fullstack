@@ -1,5 +1,5 @@
 {
-  "presets": ["env"],
+  "presets": ["stage-2"],
   "plugins": ["syntax-dynamic-import", ["component", 
     {
       "libraryName": "element-ui",

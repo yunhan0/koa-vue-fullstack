@@ -3,6 +3,8 @@
  * by the time of writing this piece of code.
  */
 import axios from 'axios';
+/** Router **/
+import router from '../routes';
 
 // A new instance of axios with a custom config.
 let HTTP = axios.create({
@@ -21,11 +23,11 @@ HTTP.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 HTTP.interceptors.response.use(function (response) {
-    // console.log("!", response);
     return response;
 }, function(error) {
-    if (error.response.status === 403) {
-
+    if (error.response.status === 401) {
+        localStorage.removeItem('token');
+        router.push('/');
     }
     return Promise.reject(error);
 });

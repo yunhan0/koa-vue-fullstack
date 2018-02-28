@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
 /** Router **/
-import VueRouter from 'vue-router';
-import Routes from './routes';
-/** Auth **/
-import Auth from './services/auth.service';
+import router from './routes';
+/** Store **/
+import store from './store/';
 
 /** Partially import from Element UI **/
 import { Menu, Button, Input, Form, FormItem, Row, Col, Loading } 
@@ -28,22 +27,8 @@ Vue.use(Input);
 Vue.use(Button);
 Vue.use(Loading.directive);
 
-/** Router **/
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-    routes: Routes
-});
-
-router.beforeEach((to, from, next) => {
-    if(to.meta.requiresAuth && !Auth.authenticated) {
-        next('/');
-    } else {
-        next();
-    }
-});
-
 new Vue({
+    store,
     el:'#app',
     render: h=>h(App),
     router: router
