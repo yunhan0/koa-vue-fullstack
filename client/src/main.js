@@ -31,5 +31,8 @@ new Vue({
     store,
     el:'#app',
     render: h=>h(App),
-    router: router
+    router: router,
+    created () {
+        store.dispatch('init');
+    }
 });

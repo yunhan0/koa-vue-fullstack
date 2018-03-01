@@ -16,16 +16,10 @@ let router = new VueRouter({
             path: '/', 
             component: Login, 
             beforeEnter: (to, from, next) => {
-                if (!store.getters.isAuthenticated) {
-                    store.dispatch('init').then(() => {
-                        if (store.getters.isAuthenticated) {
-                            next('/home');
-                        } else {
-                            next('/');
-                        }
-                    }).catch(err => {
-                        next('/');
-                    });
+                if (store.getters.isAuthenticated) {
+                    next('/home')
+                } else {
+                    next();
                 }
             } 
         },
@@ -35,22 +29,10 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (!to.meta.requiresAuth) {
-        next();
+    if(to.meta.requiresAuth && !store.getters.isAuthenticated) {
+        next('/');
     } else {
-        if (store.getters.isAuthenticated) {
-            next();
-        } else {
-            store.dispatch('init').then(() => {
-                if (store.getters.isAuthenticated) {
-                    next();
-                } else {
-                    next('/');
-                }
-            }).catch(err => {
-                next('/');
-            });
-        }
+        next();
     }
 });
 

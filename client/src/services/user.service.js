@@ -1,4 +1,4 @@
-import HTTP from '../services/http-common';
+import HTTP from './http-common';
 
 /*
  * Service should be singleton,

@@ -5,6 +5,8 @@
 import axios from 'axios';
 /** Router **/
 import router from '../routes';
+/** Store **/
+import store from '../store/';
 
 // A new instance of axios with a custom config.
 let HTTP = axios.create({
@@ -26,7 +28,7 @@ HTTP.interceptors.response.use(function (response) {
     return response;
 }, function(error) {
     if (error.response.status === 401) {
-        localStorage.removeItem('token');
+        store.dispatch('logout');
         router.push('/');
     }
     return Promise.reject(error);
