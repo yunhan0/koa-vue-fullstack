@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import ThingResource from '../services/thing.service';
+import ThingResource from '../api/thing.service';
 import { Table, TableColumn } from 'element-ui';
 
 export default {

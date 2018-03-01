@@ -1,7 +1,7 @@
 import Vue from 'vue';
 /** Vuex **/
 import Vuex from 'vuex';
-import Auth from '../services/auth.service';
+import Auth from '../api/auth.service';
 
 Vue.use(Vuex);
 
@@ -42,15 +42,8 @@ export default new Vuex.Store({
             commit('logout');
         },
 
-        init: ({commit}) => {
-            console.log('initing')
-            return Auth.getCurrentUser()
-            .then(user => {
-                commit('login', user);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        autoLogin: ({commit}, user) => {
+            commit('login', user);
         }
     }
 });

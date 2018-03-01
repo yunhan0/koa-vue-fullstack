@@ -4,7 +4,7 @@ import App from './App.vue';
 import router from './routes';
 /** Store **/
 import store from './store/';
-
+import Auth from './api/auth.service';
 /** Partially import from Element UI **/
 import { Menu, Button, Input, Form, FormItem, Row, Col, Loading } 
 from 'element-ui';
@@ -27,12 +27,30 @@ Vue.use(Input);
 Vue.use(Button);
 Vue.use(Loading.directive);
 
-new Vue({
-    store,
-    el:'#app',
-    render: h=>h(App),
-    router: router,
-    created () {
-        store.dispatch('init');
-    }
-});
+if (!!localStorage.getItem('token')) {
+    Auth.getCurrentUser()
+    .then(user => {
+        store.dispatch('autoLogin', user); 
+        new Vue({
+            store,
+            el:'#app',
+            render: h=>h(App),
+            router: router
+        });  
+    })
+    .catch(err => {
+        new Vue({
+            store,
+            el:'#app',
+            render: h=>h(App),
+            router: router
+        });
+    });
+} else {
+    new Vue({
+        store,
+        el:'#app',
+        render: h=>h(App),
+        router: router
+    });
+}
