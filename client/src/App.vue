@@ -1,7 +1,7 @@
 <template>
   <el-container direction="vertical" style="height: 100vh">
     <!-- Header -->
-    <app-header></app-header>
+    <app-header style="margin-bottom: 10px;"></app-header>
     <el-container>
       <!-- Sidebar -->
       <app-sider></app-sider>

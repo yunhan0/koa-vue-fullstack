@@ -3,8 +3,6 @@
  * by the time of writing this piece of code.
  */
 import axios from 'axios';
-/** Router **/
-import router from '../routes';
 /** Store **/
 import store from '../store/';
 
@@ -29,7 +27,6 @@ HTTP.interceptors.response.use(function (response) {
 }, function(error) {
     if (error.response.status === 401) {
         store.dispatch('logout');
-        router.push('/');
     }
     return Promise.reject(error);
 });

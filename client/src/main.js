@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
 /** Router **/
-import router from './routes';
+import router from './router';
 /** Store **/
 import store from './store/';
-import Auth from './api/auth.service';
+import AuthService from './api/auth.service';
 /** Partially import from Element UI **/
 import { Menu, Button, Input, Form, FormItem, Row, Col, Loading } 
 from 'element-ui';
@@ -12,7 +12,6 @@ from 'element-ui';
 // i18n for Element UI
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
-
 
 // configure language
 locale.use(lang);
@@ -38,7 +37,7 @@ function initialisation() {
 
 new Promise((resolve, reject) => {
     if (!!localStorage.getItem('token')) {
-        Auth.getCurrentUser()
+        AuthService.getCurrentUser()
         .then(user => {
             store.dispatch('autoLogin', user);
             resolve();

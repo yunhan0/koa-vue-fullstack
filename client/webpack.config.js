@@ -11,7 +11,7 @@ module.exports = function(env) {
 	var CONFIG = {
 		entry: {
 			app: './src/main.js',
-			vendor: ['vue', 'vue-router']
+			vendor: ['vue', 'vue-router', 'vuex']
 		},
 		output: {
 			path: path.resolve(__dirname, 'dist'),

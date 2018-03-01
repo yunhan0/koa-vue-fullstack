@@ -1,5 +1,12 @@
 {
-  "presets": ["stage-2"],
+  "presets": [
+    ["stage-2"],
+    ["env",  {
+      "targets": {
+        "uglify" : true
+      }
+    }]
+  ],
   "plugins": ["syntax-dynamic-import", ["component", 
     {
       "libraryName": "element-ui",

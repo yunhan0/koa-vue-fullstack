@@ -1,5 +1,5 @@
 import HTTP from './http-common';
-import User from './user.service';
+import UserResource from './user.service';
 
 /*
  * Service should be singleton,
@@ -10,7 +10,7 @@ let AuthService = {
         return HTTP.post('auth/login', body)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
-                return User.get();
+                return UserResource.get();
             })
             .then(response => {
                 return response.data;
@@ -21,7 +21,7 @@ let AuthService = {
     },
 
     signup(body) {
-        return User.create(body);
+        return UserResource.create(body);
     },
 
     forget() {
@@ -33,7 +33,7 @@ let AuthService = {
     },
 
     getCurrentUser() {
-        return User.get().then(response => {
+        return UserResource.get().then(response => {
             return response.data;
         })
         .catch(err => {

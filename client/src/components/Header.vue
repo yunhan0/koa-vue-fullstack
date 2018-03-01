@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      activeIndex: '1'
+
     };
   },
   computed: {
@@ -39,7 +39,6 @@ export default {
   methods: {
     logout: function() {
       this.$store.dispatch('logout');
-      this.$router.push('/');
     }
   }
 }
