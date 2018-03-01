@@ -27,30 +27,28 @@ Vue.use(Input);
 Vue.use(Button);
 Vue.use(Loading.directive);
 
-if (!!localStorage.getItem('token')) {
-    Auth.getCurrentUser()
-    .then(user => {
-        store.dispatch('autoLogin', user); 
-        new Vue({
-            store,
-            el:'#app',
-            render: h=>h(App),
-            router: router
-        });  
-    })
-    .catch(err => {
-        new Vue({
-            store,
-            el:'#app',
-            render: h=>h(App),
-            router: router
-        });
-    });
-} else {
+function initialisation() {
     new Vue({
-        store,
         el:'#app',
-        render: h=>h(App),
-        router: router
+        router,
+        store,
+        render: h=>h(App)
     });
 }
+
+new Promise((resolve, reject) => {
+    if (!!localStorage.getItem('token')) {
+        Auth.getCurrentUser()
+        .then(user => {
+            store.dispatch('autoLogin', user);
+            resolve();
+        })
+    } else {
+        resolve();
+    }
+}).then(() => {
+    initialisation();
+}).catch(err => {
+    // still initialize the view if get user has error;
+    initialisation();
+});
