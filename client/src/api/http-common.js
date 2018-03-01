@@ -5,6 +5,8 @@
 import axios from 'axios';
 /** Store **/
 import store from '../store/';
+/** Router **/
+import router from '../router';
 
 // A new instance of axios with a custom config.
 let HTTP = axios.create({
@@ -27,6 +29,7 @@ HTTP.interceptors.response.use(function (response) {
 }, function(error) {
     if (error.response.status === 401) {
         store.dispatch('logout');
+        router.push('/');
     }
     return Promise.reject(error);
 });

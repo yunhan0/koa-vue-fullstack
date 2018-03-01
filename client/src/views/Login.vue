@@ -41,7 +41,13 @@ export default {
     submit: function(formName) {
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.login(this.loginForm);
+            this.login(this.loginForm)
+            .then(() => {
+              this.$router.push('/home');
+            })
+            .catch(err => {
+              //
+            });
         } else {
           console.log('error submit!!');
           return false;

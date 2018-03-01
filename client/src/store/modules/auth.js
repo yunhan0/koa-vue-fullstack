@@ -1,5 +1,4 @@
 import AuthService from '../../api/auth.service';
-import router from '../../router';
 
 export default {
     state: {
@@ -27,7 +26,6 @@ export default {
             return AuthService.login(body)
             .then(user => {
                 commit('login', user);
-                router.push('/home');
             })
             .catch(err => {
                 console.log(err);
@@ -37,7 +35,6 @@ export default {
         logout: ({ commit }) => {
             localStorage.removeItem('token');
             commit('logout');
-            router.push('/');
         },
 
         autoLogin: ({commit}, user) => {
