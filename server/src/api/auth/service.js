@@ -20,6 +20,10 @@ module.exports = {
                 ctx.throw(401, 'No token provided');
             }
         } catch (err) {
+            // Errors coming from token validation
+            if(err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+                err.status = 401;
+            }
             throw err;
         }
     },

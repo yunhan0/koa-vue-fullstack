@@ -35,19 +35,17 @@ function initialisation() {
     });
 }
 
-new Promise((resolve, reject) => {
+(function () {
     if (!!localStorage.getItem('token')) {
-        AuthService.getCurrentUser()
+        return AuthService.getCurrentUser()
         .then(user => {
             store.dispatch('autoLogin', user);
-            resolve();
+            initialisation();
+        })
+        .catch(err => {
+            initialisation();
         })
     } else {
-        resolve();
+        initialisation();
     }
-}).then(() => {
-    initialisation();
-}).catch(err => {
-    // still initialize the view if get user has error;
-    initialisation();
-});
+})();
