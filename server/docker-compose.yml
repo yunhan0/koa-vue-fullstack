@@ -2,8 +2,8 @@ version: "2"
 services:
   server:
     container_name: server
+    image: yunhan0/koa-vue-fullstack:server
     restart: always
-    build: .
     ports:
       - "3000:3000"
     links:

@@ -9,6 +9,7 @@ const koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 
+// TODO: process env
 // Connect to MongoDB
 mongoose.connect('mongodb://mongo:27017/snapshot');
 var db = mongoose.connection;
