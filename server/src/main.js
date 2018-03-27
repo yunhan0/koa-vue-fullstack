@@ -10,7 +10,7 @@ const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/snapshot');
+mongoose.connect('mongodb://mongo:27017/snapshot');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

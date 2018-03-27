@@ -4,11 +4,14 @@ const cors = require('@koa/cors');
 const lusca = require('koa-lusca');
 // Simple session middleware for koa
 // const session = require('koa-session');
+// Convert legacy koa syntax
+const convert = require('koa-convert');
 
 module.exports = function(app) {
     app.use(cors());
     // app.use(session(app));
-    app.use(lusca({
+    app.use(convert(
+        lusca({
         /*
         * The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed 
         * to render a page in a <frame> or <iframe>. Sites can use this to avoid Clickjacking attacks, 
@@ -23,5 +26,5 @@ module.exports = function(app) {
         xssProtection: true,
         // Cross site resource forgery
        // csrf: true
-    }));
+    })));
 }

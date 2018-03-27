@@ -8,6 +8,7 @@ services:
       - "3000:3000"
     links:
       - mongo
+    command: ["./wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
   mongo:
     container_name: mongo
     image: mongo

@@ -15,12 +15,13 @@
     "jsonwebtoken": "^8.1.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
     "koa-lusca": "^2.2.0",
     "koa-router": "^7.1.1",
     "koa-session": "^5.8.1",
     "mongoose": "^5.0.3"
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.17.2"
   }
 }
