@@ -4,7 +4,7 @@ module.exports = {
   
     // MongoDB connection options
     mongo: {
-        uri: process.env.MONGO_URL || 'mongodb://localhost/snapshot'
+        uri: process.env.DB_URI || 'mongodb://localhost/snapshot'
     },
 
     secret: {

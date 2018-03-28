@@ -3,12 +3,16 @@ services:
   server:
     container_name: server
     image: yunhan0/koa-vue-fullstack:server
+    # image: server
+    # build: .
     restart: always
     ports:
-      - "3000:3000"
+      - "3000:3001" # container port: server port
+    environment:
+      - DB_URI=mongodb://mongo:27017/snapshot
     links:
       - mongo
-    command: ["./wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
+    command: ["./wait-for-it.sh", "mongo:27017", "--", "npm", "run", "build"]
   mongo:
     container_name: mongo
     image: mongo
