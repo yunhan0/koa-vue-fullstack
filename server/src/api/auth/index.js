@@ -2,7 +2,7 @@
 
 const Router = require('koa-router')
 const jwt = require('jsonwebtoken')
-const secret = require('./jwt').secret
+const secret = require('../../config').secret.auth
 var User = require('../user/user.model')
 
 let router = new Router({

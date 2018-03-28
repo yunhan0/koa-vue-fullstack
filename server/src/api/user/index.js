@@ -1,7 +1,7 @@
 'use strict'
 const Router = require('koa-router')
 const jwt = require('jsonwebtoken')
-const secret = require('../auth/jwt').secret
+const secret = require('../../config').secret.auth
 const auth = require('../auth/service')
 var User = require('./user.model')
 

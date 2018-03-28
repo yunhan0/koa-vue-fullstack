@@ -4,14 +4,13 @@
 'use strict'
 
 const http = require('http')
-// const https = require('https')
 const koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const mongoose = require('mongoose')
 
-// TODO: process env
+const config = require('./config')
 // Connect to MongoDB
-mongoose.connect('mongodb://mongo:27017/snapshot')
+mongoose.connect(config.mongo.uri)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
@@ -30,5 +29,4 @@ require('./config/security')(app)
 // Routing
 require('./routes')(app)
 
-http.createServer(app.callback()).listen(3000)
-// https.createServer(app.callback()).listen(3001)
+http.createServer(app.callback()).listen(config.port)
