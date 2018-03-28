@@ -1,34 +1,34 @@
 /**
- * Entry file
+ * Main file after entry
  */
-'use strict';
+'use strict'
 
-const http = require('http');
-// const https = require('https');
-const koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const mongoose = require('mongoose');
+const http = require('http')
+// const https = require('https')
+const koa = require('koa')
+const bodyParser = require('koa-bodyparser')
+const mongoose = require('mongoose')
 
 // TODO: process env
 // Connect to MongoDB
-mongoose.connect('mongodb://mongo:27017/snapshot');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connect('mongodb://mongo:27017/snapshot')
+var db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
-    console.log('Database connected');
-});
+    console.log('Database connected')
+})
 
 // Populate databases with sample data
-require('./config/seed');
+require('./config/seed')
 
 // Setup server
-const app = new koa();
+const app = new koa()
 // Koa bodyparser
-app.use(bodyParser());
+app.use(bodyParser())
 // Security
-require('./config/security')(app);
+require('./config/security')(app)
 // Routing
-require('./routes')(app);
+require('./routes')(app)
 
-http.createServer(app.callback()).listen(3000);
-// https.createServer(app.callback()).listen(3001);
+http.createServer(app.callback()).listen(3000)
+// https.createServer(app.callback()).listen(3001)

@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 var userSchema = mongoose.Schema({
     email: {
@@ -20,25 +20,25 @@ var userSchema = mongoose.Schema({
         type: String,
         default: 'user' // Other roles so far: admin.
     }
-});
+})
 /* 
  * The User model should fully encapsulate the password encryption and verification logic, 
  * The User model should ensure that the password is always encrypted before saving
  * */
 userSchema.pre('save', async function encryptPassword() {
     try {
-        let user = this;
+        let user = this
         if (!user.isModified('password')) {
-            return;
+            return
         }     
-        const hash = await bcrypt.hash(user.password, saltRounds);
+        const hash = await bcrypt.hash(user.password, saltRounds)
         // Store hash in your password DB.
-        user.password = hash;
-        user.save();
+        user.password = hash
+        user.save()
     } catch(err) {
-        throw err;
+        throw err
     }
-});
+})
 
 /**
  * Check if the passwords are the same
@@ -46,13 +46,13 @@ userSchema.pre('save', async function encryptPassword() {
 userSchema.methods.comparePassword = async function(myPlaintextPassword) {
     try {
         // Load hash from your password DB.
-        let hash = this.password;
-        let res = await bcrypt.compare(myPlaintextPassword, hash);
-        return res;
+        let hash = this.password
+        let res = await bcrypt.compare(myPlaintextPassword, hash)
+        return res
     } catch(err) {
-        throw err;        
+        throw err        
     }
 }
 
 // Compiling our schema into a Model.
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema)

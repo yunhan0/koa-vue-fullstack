@@ -4,14 +4,15 @@
   "description": "A snapshot of server dev using node, koa, and mongoose",
   "author": "Yunhan",
   "license": "ISC",
-  "main": "src/main.js",
+  "main": "src/entry.js",
   "scripts": {
-    "test": "mocha src/test/index.js",
-    "start": "nodemon src/main.js"
+    "start": "NODE_ENV=development nodemon src/entry.js",
+    "build": "NODE_ENV=production nodemon src/entry.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "bcrypt": "^1.0.3",
+    "dotenv": "^5.0.1",
     "jsonwebtoken": "^8.1.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",

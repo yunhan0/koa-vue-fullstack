@@ -1,58 +1,58 @@
-'use strict';
-const Router = require('koa-router');
-const jwt = require('jsonwebtoken');
-const secret = require('../auth/jwt').secret;
-const auth = require('../auth/service');
-var User = require('./user.model');
+'use strict'
+const Router = require('koa-router')
+const jwt = require('jsonwebtoken')
+const secret = require('../auth/jwt').secret
+const auth = require('../auth/service')
+var User = require('./user.model')
 
 let router = new Router({
 	prefix: '/api/users'
-});
+})
 
 router
     // index
     .get('/', auth.hasRole('admin'), async (ctx, next) => {
         try {
-            ctx.body = await User.find({}, '-password');
+            ctx.body = await User.find({}, '-password')
         } catch(err) {
-            throw err;
+            throw err
         }
     })
 
     // create
     .post('/', async (ctx, next) => {
         try {
-            let user = await User.create(ctx.request.body);
+            let user = await User.create(ctx.request.body)
             // Sign token
             let token = await jwt.sign({id: user._id, role: user.role}, secret, {
                 expiresIn: '1d'
-            });
-            ctx.status = 201; // Status code 201 : created
-            ctx.body = {token: token};
+            })
+            ctx.status = 201 // Status code 201 : created
+            ctx.body = {token: token}
         } catch(err) {
-            throw err;
+            throw err
         }
     })
 
     // get my info
     .get('/me', async (ctx, next) => {
         try {
-            ctx.body = ctx.state.user;
+            ctx.body = ctx.state.user
         } catch(err) {
-            throw err;
+            throw err
         }
     })
 
     // get single user
     .get('/:id', async (ctx, next) => {
         try {
-            let user = await User.findById({_id: ctx.params.id}, '-password');
+            let user = await User.findById({_id: ctx.params.id}, '-password')
             // Handle not found error
-            if (!user) { ctx.throw(404, "not found"); }
-            ctx.body = user;
+            if (!user) { ctx.throw(404, "not found") }
+            ctx.body = user
         } catch(err) {
-            throw err;
+            throw err
         }
     })
 
-module.exports = router;
+module.exports = router

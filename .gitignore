@@ -38,3 +38,9 @@ jspm_packages
 
 # Build files
 dist
+
+# Docker
+data/
+
+# Environment Variable
+.env

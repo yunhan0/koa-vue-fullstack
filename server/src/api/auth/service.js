@@ -1,41 +1,41 @@
-const jwt = require('jsonwebtoken');
-const secret = require('./jwt').secret;
-var User = require('../user/user.model');
+const jwt = require('jsonwebtoken')
+const secret = require('./jwt').secret
+var User = require('../user/user.model')
 
 module.exports = {
     isAuthenticated : async (ctx, next) => {
         try {
-            let token = ctx.request.body.token || ctx.query.token || ctx.headers['access_token'];
+            let token = ctx.request.body.token || ctx.query.token || ctx.headers['access_token']
             // decode token
             if(token) {
-                let decoded = await jwt.verify(token, secret);
-                let user = await User.findById({_id: decoded.id}, '-password');
+                let decoded = await jwt.verify(token, secret)
+                let user = await User.findById({_id: decoded.id}, '-password')
                 if (!user) { 
-                    ctx.throw(404, "User not found");
+                    ctx.throw(404, "User not found")
                 }
                 // Attach user to state
-                ctx.state.user = user;
-                await next();
+                ctx.state.user = user
+                await next()
             } else {
-                ctx.throw(401, 'No token provided');
+                ctx.throw(401, 'No token provided')
             }
         } catch (err) {
             // Errors coming from token validation
             if(err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
-                err.status = 401;
+                err.status = 401
             }
-            throw err;
+            throw err
         }
     },
     hasRole: (role) => {
         return async (ctx, next) => {
             try {
                 if (ctx.state.user.role !== role) {
-                    ctx.throw(403, "Forbidden");
+                    ctx.throw(403, "Forbidden")
                 }
-                await next();
+                await next()
             } catch (err) {
-                throw err;
+                throw err
             }
         }
     }

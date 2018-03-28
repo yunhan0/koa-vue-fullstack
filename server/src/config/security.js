@@ -1,15 +1,15 @@
 // Cross origin resource sharing
-const cors = require('@koa/cors');
+const cors = require('@koa/cors')
 // Application security for koa.
-const lusca = require('koa-lusca');
+const lusca = require('koa-lusca')
 // Simple session middleware for koa
-// const session = require('koa-session');
+// const session = require('koa-session')
 // Convert legacy koa syntax
-const convert = require('koa-convert');
+const convert = require('koa-convert')
 
 module.exports = function(app) {
-    app.use(cors());
-    // app.use(session(app));
+    app.use(cors())
+    // app.use(session(app))
     app.use(convert(
         lusca({
         /*
@@ -26,5 +26,5 @@ module.exports = function(app) {
         xssProtection: true,
         // Cross site resource forgery
        // csrf: true
-    })));
+    })))
 }
