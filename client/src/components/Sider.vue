@@ -4,7 +4,7 @@
       default-active="/home"
       class="el-menu-vertical-demo"
       :router="true">
-      <el-menu-item v-for="item in menuItems" :index="item.link">
+      <el-menu-item v-for="item in menuItems" :index="item.link" :key="item.title">
         <span> {{ item.title }} </span>
       </el-menu-item>
     </el-menu>   

@@ -2,16 +2,16 @@
   <el-header>
     <el-menu mode="horizontal">
       <span class="title">
-        Demo
+        Web Title
       </span>
       <el-submenu index="1" style="float: right" v-if="isAuthenticated">
         <template slot="title"> {{ getCurrentUser.email }} </template>
-        <el-menu-item index="1-1" @click="logout()"> 
-          Logout 
+        <el-menu-item index="1-1">
+          Settings
         </el-menu-item>
-        <el-menu-item index="1-2"> 
-          Settings 
-        </el-menu-item>        
+        <el-menu-item index="1-2" @click="logout()">
+          Logout
+        </el-menu-item>
       </el-submenu>
     </el-menu>  
   </el-header>
