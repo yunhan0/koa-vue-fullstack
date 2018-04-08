@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1> Welcome to webdev 2018 </h1>
-    <p> CRUD (Create Read Update Delete) operations on a demo database collection called "things"</p>
+    <h1> Home </h1>
     <!-- Component: Thing -->
     <thing></thing>
   </div>

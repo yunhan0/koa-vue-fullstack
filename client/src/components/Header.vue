@@ -2,7 +2,7 @@
   <el-header>
     <el-menu mode="horizontal">
       <span class="title">
-        KVMN Snapshot
+        Demo
       </span>
       <el-submenu index="1" style="float: right" v-if="isAuthenticated">
         <template slot="title"> {{ getCurrentUser.email }} </template>

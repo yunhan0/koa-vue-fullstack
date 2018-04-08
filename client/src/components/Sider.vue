@@ -3,15 +3,9 @@
     <el-menu
       default-active="/home"
       class="el-menu-vertical-demo"
-      style="height:100%"
       :router="true">
-      <el-menu-item index="/home">
-        <i class="el-icon-menu"></i>
-        <span> Home </span>
-      </el-menu-item>
-      <el-menu-item index="/page1">
-        <i class="el-icon-setting"></i>
-        <span>Page 1</span>
+      <el-menu-item v-for="item in menuItems" :index="item.link">
+        <span> {{ item.title }} </span>
       </el-menu-item>
     </el-menu>   
   </el-aside>
@@ -26,8 +20,14 @@ export default {
     'el-menu': Menu,
     'el-menu-item': MenuItem    
   },
-  methods: {
-
+  data() {
+    return {
+      menuItems: [
+        { title: 'Home', link: '/home' },
+        { title: 'Page One', link: '/page1' },
+        { title: 'Page Two', link: '/page2' }
+      ]
+    }
   }
 }
 </script>

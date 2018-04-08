@@ -20,7 +20,7 @@
     </el-form>
     <!-- End: Form -->
     <!-- Begin: Table of things -->
-    <el-table :data="things" style="width: 100%">
+    <el-table :data="things" border stripe style="width: 100%">
       <!-- Column 1 -->
       <el-table-column label="Blah" width="180">
         <template slot-scope="scope">
