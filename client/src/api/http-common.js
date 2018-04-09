@@ -31,7 +31,7 @@ HTTP.interceptors.response.use(function (response) {
         store.dispatch('logout');
         router.push('/');
     }
-    return Promise.reject(error);
+    return Promise.reject(error.response.data);
 });
 
 export default HTTP;

@@ -7,20 +7,24 @@
       <el-form-item 
         label="Login: "
         prop="email"
-        :rules="[{ required: true, message: 'email is required'}]">
+        :rules="[
+          { required: true, message: 'Email is required'},
+          { type: 'email', message: 'Please input correct email address'}
+        ]">
         <el-input placeholder="email" v-model="loginForm.email"></el-input>
       </el-form-item>
       <!-- Input -->
       <el-form-item prop="password"
-        :rules="[{ required: true, message: 'password is required'}]">
+        :rules="[{ required: true, message: 'Password is required'}]">
         <el-input placeholder="password" type="password" v-model="loginForm.password"></el-input>
-      </el-form-item>      
+      </el-form-item>
       <!-- Button -->
       <el-form-item>
         <el-button type="primary" @click="submit('loginForm')"> Login </el-button>
       </el-form-item>
     </el-form>
-  </div>  
+    <p style="font-size:0.8em; color:#f56c6c;"> {{err}} </p>
+  </div>
 </template>
 
 <script>
@@ -33,6 +37,7 @@ export default {
         email: 'test@example.com',
         password: 'helloworld'
       },
+      err: ''
     }
   },
   methods: {
@@ -46,7 +51,7 @@ export default {
               this.$router.push('/home');
             })
             .catch(err => {
-              //
+              this.err = err.message;
             });
         } else {
           console.log('error submit!!');

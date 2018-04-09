@@ -4,7 +4,7 @@
       default-active="/home"
       class="el-menu-vertical-demo"
       :router="true">
-      <el-menu-item v-for="item in menuItems" :index="item.link" :key="item.title">
+      <el-menu-item v-for="item in menuItems" :index="item.path" :key="item.title">
         <span> {{ item.title }} </span>
       </el-menu-item>
     </el-menu>   
@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       menuItems: [
-        { title: 'Home', link: '/home' },
-        { title: 'Page One', link: '/page1' },
-        { title: 'Page Two', link: '/page2' }
+        { title: 'Home', path: '/home' },
+        { title: 'Page One', path: '/page1' },
+        { title: 'Page Two', path: '/settings' }
       ]
     }
   }

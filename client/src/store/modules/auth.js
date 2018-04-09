@@ -28,7 +28,7 @@ export default {
                 commit('login', user);
             })
             .catch(err => {
-                console.log(err);
+                throw err;
             });
         },
 
