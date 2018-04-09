@@ -6,10 +6,5 @@
       }
     }]
   ],
-  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread",
-    ["component", {
-      "libraryName": "element-ui",
-      "styleLibraryName": "theme-chalk"
-    }, "element-ui"]
-  ]
+  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread"]
 }

@@ -1,26 +1,9 @@
 <template>
-  <el-footer>
-    <p align="center">
-      Footer
-    </p>
-  </el-footer>
+  <Footer class="layout-footer-center">2018 &copy; Footer </Footer>
 </template>
 
-<script>
-import { Footer } from 'element-ui';
-
-export default {
-  components: {
-    "el-footer": Footer
-  },
-  data() {
-    return {
-      
-    }
-  }
-}
-</script>
-
 <style scoped>
-
+.layout-footer-center{
+  text-align: center;
+}
 </style>

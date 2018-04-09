@@ -1,34 +1,20 @@
 <template>
-  <el-container direction="vertical" style="height: 100vh">
-    <!-- Header -->
-    <app-header style="margin-bottom: 10px;"></app-header>
-    <el-container>
-      <!-- Sidebar -->
-      <app-sider></app-sider>
-      <el-container direction="vertical">
-        <!-- Main -->
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-        <!-- Footer -->
-        <app-footer></app-footer>
-      </el-container>
-    </el-container>
-  </el-container>
+  <div class="layout">
+    <Layout style="min-height: 100vh">
+      <app-header></app-header>
+      <router-view></router-view>
+      <app-footer></app-footer>
+    </Layout>
+  </div>
 </template>
 
 <script>
-import { Container, Main } from 'element-ui';
 import Header from './components/Header.vue';
-import Sider from './components/Sider.vue';
 import Footer from './components/Footer.vue';
 
 export default {
   components: {
-    'el-container': Container,
-    'el-main': Main,
     'app-header': Header,
-    'app-sider': Sider,
     'app-footer': Footer
   },
   data() {
@@ -40,8 +26,11 @@ export default {
 </script>
 
 <style>
-html, body {
-  margin: 0px;
-  font-family: "Helvetica Neue";
+.layout{
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
 }
 </style>

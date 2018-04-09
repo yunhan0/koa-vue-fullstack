@@ -1,29 +1,31 @@
 <template>
-  <div>
-    <h1> Login </h1>
-    <!-- Begin: Form -->
-    <el-form :model="loginForm" ref="loginForm" :inline="true" class="demo-form-inline">
-      <!-- Input -->
-      <el-form-item 
-        label="Login: "
-        prop="email"
-        :rules="[
-          { required: true, message: 'Email is required'},
-          { type: 'email', message: 'Please input correct email address'}
-        ]">
-        <el-input placeholder="email" v-model="loginForm.email"></el-input>
-      </el-form-item>
-      <!-- Input -->
-      <el-form-item prop="password"
-        :rules="[{ required: true, message: 'Password is required'}]">
-        <el-input placeholder="password" type="password" v-model="loginForm.password"></el-input>
-      </el-form-item>
-      <!-- Button -->
-      <el-form-item>
-        <el-button type="primary" @click="submit('loginForm')"> Login </el-button>
-      </el-form-item>
-    </el-form>
-    <p style="font-size:0.8em; color:#f56c6c;"> {{err}} </p>
+  <Content :style="{padding: '0 50px'}">
+    <Breadcrumb :style="{margin: '20px 0'}">
+      <BreadcrumbItem>Login</BreadcrumbItem>
+    </Breadcrumb>
+    <Card>
+      <div style="min-height: 200px;">
+        <!-- Begin: Form -->
+        <Form ref="loginForm" :model="loginForm" :label-width="160">
+          <FormItem label="Email" prop="email"
+            :rules="[
+              { required: true, message: 'Email is required'},
+              { type: 'email', message: 'Please input correct email address'}
+            ]">
+            <Input placeholder="email" v-model="loginForm.email"></Input>
+          </FormItem>
+          <FormItem label="Password" prop="password"
+            :rules="[{ required: true, message: 'Password is required'}]">
+            <Input placeholder="password" type="password" v-model="loginForm.password"></Input>
+          </FormItem>
+          <FormItem>
+            <Button type="primary" @click="submit('loginForm')">Submit</Button>
+          </FormItem>
+        </Form>
+      </div>
+    </Card>
+  </Content>  
+
   </div>
 </template>
 

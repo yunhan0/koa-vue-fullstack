@@ -1,67 +1,81 @@
 <template>
   <div>
     <!-- Begin: Form -->
-    <el-form :model="thingForm" ref="thingForm" :inline="true" class="demo-form-inline">
-      <!-- Input -->
-      <el-form-item 
-        label="Let's create something: "
-        prop="name"
-        :rules="[{ required: true, message: 'this is required'}]">
-        <el-input placeholder="Type anything" v-model="thingForm.name"></el-input>
-      </el-form-item>
-      <!-- Input -->
-      <el-form-item prop="info">
-        <el-input placeholder="Type more details" v-model="thingForm.info"></el-input>
-      </el-form-item>      
-      <!-- Button -->
-      <el-form-item>
-        <el-button type="primary" @click="create('thingForm')"> Enter </el-button>
-      </el-form-item>
-    </el-form>
+    <Form ref="thingForm" :model="thingForm" :label-width="160">
+      <FormItem label="Let's create something" prop="name"
+      :rules="[{ required: true, message: 'this is required'}]">
+        <Input placeholder="Type anything" v-model="thingForm.name"></Input>
+      </FormItem>
+      <FormItem label="Detail" prop="info">
+        <Input placeholder="Type more details" v-model="thingForm.info"></Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary" @click="create('thingForm')">Submit</Button>
+      </FormItem>
+    </Form>
     <!-- End: Form -->
     <!-- Begin: Table of things -->
-    <el-table :data="things" border stripe style="width: 100%">
-      <!-- Column 1 -->
-      <el-table-column label="Blah" width="180">
-        <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
-        </template>
-      </el-table-column>
-      <!-- Column 2 -->
-      <el-table-column label="Detail" width="300">
-        <template slot-scope="scope">
-          <span>{{ scope.row.info }}</span>
-        </template>
-      </el-table-column>
-      <!-- Column Operation -->
-      <el-table-column label="Operations">
-        <template slot-scope="scope">
-          <el-button size="mini" type="primary" plain v-on:click="read(scope.$index)"> Read </el-button>
-          <el-button size="mini" v-on:click="update(scope.$index)"> Update </el-button>
-          <el-button size="mini" type="danger" plain v-on:click="remove(scope.$index)"> Delete </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <Table border :columns="columns" :data="things"></Table>
     <!-- End: Table of things -->   
   </div> 
 </template>
 
 <script>
 import ThingResource from '../api/thing.service';
-import { Table, TableColumn } from 'element-ui';
 
 export default {
-  components: {
-    'el-table': Table,
-    'el-table-column': TableColumn
-  },
   data() {
     return {
       thingForm: {
         name: '',
         info: ''
       },
-      things: []
+      things: [],
+      columns: [
+        {
+            title: 'Blah',
+            key: 'name'
+        },
+        {
+            title: 'Detail',
+            key: 'info'
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            width: 150,
+            align: 'center',
+            render: (h, params) => {
+                return h('div', [
+                    h('Button', {
+                        props: {
+                            type: 'primary',
+                            size: 'small'
+                        },
+                        style: {
+                            marginRight: '5px'
+                        },
+                        on: {
+                          click: () => {
+                            this.read(params.index)
+                          }
+                        }
+                    }, 'View'),
+                    h('Button', {
+                        props: {
+                          type: 'error',
+                          size: 'small'
+                        },
+                        on: {
+                          click: () => {
+                            this.remove(params.index)
+                          }
+                        }
+                    }, 'Delete')
+                ]);
+            }
+        }        
+      ]
     }
   },
   // Request data when the component is created.
