@@ -8,7 +8,8 @@ import AuthService from './api/auth.service';
 
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-Vue.use(iView);
+import locale from 'iview/dist/locale/en-US';
+Vue.use(iView, { locale });
 
 function initialisation() {
     new Vue({

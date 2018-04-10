@@ -2,7 +2,7 @@
   <Content :style="{padding: '0 50px'}">
     <Breadcrumb :style="{margin: '20px 0'}">
       <BreadcrumbItem to="/">Home</BreadcrumbItem>
-      <BreadcrumbItem to="settings">Settings</BreadcrumbItem>
+      <BreadcrumbItem to="page1">Page 2</BreadcrumbItem>
     </Breadcrumb>
     <Card>
       <div style="min-height: 200px;">
@@ -13,4 +13,17 @@
 </template>
 
 <script>
+
+import { Layout, Breadcrumb, BreadcrumbItem, Content } from 'iview';
+
+export default {
+  components: {
+    Layout, Breadcrumb, BreadcrumbItem, Content
+  },
+  data() {
+    return {
+
+    }
+  }
+}
 </script>

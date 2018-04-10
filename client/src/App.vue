@@ -1,11 +1,9 @@
 <template>
-  <div class="layout">
-    <Layout style="min-height: 100vh">
-      <app-header></app-header>
-      <router-view></router-view>
-      <app-footer></app-footer>
-    </Layout>
-  </div>
+  <Layout style="min-height: 100vh">
+    <app-header></app-header>
+    <router-view></router-view>
+    <app-footer></app-footer>
+  </Layout>
 </template>
 
 <script>
@@ -26,11 +24,5 @@ export default {
 </script>
 
 <style>
-.layout{
-    border: 1px solid #d7dde4;
-    background: #f5f7f9;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-}
+
 </style>

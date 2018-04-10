@@ -1,20 +1,18 @@
 <template>
   <Header>
-    <Menu mode="horizontal" theme="dark" active-name="1">
+    <Menu mode="horizontal" theme="dark">
       <div class="layout-logo"></div>
       <div class="layout-nav" v-if="isAuthenticated">
-        <MenuItem name="1">
-          <Icon type="person"></Icon>
-          {{ getCurrentUser.email }}
-        </MenuItem>
-        <MenuItem name="2">
-          <Icon type="ios-keypad"></Icon>
-          Settings
-        </MenuItem>
-        <MenuItem name="3" @click="logout()">
-          <Icon type="log-out"></Icon>
-          Logout
-        </MenuItem>
+        <Dropdown @on-click="handleClickUserDropdown">
+          <a href="javascript:void(0)">
+            {{ getCurrentUser.email }}
+            <Icon type="arrow-down-b"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <DropdownItem name="settings">Settings</DropdownItem>
+            <DropdownItem name="logout">Logout</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
     </Menu>
   </Header>
@@ -37,8 +35,16 @@ export default {
   },
   methods: {
     logout: function() {
+      console.log('re')
       this.$store.dispatch('logout');
       this.$router.push('/');
+    },
+    handleClickUserDropdown: function(name) {
+      if (name === 'logout') {
+        this.logout();
+      } else {
+        this.$router.push(name);
+      }
     }
   }
 }
@@ -57,8 +63,6 @@ export default {
 }
 
 .layout-nav{
-    width: 420px;
-    margin: 0 auto;
-    margin-right: 20px;
+  float: right;
 }
 </style>
