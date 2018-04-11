@@ -18,7 +18,7 @@
 					<Input placeholder="password" type="password" v-model="loginForm.password"></Input>
 				</FormItem>
 				<FormItem>
-					<Button type="primary" long="true" @click="submit('loginForm')">Submit</Button>
+					<Button type="primary" long @click="submit('loginForm')">Submit</Button>
 				</FormItem>
 			</Form>
 		</Card>

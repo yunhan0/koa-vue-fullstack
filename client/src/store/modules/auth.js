@@ -9,6 +9,10 @@ export default {
             return !!state.user;
         },
 
+        isAdmin: state => {
+            return state.user.role === 'admin';
+        },
+
         getCurrentUser: state => {
             return state.user;
         }
