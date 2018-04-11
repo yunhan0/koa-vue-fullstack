@@ -18,7 +18,7 @@
 					<Input placeholder="password" type="password" v-model="loginForm.password"></Input>
 				</FormItem>
 				<FormItem>
-					<Button type="primary" long="true" @click="submit('loginForm')">Submit</Button>
+					<Button type="primary" long @click="submit('loginForm')">Submit</Button>
 				</FormItem>
 			</Form>
 		</Card>
@@ -27,8 +27,12 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { Content, Form, FormItem } from 'iview';
 
 export default {
+	components: {
+		Content, Form, FormItem
+	},
 	data() {
 		return {
 			loginForm: {

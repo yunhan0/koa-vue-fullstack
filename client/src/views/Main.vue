@@ -15,9 +15,12 @@
 </template>
 
 <script>
+import { Layout, Sider, Content, Breadcrumb, BreadcrumbItem } from 'iview';
+
 export default {
 	components: {
-		'app-sider': () => import('../components/Sider.vue')
+		'app-sider': () => import('../components/Sider.vue'),
+		Layout, Sider, Content, Breadcrumb, BreadcrumbItem
 	},
 	data() {
 		return {

@@ -24,9 +24,13 @@
 </template>
 
 <script>
+import { Form, FormItem, Table } from 'iview';
 import ThingResource from '../api/thing.service';
 
 export default {
+	components: {
+		Form, FormItem, Table
+	},
   data() {
 	return {
 		thingForm: {

@@ -7,9 +7,11 @@
 </template>
 
 <script>
- export default {
-	components: {
+import { Menu, MenuItem } from 'iview';
 
+export default {
+	components: {
+		Menu, MenuItem
 	},
 	data() {
 		return {

@@ -5,11 +5,21 @@ import router from './router';
 /** Store **/
 import store from './store/';
 import AuthService from './api/auth.service';
-
-import iView from 'iview';
+/** iView **/
 import 'iview/dist/styles/iview.css';
-import locale from 'iview/dist/locale/en-US';
-Vue.use(iView, { locale });
+import { Button, Input, Row, Col, Card, Message, locale } from 'iview';
+// Configure iView language
+import lang from 'iview/dist/locale/en-US';
+locale(lang);
+/*
+ * Import iView on demand, below is generally used components.
+ */
+Vue.component('Button', Button);
+Vue.component('Input', Input);
+Vue.component('Row', Row);
+Vue.component('Col', Col);
+Vue.component('Card', Card);
+Vue.prototype.$Message = Message;
 
 function initialisation() {
     new Vue({

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Row :gutter="16">
-			<Col :md="{span: 6}" :sm="{span: 24}">
+			<Col :md="{span: 6}" :sm="{span: 24}" v-if="isAuthenticated">
 				<Card class="margin-top-10">
 					<p slot="title">
 						Current {{ getCurrentUser.role }}
@@ -13,9 +13,12 @@
 						<p> {{ getCurrentUser.email }}</p>
 					</div>
 				</Card>
-				<Card class="margin-top-10 center-text">					
+				<Card class="margin-top-10 center-text" v-if="isAdmin">
 					<p> Total users </p>
-					<h1> <Icon size="large" type="android-people"></Icon> 15 </h1>
+					<h1>
+						<Icon size="large" type="android-people"></Icon>
+						16
+					</h1>
 				</Card>
 			</Col>
 			<Col :md="{span: 14}" :sm="{span: 24}">
@@ -28,13 +31,15 @@
 <script>
 import { mapGetters } from 'vuex';
 import Thing from '../components/Thing.vue';
+import { Avatar, Icon } from 'iview';
 
 export default {
 	components: {
-		'thing': Thing
+		'thing': Thing,
+		Avatar, Icon
 	},
 	computed: {
-		...mapGetters(['isAuthenticated', 'getCurrentUser'])
+		...mapGetters(['isAuthenticated', 'getCurrentUser', 'isAdmin'])
 	},  
 	data() {
 		return {
