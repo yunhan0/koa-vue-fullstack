@@ -14,6 +14,7 @@ const seeding = async() => {
     )
     await User.collection.remove()
     await User.create({ email: 'test@example.com', password: 'helloworld' })
+    await User.create({ email: 'admin@example.com', password: 'admini', role: 'admin' })
     console.log('Finish populating database')
 }
 

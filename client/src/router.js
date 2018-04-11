@@ -3,11 +3,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 /** Store **/
 import store from './store/';
-const Login = () => import(/* webpackChunkName: "group-login" */ './views/Login.vue');
-const Home = () => import(/* webpackChunkName: "group-home" */ './views/Home.vue');
-const Settings = () => import(/* webpackChunkName: "group-settings" */ './views/Settings.vue');
-const Page1 = () => import(/* webpackChunkName: "group-pages" */ './views/Page1.vue');
-const Page2 = () => import(/* webpackChunkName: "group-pages" */ './views/Page2.vue')
+
+const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue');
 
 /** Router **/
 Vue.use(VueRouter);
@@ -15,8 +12,8 @@ Vue.use(VueRouter);
 let router = new VueRouter({
     routes: [
         { 
-            path: '/', 
-            component: Login, 
+            path: '/login', 
+            component: () => import(/* webpackChunkName: "group-login" */ './views/Login.vue'), 
             beforeEnter: (to, from, next) => {
                 if (store.getters.isAuthenticated) {
                     next('/home')
@@ -25,16 +22,51 @@ let router = new VueRouter({
                 }
             } 
         },
-        { path: '/home', component: Home, meta: {requiresAuth: true }},
-        { path: '/settings', component: Settings, meta: {requiresAuth: true }},
-        { path: '/page1', component: Page1, meta: {requiresAuth: true }},
-        { path: '/page2', component: Page2, meta: {requiresAuth: true }}
+        {
+            path: '/',
+            redirect: '/home',
+            component: Main, 
+            children: [
+                {
+                    path: '/home',
+                    name: 'Home',
+                    component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'), 
+                    meta: {
+                        requiresAuth: true 
+                    }
+                },
+                { 
+                    path: '/settings',
+                    name: 'Settings',
+                    component: () => import(/* webpackChunkName: "group-settings" */ './views/Settings.vue'), 
+                    meta: {
+                        requiresAuth: true 
+                    }
+                },
+                { 
+                    path: '/page1',
+                    name: 'Page1',
+                    component: () => import(/* webpackChunkName: "group-pages" */ './views/Page1.vue'), 
+                    meta: {
+                        requiresAuth: true 
+                    }
+                },
+                { 
+                    path: '/page2',
+                    name: 'Page2',
+                    component: () => import(/* webpackChunkName: "group-pages" */ './views/Page2.vue'), 
+                    meta: {
+                        requiresAuth: true 
+                    }
+                }
+            ]
+        }
     ]
 });
 
 router.beforeEach((to, from, next) => {
     if(to.meta.requiresAuth && !store.getters.isAuthenticated) {
-        next('/');
+        next('/login');
     } else {
         next();
     }

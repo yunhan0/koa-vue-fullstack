@@ -29,7 +29,7 @@ HTTP.interceptors.response.use(function (response) {
 }, function(error) {
     if (error.response.status === 401) {
         store.dispatch('logout');
-        router.push('/');
+        router.push('/login');
     }
     return Promise.reject(error.response.data);
 });

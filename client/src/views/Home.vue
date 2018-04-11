@@ -1,39 +1,55 @@
 <template>
-  <Layout :style="{padding: '0 50px'}">
-    <Breadcrumb :style="{margin: '16px 0'}">
-      <BreadcrumbItem to="/">Home</BreadcrumbItem>
-    </Breadcrumb>
-    <Content :style="{padding: '24px 0', minHeight: '280px', background: '#fff'}">
-        <Layout>
-          <Sider hide-trigger :style="{background: '#fff'}">
-            <app-sider></app-sider>
-          </Sider>
-          <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-            <Row>
-                <Col :sm="24" :md="{ span: 11, offset: 1}">
-                  <thing></thing>
-                </Col>
-                <Col :sm="24" :md="{ span: 11, offset: 1}"></Col>
-            </Row>
-          </Content>
-        </Layout>
-    </Content>
-  </Layout>  
+	<div>
+		<Row :gutter="16">
+			<Col :md="{span: 6}" :sm="{span: 24}">
+				<Card class="margin-top-10">
+					<p slot="title">
+						Current {{ getCurrentUser.role }}
+					</p>
+					<div class="center-text">
+						<Avatar size="large" style="margin: 20px; background:#f56a00">
+							{{ getCurrentUser.email[0].toUpperCase() }}
+						</Avatar>
+						<p> {{ getCurrentUser.email }}</p>
+					</div>
+				</Card>
+				<Card class="margin-top-10 center-text">					
+					<p> Total users </p>
+					<h1> <Icon size="large" type="android-people"></Icon> 15 </h1>
+				</Card>
+			</Col>
+			<Col :md="{span: 14}" :sm="{span: 24}">
+				<thing class="margin-top-10"></thing>
+			</Col>
+		</Row>
+	</div>
 </template>
 
 <script>
-import Sider from '../components/Sider.vue';
+import { mapGetters } from 'vuex';
 import Thing from '../components/Thing.vue';
 
 export default {
-  components: {
-    'app-sider': Sider,
-    'thing': Thing
-  },
-  data() {
-    return {
+	components: {
+		'thing': Thing
+	},
+	computed: {
+		...mapGetters(['isAuthenticated', 'getCurrentUser'])
+	},  
+	data() {
+		return {
 
-    }
-  }
+		}
+	}
 }
 </script>
+
+<style scoped>
+.margin-top-10 {
+	margin-top: 10px;
+}
+
+.center-text {
+	text-align: center
+}
+</style>

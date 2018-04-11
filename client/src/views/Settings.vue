@@ -1,16 +1,18 @@
 <template>
-  <Content :style="{padding: '0 50px'}">
-    <Breadcrumb :style="{margin: '20px 0'}">
-      <BreadcrumbItem to="/">Home</BreadcrumbItem>
-      <BreadcrumbItem to="settings">Settings</BreadcrumbItem>
-    </Breadcrumb>
-    <Card>
-      <div style="min-height: 200px;">
-        Content
-      </div>
-    </Card>
-  </Content>
+	<div>
+		Content of Settings
+	</div>
 </template>
 
 <script>
+export default {
+	components: {
+
+	},
+	data() {
+		return {
+
+		}
+	}
+}
 </script>
