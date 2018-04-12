@@ -1,7 +1,7 @@
 <template>
 	<Layout>
-		<Sider hide-trigger :style="{background: '#fff'}">
-			<app-sider></app-sider>
+		<Sider :style="{background: '#fff'}" collapsible :collapsed-width="78" v-model="isCollapsed">
+			<app-sider :isCollapsed="isCollapsed"></app-sider>
 		</Sider>
 		<Layout :style="{padding: '0 24px 24px'}">
 			<Breadcrumb :style="{margin: '24px 0'}">
@@ -24,7 +24,7 @@ export default {
 	},
 	data() {
 		return {
-
+			isCollapsed: true
 		}
 	}
 }

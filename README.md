@@ -9,7 +9,7 @@ This is a lightweight boilerplate for creating KVMN(Koa, VueJS, MongoDB, and Nod
     - Node
 - Client
     - [Vue](https://vuejs.org/)
-    - [Element UI](https://github.com/ElemeFE/element)
+    - [iView](https://www.iviewui.com/)
     - [Axios](https://github.com/axios/axios) (HTTP Client Library)
     - Webpack
     - WebpackDevServer (Development mode only)

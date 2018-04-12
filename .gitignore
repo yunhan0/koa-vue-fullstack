@@ -44,3 +44,6 @@ data/
 
 # Environment Variable
 .env
+
+# Webpack Stats
+stats.json

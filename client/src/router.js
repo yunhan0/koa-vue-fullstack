@@ -13,7 +13,7 @@ let router = new VueRouter({
     routes: [
         { 
             path: '/login', 
-            component: () => import(/* webpackChunkName: "group-login" */ './views/Login.vue'), 
+            component: () => import(/* webpackChunkName: "group-account" */ './views/account/Login.vue'), 
             beforeEnter: (to, from, next) => {
                 if (store.getters.isAuthenticated) {
                     next('/home')
@@ -38,11 +38,19 @@ let router = new VueRouter({
                 { 
                     path: '/settings',
                     name: 'Settings',
-                    component: () => import(/* webpackChunkName: "group-settings" */ './views/Settings.vue'), 
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/Settings.vue'), 
                     meta: {
-                        requiresAuth: true 
+                        requiresAuth: true
                     }
                 },
+                { 
+                    path: '/signup',
+                    name: 'User Register',
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/Signup.vue'), 
+                    meta: {
+                        requiresAuth: true
+                    }
+                },                
                 { 
                     path: '/page1',
                     name: 'Page1',
