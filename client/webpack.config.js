@@ -62,6 +62,13 @@ module.exports = function(env) {
 		break;
 		case 'prod':
 			console.log('=== In the production mode ===');
+			// Resolving the ERROR in js/backstage.js from UglifyJs 
+			CONFIG.module.rules.push(
+				{
+					test: /iview.src.*?js$/,
+					loader: 'babel-loader'
+				}
+			)
 			CONFIG.plugins.push(new webpack.optimize.UglifyJsPlugin());
 			CONFIG.plugins.push(new ExtractTextPlugin('[name].css'));
 		break;
