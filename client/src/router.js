@@ -44,9 +44,9 @@ let router = new VueRouter({
                     }
                 },
                 { 
-                    path: '/signup',
-                    name: 'User Register',
-                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/Signup.vue'), 
+                    path: '/user-management',
+                    name: 'User Management',
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/UserManagement.vue'), 
                     meta: {
                         requiresAuth: true
                     }

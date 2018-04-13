@@ -10,7 +10,10 @@ let router = new Router({
 })
 
 router
-    // index
+    /**
+     * Get list of users
+     * restriction: 'admin'
+     */
     .get('/', auth.hasRole('admin'), async (ctx, next) => {
         try {
             ctx.body = await User.find({}, '-password')
@@ -29,6 +32,20 @@ router
             })
             ctx.status = 201 // Status code 201 : created
             ctx.body = {token: token}
+        } catch(err) {
+            throw err
+        }
+    })
+
+    /**
+     * Creates a new user
+     * restriction: 'admin'
+     */
+    .post('/signupByAdmin', auth.hasRole('admin'), async (ctx, next) => {
+        try {
+            let user = await User.create(ctx.request.body)
+            ctx.status = 201 // Status code 201 : created
+            ctx.body = 'User created!'
         } catch(err) {
             throw err
         }

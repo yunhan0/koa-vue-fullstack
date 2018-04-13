@@ -19,8 +19,8 @@ export default {
 		return {
 			menuItems: [
 				{ title: 'Home', path: '/home', icon: 'ios-keypad' },
-				{ title: 'User Register', path: '/signup', icon: 'ios-person' },
-				{ title: 'Page One', path: '/page1', icon: 'ios-analytics' },
+				{ title: 'User Management', path: '/user-management', icon: 'ios-person' },
+				{ title: 'Page One', path: '/page1', icon: 'stats-bars' },
 				{ title: 'Page Two', path: '/page2', icon: 'ios-paper' }
 			]
 		}
@@ -45,7 +45,7 @@ export default {
 .menu-item span{
 	display: inline-block;
 	overflow: hidden;
-	width: 89px;
+	width: 120px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	vertical-align: bottom;

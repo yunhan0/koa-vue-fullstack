@@ -24,6 +24,10 @@ let AuthService = {
         return UserResource.create(body);
     },
 
+    signupByAdmin(body) {
+        return UserResource.createByAdmin(body);
+    },
+
     forget() {
 
     },
