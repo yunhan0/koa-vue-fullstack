@@ -42,8 +42,7 @@ export default {
 			signupForm: {
 				email: '',
                 password: '',
-                retypePwd: '',
-                role: 'user'
+                retypePwd: ''
 			},
 			ruleSignup: {
 				email: [         

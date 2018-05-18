@@ -58,6 +58,26 @@ router
         }
     })
 
+    .put('/me/password', auth.isAuthenticated, async (ctx, next) => {
+        try {
+            let user = await User.findById({_id: ctx.state.user._id})
+
+            if(!user) { ctx.throw(404, 'not found') }
+
+            let authenticated = await user.comparePassword(ctx.request.body.oldPassword)
+
+            if(!authenticated) {
+                ctx.throw(403, 'Old password is not correct.')
+            } else {
+                user.password = ctx.request.body.newPassword
+                user.save()
+                ctx.status = 200
+            }
+        } catch(err) {
+            throw err
+        }
+    })
+
     /****************** Obsolete methods ******************/
     /**
      * Creates a new user

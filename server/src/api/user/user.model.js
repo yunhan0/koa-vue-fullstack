@@ -30,7 +30,7 @@ userSchema.pre('save', async function encryptPassword() {
         let user = this
         if (!user.isModified('password')) {
             return
-        }     
+        }
         const hash = await bcrypt.hash(user.password, saltRounds)
         // Store hash in your password DB.
         user.password = hash

@@ -17,9 +17,9 @@ let UserResource = {
         return HTTP.post('users/', body);
     },
 
-    createByAdmin(body) {
-        return HTTP.post('users/signupByAdmin', body);
-    },
+    changePassword(body) {
+        return HTTP.put('users/me/password', body);
+    }
 };
 
 export default UserResource;

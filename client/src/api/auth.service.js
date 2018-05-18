@@ -34,10 +34,6 @@ let AuthService = {
             });
     },
 
-    signupByAdmin(body) {
-        return UserResource.createByAdmin(body);
-    },
-
     forget() {
 
     },
@@ -53,6 +49,16 @@ let AuthService = {
         .catch(err => {
             throw err;
         });
+    },
+
+    changePassword(body) {
+        return UserResource.changePassword(body)
+            .then(response => {
+                return response.data;
+            })
+            .catch(err => {
+                throw err;
+            });
     }
 };
 

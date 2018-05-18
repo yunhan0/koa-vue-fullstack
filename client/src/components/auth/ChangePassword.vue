@@ -4,11 +4,11 @@
             Change Password 
         </p>
         <Form ref="changePwdForm" :model="changePwdForm" :rules="ruleChangePwd" :label-width="90">
-            <FormItem label="Current" prop="currentPwd">
-                <Input type="password" v-model="changePwdForm.currentPwd"></Input>
+            <FormItem label="Current" prop="oldPassword">
+                <Input type="password" v-model="changePwdForm.oldPassword"></Input>
             </FormItem>					
-            <FormItem label="New" prop="newPwd">
-                <Input type="password" v-model="changePwdForm.newPwd"></Input>
+            <FormItem label="New" prop="newPassword">
+                <Input type="password" v-model="changePwdForm.newPassword"></Input>
             </FormItem>
             <FormItem label="Retype New" prop="retypePwd">
                 <Input type="password" v-model="changePwdForm.retypePwd"></Input>
@@ -22,6 +22,7 @@
 
 <script>
 import { Form, FormItem } from 'iview';
+import AuthService from '../../api/auth.service';
 
 export default {
 	components: {
@@ -30,15 +31,15 @@ export default {
 	data() {
 		return {
 			changePwdForm: {
-				currentPwd: '',
-				newPwd: '',
+				oldPassword: '',
+				newPassword: '',
 				retypePwd: ''
 			},
 			ruleChangePwd: {
-				currentPwd: [         
+				oldPassword: [
 					{ required: true, message: 'Current password is required' }
 				],
-				newPwd: [
+				newPassword: [
 					{ required: true, message: 'You cannot use a blank password.' },
 					{ type: 'string', min:6, message: 'Too short'}
 				],
@@ -47,7 +48,7 @@ export default {
 						if (value === '') {
 							callback(new Error('Please retype the new password'));
 						} else {
-							if (value !== this.changePwdForm.newPwd) {
+							if (value !== this.changePwdForm.newPassword) {
 								callback(new Error('Passwords do not match'));
 							}
 							callback();
@@ -61,7 +62,12 @@ export default {
 		changePwd: function(formName) {
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
-					//
+					AuthService.changePassword(this.changePwdForm)
+                    .then(() => {
+                        this.$Message.success('Password has succefully updated')
+                    }).catch(err => {
+                        this.$Message.error(err.message)
+                    })
 				} else {
 					console.log('error submit!!');
 					return false;
