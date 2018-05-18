@@ -16,12 +16,23 @@ let router = new VueRouter({
             component: () => import(/* webpackChunkName: "group-account" */ './views/account/Login.vue'), 
             beforeEnter: (to, from, next) => {
                 if (store.getters.isAuthenticated) {
-                    next('/home')
+                    next('/home');
                 } else {
                     next();
                 }
             } 
         },
+        { 
+            path: '/signup', 
+            component: () => import(/* webpackChunkName: "group-account" */ './views/account/Signup.vue'),
+            beforeEnter: (to, from, next) => {
+                if (store.getters.isAuthenticated) {
+                    next('/home');
+                } else {
+                    next();
+                }
+            }    
+        },        
         {
             path: '/',
             redirect: '/home',

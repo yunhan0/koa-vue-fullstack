@@ -17,10 +17,10 @@ module.exports = function(app) {
             }
         })       
     app.use(require('./api/auth').routes())
+    app.use(require('./api/user').routes())
     // route middleware to verify a token
     app.use(require('./api/auth/service').isAuthenticated)
     app
-        .use(require('./api/user').routes())
         .use(require('./api/thing').routes())
-        .use(require('./api/thing').allowedMethods())             
+        .use(require('./api/thing').allowedMethods())
 }

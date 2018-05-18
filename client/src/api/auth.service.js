@@ -21,7 +21,17 @@ let AuthService = {
     },
 
     signup(body) {
-        return UserResource.create(body);
+        return UserResource.create(body)
+            .then(res => {
+                localStorage.setItem('token', res.data.token);
+                return UserResource.get();
+            })
+            .then(response => {
+                return response.data;
+            })
+            .catch(err => {
+                throw err;
+            });
     },
 
     signupByAdmin(body) {

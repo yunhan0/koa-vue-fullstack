@@ -18,9 +18,13 @@
 					<Input placeholder="password" type="password" v-model="loginForm.password"></Input>
 				</FormItem>
 				<FormItem>
-					<Button type="primary" long @click="submit('loginForm')">Submit</Button>
+					<Button type="primary" long @click="submit('loginForm')">Login</Button>
 				</FormItem>
 			</Form>
+			<p>
+				Don't have an account? 
+				<router-link to="/signup">Sign up</router-link>
+			</p>
 		</Card>
 	</Content>
 </template>

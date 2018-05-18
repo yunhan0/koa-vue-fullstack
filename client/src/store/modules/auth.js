@@ -43,6 +43,16 @@ export default {
 
         autoLogin: ({commit}, user) => {
             commit('login', user);
-        }
+        },
+
+        signup: ({ commit }, body) => {
+            return AuthService.signup(body)
+            .then(user => {
+                commit('login', user);
+            })
+            .catch(err => {
+                throw err;
+            });
+        },
     }
 }

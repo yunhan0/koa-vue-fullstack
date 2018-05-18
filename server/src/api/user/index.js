@@ -14,7 +14,7 @@ router
      * Get list of users
      * restriction: 'admin'
      */
-    .get('/', auth.hasRole('admin'), async (ctx, next) => {
+    .get('/', auth.isAuthenticated, auth.hasRole('admin'), async (ctx, next) => {
         try {
             ctx.body = await User.find({}, '-password')
         } catch(err) {
@@ -37,22 +37,8 @@ router
         }
     })
 
-    /**
-     * Creates a new user
-     * restriction: 'admin'
-     */
-    .post('/signupByAdmin', auth.hasRole('admin'), async (ctx, next) => {
-        try {
-            let user = await User.create(ctx.request.body)
-            ctx.status = 201 // Status code 201 : created
-            ctx.body = 'User created!'
-        } catch(err) {
-            throw err
-        }
-    })
-
     // get my info
-    .get('/me', async (ctx, next) => {
+    .get('/me', auth.isAuthenticated, async (ctx, next) => {
         try {
             ctx.body = ctx.state.user
         } catch(err) {
@@ -61,7 +47,7 @@ router
     })
 
     // get single user
-    .get('/:id', async (ctx, next) => {
+    .get('/:id', auth.isAuthenticated, async (ctx, next) => {
         try {
             let user = await User.findById({_id: ctx.params.id}, '-password')
             // Handle not found error
@@ -72,4 +58,19 @@ router
         }
     })
 
+    /****************** Obsolete methods ******************/
+    /**
+     * Creates a new user
+     * restriction: 'admin'
+     * Todo: better to be granted higher access instead of creating by admin?
+     */
+    // .post('/signupByAdmin', auth.hasRole('admin'), async (ctx, next) => {
+    //     try {
+    //         let user = await User.create(ctx.request.body)
+    //         ctx.status = 201 // Status code 201 : created
+    //         ctx.body = 'User created!'
+    //     } catch(err) {
+    //         throw err
+    //     }
+    // })
 module.exports = router

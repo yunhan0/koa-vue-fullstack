@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        default: 'user' // Other roles so far: admin.
+        default: 'guest' // Other roles so far: user, admin.
     }
 })
 /* 

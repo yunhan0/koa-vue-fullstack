@@ -47,10 +47,17 @@ router
         }
     })
 
-    // update
-    .put('/:id', (ctx, next) => {
+    // TODO: test update
+    .put('/:id', async (ctx, next) => {
         try {
-            ctx.body = 'Thing update!' 
+            let entity = await Thing.findByIdAndUpdate(ctx.params.id, 
+                { $set: ctx.request.body },
+                // new: bool - true to return the modified document rather than the original. defaults to false
+                { new: true }
+            )
+            // Handle not found error
+            if (!entity) { ctx.throw(404, "not found") }
+            ctx.body = entity
         } catch(err) {
             throw err
         }
