@@ -1,7 +1,16 @@
 <template>
 	<div>
-		<Row :gutter="16">
-			<Col :md="{span: 14}" :sm="{span: 24}">
+		<Row>
+			<Col>
+				<Card>
+					<span> Total users: </span>
+					<h1 style="display:inline-block">
+						16
+					</h1>
+				</Card>
+			</Col>
+			<br/>
+			<Col>
 				<UserTable></UserTable>
 			</Col>
 		</Row>
