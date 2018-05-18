@@ -47,3 +47,5 @@ data/
 
 # Webpack Stats
 stats.json
+
+.DS_Store

@@ -34,7 +34,6 @@ userSchema.pre('save', async function encryptPassword() {
         const hash = await bcrypt.hash(user.password, saltRounds)
         // Store hash in your password DB.
         user.password = hash
-        user.save()
     } catch(err) {
         throw err
     }
