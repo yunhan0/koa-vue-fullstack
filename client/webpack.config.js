@@ -57,7 +57,8 @@ module.exports = function(env) {
 			CONFIG.plugins.push(new webpack.HotModuleReplacementPlugin());
 			CONFIG.devServer = {
 				// contentBase: '', # Confuse
-				hot: true
+				hot: true,
+				historyApiFallback: true
 			}
 		break;
 		case 'prod':

@@ -10,6 +10,7 @@ const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue
 Vue.use(VueRouter);
 
 let router = new VueRouter({
+    mode: 'history',
     routes: [
         { 
             path: '/login', 
@@ -57,7 +58,7 @@ let router = new VueRouter({
                 { 
                     path: '/user-management',
                     name: 'User Management',
-                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/UserManagement.vue'), 
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/admin/UserManagement.vue'), 
                     meta: {
                         requiresAuth: true
                     }
