@@ -1,6 +1,8 @@
 <template>
-	<Menu :active-name="$route.path" theme="light" width="auto" @on-select="handleClickMenu" :class="menuitemClasses">
-		<MenuItem v-for="item in menuItems" :key="item.title" :name="item.path" v-if="item.auth ==='admin' ? isAdmin : true">
+	<Menu :active-name="$route.path" theme="light" width="auto"
+	@on-select="handleClickMenu" :class="menuitemClasses" v-if="isAuthenticated">
+		<MenuItem v-for="item in menuItems" :key="item.title" :name="item.path"
+		v-if="isPermitted(item.roles)">
 			<Icon :type="item.icon"></Icon>
 			<span>{{ item.title }}</span>
 		</MenuItem>	
@@ -19,15 +21,34 @@ export default {
 	data() {
 		return {
 			menuItems: [
-				{ title: 'Home', path: '/home', icon: 'ios-keypad' },
-				{ title: 'User Management', path: '/user-management', icon: 'ios-person', auth: 'admin' },
-				{ title: 'Page One', path: '/page1', icon: 'stats-bars' },
-				{ title: 'Page Two', path: '/page2', icon: 'ios-paper' }
+				{
+					title: 'Home',
+					path: '/home',
+					icon: 'ios-keypad'
+				},
+				{
+					title: 'User Management',
+					path: '/user-management',
+					icon: 'ios-person',
+					roles: ['admin']
+				},
+				{
+					title: 'Page One',
+					path: '/page1',
+					icon: 'stats-bars',
+					roles: ['user', 'admin']
+				},
+				{
+					title: 'Page Two',
+					path: '/page2',
+					icon: 'ios-paper',
+					roles: ['user', 'admin']
+				}
 			]
 		}
 	},
 	computed: {
-		...mapGetters(['isAdmin']),
+		...mapGetters(['isAuthenticated', 'getCurrentUser']),
 		menuitemClasses: function () {
 			return [
 				'menu-item',
@@ -38,6 +59,15 @@ export default {
 	methods: {
 		handleClickMenu: function(name) {
 			this.$router.push(name);
+		},
+		isPermitted: function(roles) {
+			if (!roles) {
+				return true;
+			}
+			if (roles.includes(this.getCurrentUser.role)) {
+				return true;
+			}
+			return false;
 		}
 	}
 }
