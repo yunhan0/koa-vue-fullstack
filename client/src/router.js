@@ -10,6 +10,11 @@ const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue
 Vue.use(VueRouter);
 
 let router = new VueRouter({
+    /*
+    * The default mode for vue-router is hash mode - it uses the URL hash to
+    *  simulate a full URL so that the page won't be reloaded when the URL changes.
+    * To get rid of the hash, we can use the router's history mode.
+    */
     mode: 'history',
     routes: [
         { 
