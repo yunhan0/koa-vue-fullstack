@@ -49,10 +49,10 @@ let router = new VueRouter({
                     name: 'Home',
                     component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'), 
                     meta: {
-                        requiresAuth: true 
+                        requiresAuth: true, roles: ['guest', 'user', 'admin']
                     }
                 },
-                { 
+                {
                     path: '/settings',
                     name: 'Settings',
                     component: () => import(/* webpackChunkName: "group-account" */ './views/account/Settings.vue'), 
@@ -60,28 +60,28 @@ let router = new VueRouter({
                         requiresAuth: true
                     }
                 },
-                { 
+                {
                     path: '/user-management',
                     name: 'User Management',
                     component: () => import(/* webpackChunkName: "group-account" */ './views/admin/UserManagement.vue'), 
                     meta: {
-                        requiresAuth: true
+                        requiresAuth: true, roles: ['admin']
                     }
                 },                
-                { 
+                {
                     path: '/page1',
                     name: 'Page1',
                     component: () => import(/* webpackChunkName: "group-pages" */ './views/Page1.vue'), 
                     meta: {
-                        requiresAuth: true 
+                        requiresAuth: true, roles: ['user', 'admin']
                     }
                 },
-                { 
+                {
                     path: '/page2',
                     name: 'Page2',
                     component: () => import(/* webpackChunkName: "group-pages" */ './views/Page2.vue'), 
                     meta: {
-                        requiresAuth: true 
+                        requiresAuth: true, roles: ['user', 'admin']
                     }
                 }
             ]
@@ -90,11 +90,24 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if(to.meta.requiresAuth && !store.getters.isAuthenticated) {
-        next('/login');
-    } else {
-        next();
+    // If doesn't require authentication, accept.
+    if (!to.meta.requiresAuth) {
+        return next();
     }
+    // If require auth but user is not authenticated, go to login.
+    if (!store.getters.isAuthenticated) {
+        return next('/login');
+    }
+    // If user is authenticated and page doesn't define roles, accept.
+    if(!to.meta.roles) {
+        return next()
+    }
+    // If page defines roles, check if user type is included in the roles.
+    if (to.meta.roles.includes(store.getters.getCurrentUser.role)) {
+        return next();
+    }
+    // Otherwise, denied.
+    next('/');
 });
 
 export default router;
