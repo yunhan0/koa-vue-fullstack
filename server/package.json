@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.1.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-compose": "^4.1.0",
     "koa-convert": "^1.2.0",
     "koa-lusca": "^2.2.0",
     "koa-router": "^7.1.1",

@@ -60,11 +60,14 @@ export default {
 		handleClickMenu: function(name) {
 			this.$router.push(name);
 		},
-		isPermitted: function(roles) {
-			if (!roles) {
+		/*
+		* Check if the user role meets the defined requirement roles
+		*/
+		isPermitted: function(rolesRequired) {
+			if (!rolesRequired) {
 				return true;
 			}
-			if (roles.includes(this.getCurrentUser.role)) {
+			if (rolesRequired.includes(this.getCurrentUser.role)) {
 				return true;
 			}
 			return false;

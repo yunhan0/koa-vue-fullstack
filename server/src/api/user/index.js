@@ -14,7 +14,7 @@ router
      * Get list of users
      * restriction: 'admin'
      */
-    .get('/', auth.isAuthenticated, auth.hasRole('admin'), async (ctx, next) => {
+    .get('/', auth.requiresRole(['admin']), async (ctx, next) => {
         try {
             ctx.body = await User.find({}, '-password')
         } catch(err) {

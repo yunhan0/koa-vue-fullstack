@@ -1,3 +1,4 @@
+const compose = require('koa-compose')
 const jwt = require('jsonwebtoken')
 const secret = require('../../config').secret.auth
 var User = require('../user/user.model')
@@ -27,16 +28,24 @@ module.exports = {
             throw err
         }
     },
-    hasRole: (role) => {
-        return async (ctx, next) => {
-            try {
-                if (ctx.state.user.role !== role) {
-                    ctx.throw(403, "Forbidden")
+    /*
+     * Check if the user role meets the defined requirement roles of the route
+     */
+    requiresRole: function(roles) {
+        return compose([
+            // 1st, check if user is authenticated
+            this.isAuthenticated,
+            // 2nd, check if user belongs to the required roles
+            async (ctx, next) => {
+                try {
+                    if (roles !== undefined && !roles.includes(ctx.state.user.role)) {
+                        ctx.throw(403, "Forbidden")
+                    }
+                    await next()
+                } catch (err) {
+                    throw err
                 }
-                await next()
-            } catch (err) {
-                throw err
             }
-        }
+        ])
     }
 }
