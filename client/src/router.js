@@ -49,7 +49,7 @@ let router = new VueRouter({
                     name: 'Home',
                     component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'), 
                     meta: {
-                        requiresAuth: true, roles: ['guest', 'user', 'admin']
+                        requiresAuth: true
                     }
                 },
                 {

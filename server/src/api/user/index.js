@@ -78,11 +78,10 @@ router
         }
     })
 
-    /****************** Obsolete methods ******************/
+    /****************** Other methods ******************/
     /**
      * Creates a new user
      * restriction: 'admin'
-     * Todo: better to be granted higher access instead of creating by admin?
      */
     // .post('/signupByAdmin', auth.hasRole('admin'), async (ctx, next) => {
     //     try {

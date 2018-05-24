@@ -4,10 +4,8 @@
 			User access
 		</p>
 		<Alert>
-			Here's where you grant users access to this website.
-			"guests" are users who registered and showed interests to our website.
+			Total Users: {{ users.length }}
 		</Alert>
-
 		<br/>
 		<Table :columns="columns" :data="users"></Table>
 	</Card>
@@ -35,7 +33,7 @@ export default {
 				key: 'email'
 			},
 			{
-				title: 'User type',
+				title: 'Role',
 				key: 'role'
 			},
 			{
@@ -44,20 +42,6 @@ export default {
 				align: 'center',
 				render: (h, params) => {
 					return h('div', [
-						h('Button', {
-							props: {
-								type: params.row.role === 'guest' ? 'primary' : 'ghost',
-								size: 'small'
-							},
-							style: {
-								marginRight: '5px'
-							},
-							on: {
-								click: () => {
-
-								}
-							}
-						}, 'guest'),
 						h('Button', {
 							props: {
 								type: params.row.role === 'user' ? 'primary' : 'ghost',
