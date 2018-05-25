@@ -1,32 +1,37 @@
 <template>
-  <Card style="min-height: 600px">
-	<p slot="title">
-		Things:
-	</p>
 	<Row :gutter="30">
-		<Col :md="{span: 8}" :sm="{span: 24}">
-			<!-- Begin: Form -->
-			<Form ref="thingForm" :model="thingForm" :label-width="60">
-				<FormItem label="Title" prop="name"
-				:rules="[{ required: true, message: 'this is required'}]">
-					<Input placeholder="Type anything" v-model="thingForm.name"></Input>
-				</FormItem>
-				<FormItem label="Detail" prop="info">
-					<Input placeholder="Type more details" v-model="thingForm.info"></Input>
-				</FormItem>
-				<FormItem>
-					<Button type="primary" @click="create('thingForm')">Add New</Button>
-				</FormItem>
-			</Form>
-			<!-- End: Form -->
+		<Col :md="{span: 6}" :sm="{span: 24}">
+			<Card height="200">
+				<p slot="title">
+					Add a new thing
+				</p>
+				<!-- Begin: Form -->
+				<Form ref="thingForm" :model="thingForm" :label-width="60">
+					<FormItem label="Title" prop="name"
+					:rules="[{ required: true, message: 'this is required'}]">
+						<Input placeholder="Type anything" v-model="thingForm.name"></Input>
+					</FormItem>
+					<FormItem label="Detail" prop="info">
+						<Input placeholder="Type more details" v-model="thingForm.info"></Input>
+					</FormItem>
+					<FormItem>
+						<Button type="primary" @click="create('thingForm')">Add New</Button>
+					</FormItem>
+				</Form>
+				<!-- End: Form -->
+			</Card>
 		</Col>
-		<Col :md="{span: 16}" :sm="{span: 24}">
-			<!-- Begin: Table of things -->
-			<Table :loading="loading" border stripe :columns="columns" :data="things" height="500"></Table>
-			<!-- End: Table of things -->
+		<Col :md="{span: 18}" :sm="{span: 24}">
+			<Card>
+				<p slot="title">
+					Things
+				</p>
+				<!-- Begin: Table of things -->
+				<Table :loading="loading" border stripe :columns="columns" :data="things" height="300"></Table>
+				<!-- End: Table of things -->
+			</Card>
 		</Col>
 	</Row>
-  </Card> 
 </template>
 
 <script>
