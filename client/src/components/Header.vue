@@ -5,7 +5,7 @@
 			<div class="layout-nav" v-if="isAuthenticated">
 				<Dropdown @on-click="handleClickUserDropdown">
 					<a href="javascript:void(0)">
-						{{ getCurrentUser.email }}
+						{{ getCurrentUser.name }}
 						<Icon type="arrow-down-b"></Icon>
 					</a>
 					<DropdownMenu slot="list">

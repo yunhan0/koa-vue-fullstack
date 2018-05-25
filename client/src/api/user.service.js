@@ -19,7 +19,11 @@ let UserResource = {
 
     changePassword(body) {
         return HTTP.put('users/me/password', body);
-    }
+    },
+
+    delete(id) { // Delete a thing
+        return HTTP.delete('users/' + id);
+    },
 };
 
 export default UserResource;

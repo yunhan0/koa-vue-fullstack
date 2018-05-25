@@ -6,9 +6,12 @@
 			</p>
 			<!-- Begin: Form -->
             <Form ref="signupForm" :model="signupForm" :rules="ruleSignup">
+                <FormItem label="Name" prop="name">
+                    <Input v-model="signupForm.name" placeholder="name"></Input>
+                </FormItem>
                 <FormItem label="Email" prop="email">
                     <Input type="email" v-model="signupForm.email" placeholder="email"></Input>
-                </FormItem>					
+                </FormItem>
                 <FormItem label="Password" prop="password">
                     <Input type="password" v-model="signupForm.password" placeholder="password">
                     </Input>
@@ -40,11 +43,15 @@ export default {
 	data() {
 		return {
 			signupForm: {
+				name: '',
 				email: '',
                 password: '',
                 retypePwd: ''
 			},
 			ruleSignup: {
+				name: [
+					{ required: true, message: 'Name can\'t be blank' },
+				],
 				email: [         
 					{ required: true, message: 'You cannot use a blank email' },
                     { type: 'email', message: 'Please input correct email address'}
@@ -84,7 +91,7 @@ export default {
 					console.log('error submit!!')
 					return false
 				}
-			})			
+			})
 		}
 	}
 }

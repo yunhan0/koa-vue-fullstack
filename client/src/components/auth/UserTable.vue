@@ -1,26 +1,32 @@
 <template>
 	<Card dis-hover>
 		<p slot="title">
-			User access
+			<Icon type="stats-bars"></Icon>
+			Total Users: {{ users.length || "Loading..."}}
 		</p>
-		<Alert>
-			Total Users: {{ users.length }}
-		</Alert>
+		<Row>
+			<Col :md="{span: 6}" :sm="{span: 24}">
+				<Input placeholder="Search users">
+					<Button slot="append" icon="ios-search"></Button>
+				</Input>
+			</Col>
+		</Row>
 		<br/>
-		<Table :columns="columns" :data="users"></Table>
+		<Table border :loading="loading" :columns="columns" :data="users"></Table>
 	</Card>
 </template>
 
 <script>
-import { Form, FormItem, Table, Alert } from 'iview';
+import { Form, FormItem, Table, Icon } from 'iview';
 import UserResource from '../../api/user.service';
 
 export default {
 	components: {
-		Form, FormItem, Table, Alert
+		Form, FormItem, Table, Icon
 	},
 	data() {
 		return {
+			loading: true,
 			users: [],
 			columns: [
 			{
@@ -29,52 +35,60 @@ export default {
 				align: 'center'
 			},
 			{
+				title: 'Name',
+				key: 'name',
+				minWidth: 100
+			},
+			{
 				title: 'Email',
-				key: 'email'
+				key: 'email',
+				minWidth: 100
 			},
 			{
 				title: 'Role',
-				key: 'role'
+				key: 'role',
+				minWidth: 100
 			},
 			{
-				title: 'Access control',
-				key: 'access',
+				title: 'Operations',
+				key: 'operations',
+				minWidth: 200,
 				align: 'center',
 				render: (h, params) => {
 					return h('div', [
 						h('Button', {
+								props: {
+									type: 'primary'
+								},
+								style: {
+									marginRight: '5px'
+								}
+							}, 'Edit'),
+						h('Poptip', {
 							props: {
-								type: params.row.role === 'user' ? 'primary' : 'ghost',
-								size: 'small'
-							},
-							style: {
-								marginRight: '5px'
+								transfer: true,
+								confirm: true,
+								title: 'Are you sure you want to remove this user?'
 							},
 							on: {
-								click: () => {
-									console.log(params);
-								}
+								'on-ok': () => { this.remove(params.index) }
 							}
-						}, 'user'),
-						h('Button', {
-							props: {
-								type: params.row.role === 'admin' ? 'primary' : 'ghost',
-								size: 'small'
-							},
-							on: {
-								click: () => {
-								}
-							}
-						}, 'admin')
+						}, [
+							h('Button', {
+								props: {
+									type: 'error'
+								},
+							}, 'Delete')
+						])
 					]);
 				}
-			}
-			]
+			}]
 		}
 	},
 	// Request data when the component is created.
 	created() {
 		UserResource.show().then(response => {
+			this.loading = false;
 			this.users = response.data;
 		})
 		.catch(e => {
@@ -82,7 +96,14 @@ export default {
 		})
 	},
 	methods: {
-
+		remove: function(index) { // Delete user
+			UserResource.delete(this.users[index]._id).then(response => {
+				this.users.splice(index, 1);
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		}
 	}
 }
 </script>

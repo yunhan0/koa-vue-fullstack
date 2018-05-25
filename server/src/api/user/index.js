@@ -16,7 +16,8 @@ router
      */
     .get('/', auth.requiresRole(['admin']), async (ctx, next) => {
         try {
-            ctx.body = await User.find({}, '-password')
+            // Find users except admin users.
+            ctx.body = await User.find({ role: { $ne: 'admin'} }, '-password')
         } catch(err) {
             throw err
         }
@@ -73,6 +74,21 @@ router
                 user.save()
                 ctx.status = 200
             }
+        } catch(err) {
+            throw err
+        }
+    })
+
+    /**
+     * Delete a user
+     * restriction: 'admin'
+     */
+    .delete('/:id', auth.requiresRole(['admin']), async (ctx, next) => {
+        try {
+            let user = await User.findById({_id: ctx.params.id})
+            // Handle not found error
+            if (!user) { ctx.throw(404, "not found") }
+            ctx.body = await user.remove()
         } catch(err) {
             throw err
         }

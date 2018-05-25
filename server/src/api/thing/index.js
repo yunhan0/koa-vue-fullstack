@@ -18,7 +18,7 @@ router
     // index
     .get('/', async (ctx, next) => {
         try {
-            ctx.body = await Thing.find({}, 'name')
+            ctx.body = await Thing.find({})
         } catch(err) {
             throw err
         }
