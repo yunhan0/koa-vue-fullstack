@@ -2,17 +2,18 @@
 	<Card dis-hover>
 		<p slot="title">
 			<Icon type="stats-bars"></Icon>
-			Total Users: {{ users.length || "Loading..."}}
+			Total Users: {{ users.length }}
 		</p>
 		<Row>
 			<Col :md="{span: 6}" :sm="{span: 24}">
-				<Input placeholder="Search users">
-					<Button slot="append" icon="ios-search"></Button>
+				<Input placeholder="Please input email to search"
+					@on-change="search" v-model="criteria" icon="search">
 				</Input>
 			</Col>
 		</Row>
 		<br/>
-		<Table border :loading="loading" :columns="columns" :data="users"></Table>
+		<Table border :loading="loading" :columns="columns" :data="usersCopy">
+		</Table>
 	</Card>
 </template>
 
@@ -28,6 +29,8 @@ export default {
 		return {
 			loading: true,
 			users: [],
+			usersCopy: [], // This is for the array search function.
+			criteria: '',
 			columns: [
 			{
 				type: 'index',
@@ -90,6 +93,8 @@ export default {
 		UserResource.show().then(response => {
 			this.loading = false;
 			this.users = response.data;
+			// Keep a copy of users list for the sake of array filtering.
+			this.usersCopy = this.users;
 		})
 		.catch(e => {
 			console.log(e);
@@ -103,6 +108,12 @@ export default {
 			.catch(e => {
 				console.log(e);
 			});
+		},
+		search: function() { // Search by email in this case.
+			let argument = this.criteria
+			this.usersCopy = this.users.filter(function(user){
+				return user.email.match(argument)
+			})
 		}
 	}
 }
