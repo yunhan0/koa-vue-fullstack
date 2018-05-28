@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { Form, FormItem, Table, Icon } from 'iview';
+import { Form, FormItem, Table, Icon, Poptip } from 'iview';
 import UserResource from '../../api/user.service';
 
 export default {
 	components: {
-		Form, FormItem, Table, Icon
+		Form, FormItem, Table, Icon, Poptip
 	},
 	data() {
 		return {
@@ -67,7 +67,7 @@ export default {
 									marginRight: '5px'
 								}
 							}, 'Edit'),
-						h('Poptip', {
+						h(Poptip, {
 							props: {
 								transfer: true,
 								confirm: true,

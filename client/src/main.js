@@ -7,7 +7,7 @@ import store from './store/';
 import AuthService from './api/auth.service';
 /** iView **/
 import './styles/theme.less'; // Customized theme of iview
-import { Button, Input, Row, Col, Card, Message, Poptip, locale } from 'iview';
+import { Button, Input, Row, Col, Card, Message, locale } from 'iview';
 // Configure iView language
 import lang from 'iview/dist/locale/en-US';
 locale(lang);
@@ -19,7 +19,6 @@ Vue.component('Input', Input);
 Vue.component('Row', Row);
 Vue.component('Col', Col);
 Vue.component('Card', Card);
-Vue.component('Poptip', Poptip);
 Vue.prototype.$Message = Message;
 
 function initialisation() {

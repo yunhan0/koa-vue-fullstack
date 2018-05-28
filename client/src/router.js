@@ -61,27 +61,19 @@ let router = new VueRouter({
                     }
                 },
                 {
-                    path: '/user-management',
-                    name: 'User Management',
-                    component: () => import(/* webpackChunkName: "group-account" */ './views/admin/UserManagement.vue'), 
+                    path: '/users',
+                    name: 'Users',
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/admin/Users.vue'),
                     meta: {
                         requiresAuth: true, roles: ['admin']
                     }
-                },                
-                {
-                    path: '/page1',
-                    name: 'Page1',
-                    component: () => import(/* webpackChunkName: "group-pages" */ './views/Page1.vue'), 
-                    meta: {
-                        requiresAuth: true, roles: ['user', 'admin']
-                    }
                 },
                 {
-                    path: '/page2',
-                    name: 'Page2',
-                    component: () => import(/* webpackChunkName: "group-pages" */ './views/Page2.vue'), 
+                    path: '/things',
+                    name: 'Things',
+                    component: () => import(/* webpackChunkName: "group-home" */ './views/Things.vue'),
                     meta: {
-                        requiresAuth: true, roles: ['user', 'admin']
+                        requiresAuth: true
                     }
                 }
             ]

@@ -22,27 +22,15 @@ export default {
 		return {
 			menuItems: [
 				{
-					title: 'Home',
-					path: '/home',
+					title: 'Things',
+					path: '/things',
 					icon: 'ios-keypad'
 				},
 				{
-					title: 'User Management',
-					path: '/user-management',
+					title: 'Users',
+					path: '/users',
 					icon: 'ios-person',
 					roles: ['admin']
-				},
-				{
-					title: 'Page One',
-					path: '/page1',
-					icon: 'stats-bars',
-					roles: ['user', 'admin']
-				},
-				{
-					title: 'Page Two',
-					path: '/page2',
-					icon: 'ios-paper',
-					roles: ['user', 'admin']
 				}
 			]
 		}

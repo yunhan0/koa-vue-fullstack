@@ -29,8 +29,8 @@ let ThingResource = {
         return HTTP.delete('things/' + id);
     },
 
-    update(id) { // Update a thing
-
+    update(id, body) { // Update a thing
+        return HTTP.put('things/' + id, body);
     }
 };
 

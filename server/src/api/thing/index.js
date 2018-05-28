@@ -47,7 +47,7 @@ router
         }
     })
 
-    // TODO: test update
+    // update single item
     .put('/:id', async (ctx, next) => {
         try {
             let entity = await Thing.findByIdAndUpdate(ctx.params.id, 
