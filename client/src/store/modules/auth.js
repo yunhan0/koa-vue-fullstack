@@ -18,10 +18,10 @@ export default {
         }
     },
     mutations: {
-        login: (state, data) => {
+        LOGIN: (state, data) => {
             state.user = data;
         },
-        logout: state => {
+        LOGOUT: state => {
             state.user = null;
         }
     },
@@ -29,7 +29,7 @@ export default {
         login: ({ commit }, body) => {
             return AuthService.login(body)
             .then(user => {
-                commit('login', user);
+                commit('LOGIN', user);
             })
             .catch(err => {
                 throw err;
@@ -38,17 +38,17 @@ export default {
 
         logout: ({ commit }) => {
             localStorage.removeItem('token');
-            commit('logout');
+            commit('LOGOUT');
         },
 
         autoLogin: ({commit}, user) => {
-            commit('login', user);
+            commit('LOGIN', user);
         },
 
         signup: ({ commit }, body) => {
             return AuthService.signup(body)
             .then(user => {
-                commit('login', user);
+                commit('LOGIN', user);
             })
             .catch(err => {
                 throw err;

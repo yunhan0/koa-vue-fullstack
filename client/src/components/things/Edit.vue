@@ -23,6 +23,7 @@
 <script>
 import { Form, FormItem, Modal } from 'iview'
 import ThingResource from '../../api/thing.service'
+import { mapActions } from 'vuex';
 
 export default {
 	components: {
@@ -38,21 +39,29 @@ export default {
 	// Request data when the component is created.
 	created() {
         ThingResource.get(this.id).then(response => {
-            this.thing = response.data
+			this.thing = response.data
         })
         .catch(e => {
             console.log(e)
         })
 	},
 	methods: {
+		...mapActions(['editThing']),
 		edit: function(formName) { // Edit item
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
-					ThingResource.update(this.id, this.thing).then(response => {
+					let payload = {
+						_id: this.thing._id,
+						content: {
+							name: this.thing.name,
+							info: this.thing.info
+						}
+					}
+					this.editThing(payload).then(response => {
                         this.editModal = false
 					})
 					.catch(e => {
-					console.log(e)
+						console.log(e)
 					})
 				} else {
 					console.log('error submit!!')
