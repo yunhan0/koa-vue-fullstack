@@ -49,3 +49,6 @@ data/
 stats.json
 
 .DS_Store
+
+# VS Code
+.vscode
