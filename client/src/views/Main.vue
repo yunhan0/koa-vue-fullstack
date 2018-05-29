@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Layout, Sider, Content, Breadcrumb, BreadcrumbItem } from 'iview';
+import { Layout, Sider, Content, Breadcrumb, BreadcrumbItem } from 'iview'
 
 export default {
 	components: {

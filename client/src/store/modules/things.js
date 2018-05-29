@@ -8,17 +8,17 @@ export default {
         things: state => state.all
     },
     mutations: {
-        SET_THINGS: (state, data) => {
-            state.all = data
+        SET_THINGS: (state, things) => {
+            state.all = things
         },
-        ADD_THING: (state, data) => {
-            state.all.push(data)
+        ADD_THING: (state, thing) => {
+            state.all.push(thing)
         },
-        EDIT_THING: (state, data) => {
-            state.all.forEach((item, index) => {
-                if (item._id === data._id) {
-                    state.all[index].name = data.name
-                    state.all[index].info = data.info
+        EDIT_THING: (state, thing) => {
+            state.all.forEach(item => {
+                if (item._id === thing._id) {
+                    item.name = thing.name
+                    item.info = thing.info
                 }
             })
         },
@@ -28,36 +28,40 @@ export default {
     },
     actions: {
         getAllThings: ({ commit }) => {
-            return ThingResource.show().then(response => {
-                commit('SET_THINGS', response.data)
-            })
-            .catch(err => {
-                throw err
-            })
+            return ThingResource.show()
+                .then(things => {
+                    commit('SET_THINGS', things)
+                })
+                .catch(err => {
+                    throw err
+                })
         },
-        addThing: ({commit}, thing) => {
-            return ThingResource.create(thing).then(response => {
-                commit('ADD_THING', response.data)
-            })
-            .catch(err => {
-                throw err
-            })
+        addThing: ({commit}, payload) => {
+            return ThingResource.create(payload)
+                .then(thing => {
+                    commit('ADD_THING', thing)
+                })
+                .catch(err => {
+                    throw err
+                })
         },
-        editThing: ({commit}, thing) => {
-            return ThingResource.update(thing._id, thing.content).then(response => {
-                commit('EDIT_THING', response.data)
-            })
-            .catch(err => {
-                throw err
-            })       
+        editThing: ({commit}, payload) => {
+            return ThingResource.update(payload._id, payload.content)
+                .then(thing => {
+                    commit('EDIT_THING', thing)
+                })
+                .catch(err => {
+                    throw err
+                })
         },
         removeThing: ({commit}, id) => {
-            return ThingResource.delete(id).then(response => {
-				commit('REMOVE_THING', id)
-			})
-			.catch(err => {
-				throw err
-			})
+            return ThingResource.delete(id)
+                .then(response => {
+                    commit('REMOVE_THING', id)
+                })
+                .catch(err => {
+                    throw err
+                })
         }
     }
 }

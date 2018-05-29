@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import { Table, Poptip } from 'iview';
-import ThingEdit from './Edit.vue';
-import { mapGetters, mapActions } from 'vuex';
+import { Table, Poptip } from 'iview'
+import ThingEdit from './Edit.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -66,7 +66,7 @@ export default {
 								},
 							}, 'Delete')
 						])
-					]);
+					])
 				}
 			}]
 		}
@@ -76,7 +76,7 @@ export default {
 	},
     created() {
         this.$store.dispatch('getAllThings').then(() => {
-            this.loading = false;
+            this.loading = false
         })
     },
 	methods: {

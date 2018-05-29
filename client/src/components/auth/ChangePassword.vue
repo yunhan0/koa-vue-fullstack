@@ -1,12 +1,12 @@
 <template>
     <Card>
         <p slot="title">
-            Change Password 
+            Change Password
         </p>
         <Form ref="changePwdForm" :model="changePwdForm" :rules="ruleChangePwd" :label-width="90">
             <FormItem label="Current" prop="oldPassword">
                 <Input type="password" v-model="changePwdForm.oldPassword"></Input>
-            </FormItem>					
+            </FormItem>
             <FormItem label="New" prop="newPassword">
                 <Input type="password" v-model="changePwdForm.newPassword"></Input>
             </FormItem>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { Form, FormItem } from 'iview';
-import AuthService from '../../api/auth.service';
+import { Form, FormItem } from 'iview'
+import AuthService from '../../api/auth.service'
 
 export default {
 	components: {
@@ -46,16 +46,16 @@ export default {
 				retypePwd: [
 					{ validator: (rule, value, callback) => {
 						if (value === '') {
-							callback(new Error('Please retype the new password'));
+							callback(new Error('Please retype the new password'))
 						} else {
 							if (value !== this.changePwdForm.newPassword) {
-								callback(new Error('Passwords do not match'));
+								callback(new Error('Passwords do not match'))
 							}
-							callback();
+							callback()
 						}
 					}}
 				]
-			}			
+			}
 		}
 	},
 	methods: {
@@ -69,10 +69,10 @@ export default {
                         this.$Message.error(err.message)
                     })
 				} else {
-					console.log('error submit!!');
-					return false;
+					console.log('error submit!!')
+					return false
 				}
-			});			
+			})
 		}
 	}
 }

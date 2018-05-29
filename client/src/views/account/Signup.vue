@@ -1,6 +1,6 @@
 <template>
 	<Content class="beautiful-gradient">
-		<Card style="max-width:300px; width: 100%; margin: 100px auto">
+		<Card style="max-width:300px width: 100% margin: 100px auto">
 			<p slot="title">
 				Sign up
 			</p>
@@ -19,13 +19,13 @@
                 <FormItem label="Confirm Password" prop="retypePwd">
                     <Input type="password" v-model="signupForm.retypePwd" placeholder="type password again">
                     </Input>
-                </FormItem>                
+                </FormItem>
                 <FormItem>
                     <Button type="success" long @click="submit('signupForm')">Sign me up!</Button>
                 </FormItem>
             </Form>
 			<p>
-				Already have an account? 
+				Already have an account?
 				<router-link to="/login">Login here</router-link>
 			</p>
 		</Card>
@@ -34,7 +34,7 @@
 
 <script>
 import { Content, Form, FormItem } from 'iview'
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -52,7 +52,7 @@ export default {
 				name: [
 					{ required: true, message: 'Name can\'t be blank' },
 				],
-				email: [         
+				email: [
 					{ required: true, message: 'You cannot use a blank email' },
                     { type: 'email', message: 'Please input correct email address'}
 				],
@@ -63,11 +63,11 @@ export default {
                 retypePwd: [
                     { validator: (rule, value, callback) => {
                         if (value === '') {
-                            callback(new Error('Please enter your password again'));
+                            callback(new Error('Please enter your password again'))
                         } else if (value !== this.signupForm.password) {
-                            callback(new Error('The two input passwords do not match'));
+                            callback(new Error('The two input passwords do not match'))
                         } else {
-                            callback();
+                            callback()
                         }
                     }
                 }]
@@ -83,7 +83,7 @@ export default {
 					this.signup(this.signupForm)
                     .then(() => {
                         this.$Message.success(this.signupForm.email + ' Added')
-						this.$router.push('/home');
+						this.$router.push('/home')
                     }).catch(err => {
                         this.$Message.error('Error')
                     })

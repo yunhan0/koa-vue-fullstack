@@ -6,7 +6,7 @@
  * DELETE   /api/things/:id     -> delete
  */
 
-import HTTP from './http-common';
+import HTTP from './http-common'
 
 /*
  * Service should be singleton,
@@ -14,24 +14,48 @@ import HTTP from './http-common';
  */
 let ThingResource = {
     show() { // Show all the things
-        return HTTP.get('things');
+        return HTTP.get('things')
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                throw err
+            })
     },
 
     get(id) { // Get a specific thing
-        return HTTP.get('things/' + id);
+        return HTTP.get('things/' + id)
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                throw err
+            })
     },
 
     create(body) { // Create a thing
-        return HTTP.post('things', body);
+        return HTTP.post('things', body)
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                throw err
+            })
     },
 
     delete(id) { // Delete a thing
-        return HTTP.delete('things/' + id);
+        return HTTP.delete('things/' + id)
     },
 
     update(id, body) { // Update a thing
-        return HTTP.put('things/' + id, body);
+        return HTTP.put('things/' + id, body)
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                throw err
+            })
     }
-};
+}
 
-export default ThingResource;
+export default ThingResource

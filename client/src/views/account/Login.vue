@@ -1,6 +1,6 @@
 <template>
 	<Content class="beautiful-gradient">
-		<Card style="max-width:300px; width: 100%; margin: 100px auto">
+		<Card style="max-width:300px width: 100% margin: 100px auto">
 			<p slot="title">
 				Login
 			</p>
@@ -25,7 +25,7 @@
 				</FormItem>
 			</Form>
 			<p>
-				Don't have an account? 
+				Don't have an account?
 				<router-link to="/signup">Sign up</router-link>
 			</p>
 		</Card>
@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { Content, Form, FormItem } from 'iview';
+import { mapActions } from 'vuex'
+import { Content, Form, FormItem } from 'iview'
 
 export default {
 	components: {
@@ -43,8 +43,8 @@ export default {
 	data() {
 		return {
 			loginForm: {
-				email: 'test@example.com',
-				password: 'helloworld'
+				email: '',
+				password: ''
 			}
 		}
 	},
@@ -56,16 +56,16 @@ export default {
 					if (valid) {
 						this.login(this.loginForm)
 						.then(() => {
-							this.$router.push('/home');
+							this.$router.push('/home')
 						})
 						.catch(err => {
 							this.$Message.error(err.message)
-						});
+						})
 				} else {
-					console.log('error submit!!');
-					return false;
+					console.log('error submit!!')
+					return false
 				}
-			});
+			})
 		}
 	}
 }

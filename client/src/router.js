@@ -1,13 +1,13 @@
-import Vue from 'vue';
+import Vue from 'vue'
 /** Router **/
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
 /** Store **/
-import store from './store/';
+import store from './store/'
 
-const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue');
+const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue')
 
 /** Router **/
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 let router = new VueRouter({
     /*
@@ -17,37 +17,37 @@ let router = new VueRouter({
     */
     mode: 'history',
     routes: [
-        { 
-            path: '/login', 
-            component: () => import(/* webpackChunkName: "group-account" */ './views/account/Login.vue'), 
+        {
+            path: '/login',
+            component: () => import(/* webpackChunkName: "group-account" */ './views/account/Login.vue'),
             beforeEnter: (to, from, next) => {
                 if (store.getters.isAuthenticated) {
-                    next('/home');
+                    next('/home')
                 } else {
-                    next();
+                    next()
                 }
-            } 
+            }
         },
-        { 
-            path: '/signup', 
+        {
+            path: '/signup',
             component: () => import(/* webpackChunkName: "group-account" */ './views/account/Signup.vue'),
             beforeEnter: (to, from, next) => {
                 if (store.getters.isAuthenticated) {
-                    next('/home');
+                    next('/home')
                 } else {
-                    next();
+                    next()
                 }
-            }    
-        },        
+            }
+        },
         {
             path: '/',
             redirect: '/home',
-            component: Main, 
+            component: Main,
             children: [
                 {
                     path: '/home',
                     name: 'Home',
-                    component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'), 
+                    component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'),
                     meta: {
                         requiresAuth: true
                     }
@@ -55,7 +55,7 @@ let router = new VueRouter({
                 {
                     path: '/settings',
                     name: 'Settings',
-                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/Settings.vue'), 
+                    component: () => import(/* webpackChunkName: "group-account" */ './views/account/Settings.vue'),
                     meta: {
                         requiresAuth: true
                     }
@@ -79,16 +79,16 @@ let router = new VueRouter({
             ]
         }
     ]
-});
+})
 
 router.beforeEach((to, from, next) => {
     // If doesn't require authentication, accept.
     if (!to.meta.requiresAuth) {
-        return next();
+        return next()
     }
     // If require auth but user is not authenticated, go to login.
     if (!store.getters.isAuthenticated) {
-        return next('/login');
+        return next('/login')
     }
     // If user is authenticated and page doesn't define roles, accept.
     if(!to.meta.roles) {
@@ -96,10 +96,10 @@ router.beforeEach((to, from, next) => {
     }
     // If page defines roles, check if user type is included in the roles.
     if (to.meta.roles.includes(store.getters.getCurrentUser.role)) {
-        return next();
+        return next()
     }
     // Otherwise, denied.
-    next('/');
-});
+    next('/')
+})
 
-export default router;
+export default router

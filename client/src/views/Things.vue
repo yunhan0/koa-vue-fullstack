@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import ThingDisplay from '../components/things/Display.vue';
-import ThingCreate from '../components/things/Create.vue';
+import ThingDisplay from '../components/things/Display.vue'
+import ThingCreate from '../components/things/Create.vue'
 
 export default {
 	components: {

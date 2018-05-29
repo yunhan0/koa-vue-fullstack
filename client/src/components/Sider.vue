@@ -5,13 +5,13 @@
 		v-if="isPermitted(item.roles)">
 			<Icon :type="item.icon"></Icon>
 			<span>{{ item.title }}</span>
-		</MenuItem>	
+		</MenuItem>
 	</Menu>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { Menu, MenuItem, Icon } from 'iview';
+import { mapGetters } from 'vuex'
+import { Menu, MenuItem, Icon } from 'iview'
 
 export default {
 	components: {
@@ -46,19 +46,19 @@ export default {
 	},
 	methods: {
 		handleClickMenu: function(name) {
-			this.$router.push(name);
+			this.$router.push(name)
 		},
 		/*
 		* Check if the user role meets the defined requirement roles
 		*/
 		isPermitted: function(rolesRequired) {
 			if (!rolesRequired) {
-				return true;
+				return true
 			}
 			if (rolesRequired.includes(this.getCurrentUser.role)) {
-				return true;
+				return true
 			}
-			return false;
+			return false
 		}
 	}
 }

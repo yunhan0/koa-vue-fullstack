@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { Header, Menu, Dropdown, DropdownMenu, DropdownItem, Icon } from 'iview';
+import { mapGetters } from 'vuex'
+import { Header, Menu, Dropdown, DropdownMenu, DropdownItem, Icon } from 'iview'
 
 export default {
 	components: {
@@ -29,21 +29,21 @@ export default {
 	data() {
 		return {
 
-		};
+		}
 	},
 	computed: {
 		...mapGetters(['isAuthenticated', 'getCurrentUser'])
 	},
 	methods: {
 		logout: function() {
-			this.$store.dispatch('logout');
-			this.$router.push('/login');
+			this.$store.dispatch('logout')
+			this.$router.push('/login')
 		},
 		handleClickUserDropdown: function(name) {
 			if (name === 'logout') {
-				this.logout();
+				this.logout()
 			} else {
-				this.$router.push(name);
+				this.$router.push(name)
 			}
 		}
 	}

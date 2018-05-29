@@ -1,4 +1,4 @@
-import AuthService from '../../api/auth.service';
+import AuthService from '../../api/auth.service'
 
 export default {
     state: {
@@ -6,53 +6,53 @@ export default {
     },
     getters: {
         isAuthenticated: state => {
-            return !!state.user;
+            return !!state.user
         },
 
         isAdmin: state => {
-            return state.user.role === 'admin';
+            return state.user.role === 'admin'
         },
 
         getCurrentUser: state => {
-            return state.user;
+            return state.user
         }
     },
     mutations: {
         LOGIN: (state, data) => {
-            state.user = data;
+            state.user = data
         },
         LOGOUT: state => {
-            state.user = null;
+            state.user = null
         }
     },
     actions: {
         login: ({ commit }, body) => {
             return AuthService.login(body)
             .then(user => {
-                commit('LOGIN', user);
+                commit('LOGIN', user)
             })
             .catch(err => {
-                throw err;
-            });
+                throw err
+            })
         },
 
         logout: ({ commit }) => {
-            localStorage.removeItem('token');
-            commit('LOGOUT');
+            localStorage.removeItem('token')
+            commit('LOGOUT')
         },
 
         autoLogin: ({commit}, user) => {
-            commit('LOGIN', user);
+            commit('LOGIN', user)
         },
 
         signup: ({ commit }, body) => {
             return AuthService.signup(body)
             .then(user => {
-                commit('LOGIN', user);
+                commit('LOGIN', user)
             })
             .catch(err => {
-                throw err;
-            });
+                throw err
+            })
         },
     }
 }

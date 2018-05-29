@@ -1,21 +1,21 @@
 <template>
 	<div style="display:inline">
-        <Button @click="editModal = true" type="primary"> Edit </Button>
+        <Button @click="openModal" type="primary"> Edit </Button>
         <Modal title="Edit Thing" v-model="editModal">
             <!-- Begin: Form -->
-            <Form ref="thing" :model="thing" :label-width="60">
+            <Form ref="thingForm" :model="thingForm" :label-width="60">
                 <FormItem label="Title" prop="name"
                 :rules="[{ required: true, message: 'this is required'}]">
-                    <Input placeholder="Type anything" v-model="thing.name"></Input>
+                    <Input placeholder="Type anything" v-model="thingForm.name"></Input>
                 </FormItem>
                 <FormItem label="Detail" prop="info">
-                    <Input placeholder="Type more details" v-model="thing.info"></Input>
+                    <Input placeholder="Type more details" v-model="thingForm.info"></Input>
                 </FormItem>
             </Form>
-            <!-- End: Form -->	
+            <!-- End: Form -->
             <div slot="footer">
-                <Button type="primary" size="large" long  @click="edit('thing')">Save</Button>
-            </div>            	
+                <Button type="primary" size="large" long  @click="edit('thingForm')">Save</Button>
+            </div>
         </Modal>
 	</div>
 </template>
@@ -33,36 +33,36 @@ export default {
 	data() {
 		return {
 			editModal: false,
-			thing: {}
+			thingForm: { name: '', info: '' }
 		}
-	},
-	// Request data when the component is created.
-	created() {
-        ThingResource.get(this.id).then(response => {
-			this.thing = response.data
-        })
-        .catch(e => {
-            console.log(e)
-        })
 	},
 	methods: {
 		...mapActions(['editThing']),
+
+        openModal: function() {
+            this.editModal = true
+            // Load specific thing infomation
+            ThingResource.get(this.id).then(thing => {
+                this.thingForm.name = thing.name
+                this.thingForm.info = thing.info
+            })
+            .catch(err => {
+                this.$Message.error(err.message)
+            })
+        },
+
 		edit: function(formName) { // Edit item
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
-					let payload = {
-						_id: this.thing._id,
-						content: {
-							name: this.thing.name,
-							info: this.thing.info
-						}
-					}
-					this.editThing(payload).then(response => {
-                        this.editModal = false
-					})
-					.catch(e => {
-						console.log(e)
-					})
+                    // payload info passed to the state management of things
+					let payload = { _id: this.id, content: this.thingForm }
+					this.editThing(payload)
+                        .then(response => {
+                            this.editModal = false
+                        })
+                        .catch(e => {
+                            console.log(e)
+                        })
 				} else {
 					console.log('error submit!!')
 					return false

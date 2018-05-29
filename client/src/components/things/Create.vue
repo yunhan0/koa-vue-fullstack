@@ -12,14 +12,14 @@
                     <Input placeholder="Type more details" v-model="thingForm.info"></Input>
                 </FormItem>
             </Form>
-            <!-- End: Form -->		
+            <!-- End: Form -->
         </Modal>
 	</div>
 </template>
 
 <script>
-import { Form, FormItem, Modal } from 'iview';
-import { mapActions } from 'vuex';
+import { Form, FormItem, Modal } from 'iview'
+import { mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -41,16 +41,16 @@ export default {
 				if (valid) {
 					this.addThing(this.thingForm).then(response => {
                         // reset form data
-                        this.$refs[formName].resetFields();
+                        this.$refs[formName].resetFields()
 					})
 					.catch(e => {
-					    console.log(e);
-					});
+					    console.log(e)
+					})
 				} else {
-					console.log('error submit!!');
-					return false;
+					console.log('error submit!!')
+					return false
 				}
-			});
+			})
 		}
 	}
 }

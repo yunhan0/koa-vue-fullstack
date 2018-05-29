@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import { Layout } from 'iview';
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import { Layout } from 'iview'
 
 export default {
 	components: {
