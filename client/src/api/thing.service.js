@@ -15,32 +15,14 @@ import HTTP from './http-common'
 let ThingResource = {
     show() { // Show all the things
         return HTTP.get('things')
-            .then(response => {
-                return response.data
-            })
-            .catch(err => {
-                throw err
-            })
     },
 
     get(id) { // Get a specific thing
         return HTTP.get('things/' + id)
-            .then(response => {
-                return response.data
-            })
-            .catch(err => {
-                throw err
-            })
     },
 
     create(body) { // Create a thing
         return HTTP.post('things', body)
-            .then(response => {
-                return response.data
-            })
-            .catch(err => {
-                throw err
-            })
     },
 
     delete(id) { // Delete a thing
@@ -49,12 +31,6 @@ let ThingResource = {
 
     update(id, body) { // Update a thing
         return HTTP.put('things/' + id, body)
-            .then(response => {
-                return response.data
-            })
-            .catch(err => {
-                throw err
-            })
     }
 }
 

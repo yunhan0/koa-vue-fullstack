@@ -7,12 +7,12 @@
 		<Row>
 			<Col :md="{span: 6}" :sm="{span: 24}">
 				<Input placeholder="Please input email to search"
-					@on-change="search" v-model="criteria" icon="search">
+					v-model="criteria" icon="search">
 				</Input>
 			</Col>
 		</Row>
 		<br/>
-		<Table border :loading="loading" :columns="columns" :data="usersCopy">
+		<Table border :loading="loading" :columns="columns" :data="filteredUsers">
 		</Table>
 	</Card>
 </template>
@@ -29,7 +29,6 @@ export default {
 		return {
 			loading: true,
 			users: [],
-			usersCopy: [], // This is for the array search function.
 			criteria: '',
 			columns: [
 			{
@@ -90,32 +89,33 @@ export default {
 	},
 	// Request data when the component is created.
 	created() {
-		UserResource.show().then(users => {
+		UserResource.show().then(response => {
 			this.loading = false
-			this.users = users
-			// Keep a copy of users list for the sake of array filtering.
-			this.usersCopy = users
+			this.users = response.data
 		})
 		.catch(e => {
 			console.log(e)
 		})
 	},
+	computed: {
+		filteredUsers: function() {
+			let argument = this.criteria
+			return this.users.filter(function(user){
+				return user.email.match(argument)
+			})
+		}
+	},
 	methods: {
 		remove: function(index) { // Delete user
-			UserResource.delete(this.users[index]._id)
+			let target = this.filteredUsers[index]
+			UserResource.delete(target._id)
 				.then(response => {
-					this.$Message.success(this.users[index].email + ' Deleted')
-					this.users.splice(index, 1)
+					this.$Message.success(target.email + ' Deleted')
+					this.users.splice(this.users.indexOf(target), 1)
 				})
 				.catch(e => {
 					console.log(e)
 				})
-		},
-		search: function() { // Search by email in this case.
-			let argument = this.criteria
-			this.usersCopy = this.users.filter(function(user){
-				return user.email.match(argument)
-			})
 		}
 	}
 }

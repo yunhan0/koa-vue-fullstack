@@ -29,17 +29,17 @@ export default {
     actions: {
         getAllThings: ({ commit }) => {
             return ThingResource.show()
-                .then(things => {
-                    commit('SET_THINGS', things)
+                .then(response => {
+                    commit('SET_THINGS', response.data)
                 })
                 .catch(err => {
                     throw err
                 })
         },
-        addThing: ({commit}, payload) => {
-            return ThingResource.create(payload)
-                .then(thing => {
-                    commit('ADD_THING', thing)
+        addThing: ({commit}, thing) => {
+            return ThingResource.create(thing)
+                .then(response => {
+                    commit('ADD_THING', response.data)
                 })
                 .catch(err => {
                     throw err
@@ -47,8 +47,8 @@ export default {
         },
         editThing: ({commit}, payload) => {
             return ThingResource.update(payload._id, payload.content)
-                .then(thing => {
-                    commit('EDIT_THING', thing)
+                .then(response => {
+                    commit('EDIT_THING', response.data)
                 })
                 .catch(err => {
                     throw err

@@ -23,7 +23,7 @@
 <script>
 import { Form, FormItem, Modal } from 'iview'
 import ThingResource from '../../api/thing.service'
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -42,12 +42,14 @@ export default {
         openModal: function() {
             this.editModal = true
             // Load specific thing infomation
-            ThingResource.get(this.id).then(thing => {
-                this.thingForm.name = thing.name
-                this.thingForm.info = thing.info
-            })
-            .catch(err => {
-                this.$Message.error(err.message)
+            ThingResource.get(this.id)
+				.then(response => {
+					let thing = response.data
+					this.thingForm.name = thing.name
+					this.thingForm.info = thing.info
+				})
+				.catch(err => {
+					this.$Message.error(err.message)
             })
         },
 
