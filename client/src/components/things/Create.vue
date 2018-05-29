@@ -28,10 +28,7 @@ export default {
 	data() {
 		return {
 			createModal: false,
-			thingForm: {
-				name: '',
-				info: ''
-			}
+			thingForm: { name: '', info: '' }
 		}
 	},
 	methods: {
@@ -39,13 +36,14 @@ export default {
 		create: function(formName) { // Create item
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
-					this.addThing(this.thingForm).then(response => {
-                        // reset form data
-                        this.$refs[formName].resetFields()
-					})
-					.catch(e => {
-					    console.log(e)
-					})
+					this.addThing(this.thingForm)
+                        .then(response => {
+                            // reset form data
+                            this.$refs[formName].resetFields()
+                        })
+                        .catch(e => {
+                            console.log(e)
+                        })
 				} else {
 					console.log('error submit!!')
 					return false

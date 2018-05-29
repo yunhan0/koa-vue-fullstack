@@ -7,6 +7,12 @@ import HTTP from './http-common'
 let UserResource = {
     show() { // Show all the users
         return HTTP.get('users/')
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                throw err
+            })
     },
 
     get() { // Get current user

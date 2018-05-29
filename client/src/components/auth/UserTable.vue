@@ -59,14 +59,14 @@ export default {
 				align: 'center',
 				render: (h, params) => {
 					return h('div', [
-						h('Button', {
-								props: {
-									type: 'primary'
-								},
-								style: {
-									marginRight: '5px'
-								}
-							}, 'Edit'),
+						// h('Button', {
+						// 		props: {
+						// 			type: 'primary'
+						// 		},
+						// 		style: {
+						// 			marginRight: '5px'
+						// 		}
+						// 	}, 'Edit'),
 						h(Poptip, {
 							props: {
 								transfer: true,
@@ -79,9 +79,9 @@ export default {
 						}, [
 							h('Button', {
 								props: {
-									type: 'error'
+									type: 'default'
 								},
-							}, 'Delete')
+							}, 'Remove')
 						])
 					])
 				}
@@ -90,11 +90,11 @@ export default {
 	},
 	// Request data when the component is created.
 	created() {
-		UserResource.show().then(response => {
+		UserResource.show().then(users => {
 			this.loading = false
-			this.users = response.data
+			this.users = users
 			// Keep a copy of users list for the sake of array filtering.
-			this.usersCopy = this.users
+			this.usersCopy = users
 		})
 		.catch(e => {
 			console.log(e)
@@ -102,12 +102,14 @@ export default {
 	},
 	methods: {
 		remove: function(index) { // Delete user
-			UserResource.delete(this.users[index]._id).then(response => {
-				this.users.splice(index, 1)
-			})
-			.catch(e => {
-				console.log(e)
-			})
+			UserResource.delete(this.users[index]._id)
+				.then(response => {
+					this.$Message.success(this.users[index].email + ' Deleted')
+					this.users.splice(index, 1)
+				})
+				.catch(e => {
+					console.log(e)
+				})
 		},
 		search: function() { // Search by email in this case.
 			let argument = this.criteria

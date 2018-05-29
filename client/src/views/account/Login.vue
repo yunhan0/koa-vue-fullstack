@@ -1,6 +1,6 @@
 <template>
 	<Content class="beautiful-gradient">
-		<Card style="max-width:300px width: 100% margin: 100px auto">
+		<Card style="max-width:300px;width: 100%;margin: 100px auto">
 			<p slot="title">
 				Login
 			</p>
