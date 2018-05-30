@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import UserTable from '../../components/auth/UserTable.vue'
+import UserTable from '../../components/admin/UserTable.vue'
 
 export default {
 	components: {

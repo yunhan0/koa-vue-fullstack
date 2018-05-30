@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 /** Store **/
 import store from './store/'
 
-const Main = () => import(/* webpackChunkName: "group-main" */ './views/Main.vue')
+const Common = () => import(/* webpackChunkName: "group-common" */ './views/Common.vue')
 
 /** Router **/
 Vue.use(VueRouter)
@@ -15,7 +15,7 @@ let router = new VueRouter({
     *  simulate a full URL so that the page won't be reloaded when the URL changes.
     * To get rid of the hash, we can use the router's history mode.
     */
-    mode: 'history',
+    // mode: 'history',
     routes: [
         {
             path: '/login',
@@ -42,12 +42,12 @@ let router = new VueRouter({
         {
             path: '/',
             redirect: '/home',
-            component: Main,
+            component: Common,
             children: [
                 {
                     path: '/home',
                     name: 'Home',
-                    component: () => import(/* webpackChunkName: "group-home" */ './views/Home.vue'),
+                    component: () => import(/* webpackChunkName: "group-common" */ './views/Home.vue'),
                     meta: {
                         requiresAuth: true
                     }
@@ -63,7 +63,7 @@ let router = new VueRouter({
                 {
                     path: '/users',
                     name: 'Users',
-                    component: () => import(/* webpackChunkName: "group-account" */ './views/admin/Users.vue'),
+                    component: () => import(/* webpackChunkName: "group-admin" */ './views/admin/Users.vue'),
                     meta: {
                         requiresAuth: true, roles: ['admin']
                     }
@@ -71,7 +71,7 @@ let router = new VueRouter({
                 {
                     path: '/things',
                     name: 'Things',
-                    component: () => import(/* webpackChunkName: "group-home" */ './views/Things.vue'),
+                    component: () => import(/* webpackChunkName: "group-common" */ './views/Things.vue'),
                     meta: {
                         requiresAuth: true
                     }

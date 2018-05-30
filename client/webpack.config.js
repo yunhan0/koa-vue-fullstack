@@ -68,12 +68,12 @@ module.exports = function(env) {
 			CONFIG.devServer = {
 				// contentBase: '', # Confuse
 				hot: true,
-				historyApiFallback: true
+				// historyApiFallback: true
 			}
 		break;
 		case 'prod':
 			console.log('=== In the production mode ===');
-			// Resolving the ERROR in js/backstage.js from UglifyJs 
+			// Resolving the ERROR in js/backstage.js from UglifyJs
 			CONFIG.module.rules.push(
 				{
 					test: /iview.src.*?js$/,

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ChangePassword from '../../components/auth/ChangePassword.vue'
+import ChangePassword from '../../components/account/ChangePassword.vue'
 
 export default {
 	components: {
