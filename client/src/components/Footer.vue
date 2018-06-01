@@ -1,5 +1,5 @@
 <template>
-	<Footer class="layout-footer-center">2018 &copy Footer </Footer>
+	<Footer class="text-center">2018 &copy Footer </Footer>
 </template>
 
 <script>
@@ -13,7 +13,5 @@ export default {
 </script>
 
 <style scoped>
-.layout-footer-center{
-	text-align: center;
-}
+
 </style>

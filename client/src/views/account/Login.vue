@@ -16,10 +16,12 @@
 				<FormItem label="Password" prop="password"
 					:rules="[{ required: true, message: 'Password is required'}]">
 					<Input placeholder="password" type="password" v-model="loginForm.password"></Input>
-					<p style="text-align: right">
-						<router-link to="/"> Forgot password? </router-link>
-					</p>
 				</FormItem>
+				<!--
+				<p class="text-right">
+					<router-link to="/"> Forgot password? </router-link>
+				</p>
+				-->
 				<FormItem>
 					<Button type="primary" long @click="submit('loginForm')">Login</Button>
 				</FormItem>

@@ -1,8 +1,7 @@
 <template>
 	<Menu :active-name="$route.path" theme="light" width="auto"
 	@on-select="handleClickMenu" :class="menuitemClasses" v-if="isAuthenticated">
-		<MenuItem v-for="item in menuItems" :key="item.title" :name="item.path"
-		v-if="isPermitted(item.roles)">
+		<MenuItem v-for="item in permittedMenuItems" :key="item.title" :name="item.path">
 			<Icon :type="item.icon"></Icon>
 			<span>{{ item.title }}</span>
 		</MenuItem>
@@ -42,6 +41,12 @@ export default {
 				'menu-item',
 				this.isCollapsed ? 'collapsed-menu' : ''
 			]
+		},
+		permittedMenuItems: function() {
+			let _this = this
+			return this.menuItems.filter(function(item) {
+				return _this.isPermitted(item.roles)
+			})
 		}
 	},
 	methods: {
