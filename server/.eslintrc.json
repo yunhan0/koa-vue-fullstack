@@ -1,0 +1,38 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "rules": {
+        "indent": [2, 2],
+        "max-len": [
+            "error",
+            80
+        ],
+        "operator-linebreak": [
+            "error",
+            "after"
+        ],
+        "multiline-comment-style": [
+            "error",
+            "starred-block"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "no-console": "off"
+    }
+}

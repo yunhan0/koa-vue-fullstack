@@ -1,14 +1,14 @@
 module.exports = {
-    // Server port
-    port: process.env.PORT || 3001,
+  // Server port
+  port: process.env.PORT || 3001,
   
-    // MongoDB connection options
-    mongo: {
-        uri: process.env.DB_URI || 'mongodb://localhost/snapshot'
-    },
+  // MongoDB connection options
+  mongo: {
+    uri: process.env.DB_URI || 'mongodb://localhost/snapshot'
+  },
 
-    secret: {
-        // Used for Jwt, default secret is randomly generated
-        auth: process.env.AUTH_SECRET || 'EwIZ9MJWyJ'
-    }
-};
+  secret: {
+    // Used for Jwt, default secret is randomly generated
+    auth: process.env.AUTH_SECRET || 'EwIZ9MJWyJ'
+  }
+}

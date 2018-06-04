@@ -13,10 +13,10 @@
  */
 
 if (process.env.NODE_ENV !== 'production') {
-    const config = require('dotenv').config()
-    if (config.error) {
-        throw config.error
-    }
+  const config = require('dotenv').config()
+  if (config.error) {
+    throw config.error
+  }
 }
 console.log(process.env.NODE_ENV)
 console.log(process.env.DB_URI)
