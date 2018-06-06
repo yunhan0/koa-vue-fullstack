@@ -7,7 +7,7 @@
     - [Koa](http://koajs.com/)
     - Koa Router, Koa Cors, Koa Bodyparser
     - Mongoose
-    - Node
+    - Node v8.9.4
 - Client
     - [Vue](https://vuejs.org/)
     - [iView](https://www.iviewui.com/)
@@ -44,24 +44,34 @@
           └─routes.js      # router
 
 ### Run through Docker
-You can boost the server by using Docker
-
-    cd server
+```bash
+    cd server # You can boost the server by using Docker
     docker-compose up
+    # Open a new tab
+    cd client
+    npm install
+    npm start
+```
 
-### Installation:
+### Setup Locally:
+- Steps:
 The server and client are completely seperated in this project, so go to each client and server folder and run:
 
+```bash
+    cd client
     npm install
+    npm start # Running dev client
+    # Open a new tab
+    mongod    # Boost Mongo DB
+    # Open a new tab
+    cd server
+    npm install
+    npm start # Running dev server
+```
 
-###### Running dev client:
-
-    npm start
-
-##### Running production client:
-
-    npm run build
-
-##### Running server:
-
-    npm start
+- Others:
+```bash
+npm run build      # Running production mode
+npm run eslint     # Check your coding style
+npm run eslint-fix # Use auto ESLint fix
+```

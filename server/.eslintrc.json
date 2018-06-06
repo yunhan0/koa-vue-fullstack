@@ -8,7 +8,10 @@
         "ecmaVersion": 2017
     },
     "rules": {
-        "indent": [2, 2],
+        "indent": [
+            "error",
+            2
+        ],
         "max-len": [
             "error",
             80
