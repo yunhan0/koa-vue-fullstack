@@ -23,25 +23,26 @@ Vue.component('Card', Card)
 Vue.prototype.$Message = Message
 
 function initialisation() {
-    new Vue({
-        el:'#app',
-        router,
-        store,
-        render: h=>h(App)
-    })
+  new Vue({
+    el:'#app',
+    router,
+    store,
+    render: h=>h(App)
+  })
 }
 
 (function () {
-    if (!!localStorage.getItem('token')) {
-        return AuthService.getCurrentUser()
-        .then(user => {
-            store.dispatch('autoLogin', user)
-            initialisation()
-        })
-        .catch(err => {
-            initialisation()
-        })
-    } else {
+  if (localStorage.getItem('token')) {
+    return AuthService.getCurrentUser()
+      .then(user => {
+        store.dispatch('autoLogin', user)
         initialisation()
-    }
+      })
+      /*eslint no-unused-vars: ["error", {"args": "none"}]*/
+      .catch(err => {
+        initialisation()
+      })
+  } else {
+    initialisation()
+  }
 })()

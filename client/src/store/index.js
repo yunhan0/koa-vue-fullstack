@@ -8,5 +8,5 @@ import things from './modules/things'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: { auth, things }
+  modules: { auth, things }
 })

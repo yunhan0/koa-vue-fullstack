@@ -1,19 +1,19 @@
 <template>
-	<div>
-		<Row>
-			<Col>
-				<UserTable></UserTable>
+  <div>
+    <Row>
+      <Col>
+      <UserTable/>
 			</Col>
-		</Row>
-	</div>
+    </Row>
+  </div>
 </template>
 
 <script>
 import UserTable from '../../components/admin/UserTable.vue'
 
 export default {
-	components: {
-		UserTable
-	}
+  components: {
+    UserTable
+  }
 }
 </script>
