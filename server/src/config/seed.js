@@ -22,7 +22,7 @@ const seeding = async() => {
   await User.create({
     name: 'admin',
     email: 'admin@example.com',
-    assword: 'admini',
+    password: 'admini',
     role: 'admin'
   })
   console.log('Finish populating database')
