@@ -12,8 +12,8 @@
         v-model="criteria"
         placeholder="Please input email to search"
         icon="search">
-				</Input>
-			</Col>
+      </Input>
+      </Col>
     </Row>
     <br>
     <Table
