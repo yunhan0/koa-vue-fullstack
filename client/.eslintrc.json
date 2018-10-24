@@ -43,6 +43,10 @@
       "error",
       "never"
     ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
     "no-console": "off",
     "vue/no-parsing-error": [
       2, {
