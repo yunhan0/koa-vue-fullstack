@@ -7,12 +7,12 @@ const Thing = require('../api/thing/thing.model')
 const User = require('../api/user/user.model')
 
 const seeding = async() => {
-  await Thing.collection.remove()
+  await Thing.collection.deleteMany()
   await Thing.create(
     { name: 'Our first Koa and Node app', info: 'Lightweight server' },
     { name: 'Mongo is here', info: 'We use mongodb to store data!' }
   )
-  await User.collection.remove()
+  await User.collection.deleteMany()
   await User.create({
     name: 'tester',
     email: 'test@example.com',
