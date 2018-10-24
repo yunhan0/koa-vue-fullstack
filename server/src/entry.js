@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
     throw config.error
   }
 }
-console.log(process.env.NODE_ENV)
-console.log(process.env.DB_URI)
-console.log(process.env.PORT)
+console.log('===== Running ' + process.env.NODE_ENV + ' mode =====')
+console.log('DB_URI: ' + process.env.DB_URI)
+console.log('PORT: ' + process.env.PORT)
 require('./main')

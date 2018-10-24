@@ -65,6 +65,8 @@ The server and client are completely seperated in this project, so go to each cl
     mongod    # Boost Mongo DB
     # Open a new tab
     cd server
+    # CREATE a .env file under server folder, and copy and paste the contents of .env.default file into this .env, and assign values
+    touch .env
     npm install
     npm start # Running dev server
 ```
