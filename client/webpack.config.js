@@ -86,6 +86,10 @@ module.exports = function(env) {
     )
     CONFIG.plugins.push(new webpack.optimize.UglifyJsPlugin())
     CONFIG.plugins.push(new ExtractTextPlugin('[name].css'))
+    // Turn on Production Mode
+    CONFIG.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }))
     break
   }
 
