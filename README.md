@@ -1,6 +1,14 @@
 # Koa Vue Fullstack Boilerplate
-##### Vue.js, Koa.js, Node.js, and MongoDB fullstack lightweight example application. Authentication, CRUD, and access Control included.
+##### Vue.js, Koa.js, Node.js, and MongoDB fullstack lightweight example application. Authentication, CRUD, and access control included.
+This project aims to build a small but structured full-stack application, so it would be relatively clear for a programmer/beginner to understand how to build a website from scratch.
 
+### Demo:
+You can find the demo website here: [http://43.240.98.205](http://43.240.98.205/) <br>
+<b>Please don't change the password.</b>
+<pre>
+email: admin@example.com
+password: 123456
+</pre>
 
 ### Environment:
 - Server
