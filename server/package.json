@@ -1,6 +1,6 @@
 {
   "name": "snapshot-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A snapshot of server dev using node, koa, and mongoose",
   "author": "Yunhan",
   "license": "ISC",
