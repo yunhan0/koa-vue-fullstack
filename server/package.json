@@ -12,22 +12,22 @@
     "build": "NODE_ENV=production nodemon src/entry.js"
   },
   "dependencies": {
-    "@koa/cors": "^2.2.1",
-    "bcrypt": "^1.0.3",
-    "dotenv": "^5.0.1",
-    "jsonwebtoken": "^8.1.1",
-    "koa": "^2.2.0",
-    "koa-bodyparser": "^4.2.0",
+    "@koa/cors": "^3.0.0",
+    "bcrypt": "^3.0.5",
+    "dotenv": "^7.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
     "koa-convert": "^1.2.0",
     "koa-lusca": "^2.2.0",
-    "koa-router": "^7.1.1",
-    "koa-session": "^5.8.1",
-    "mongoose": "^5.0.3"
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "mongoose": "^5.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^4.19.1",
-    "nodemon": "^1.17.2"
+    "eslint": "^5.16.0",
+    "nodemon": "^1.18.11"
   }
 }

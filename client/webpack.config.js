@@ -1,13 +1,17 @@
 const webpack = require('webpack')
 // Simplifies creation of HTML files to serve your webpack bundles
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-/*
- * Minify your JavaScript
- * const UglifyJSPlufin = require('uglifyjs-webpack-plugin')
- */
+// Js optimization
+const TerserPlugin = require('terser-webpack-plugin')
+// Css optimization
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// Css extraction
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// Circular dependency detection
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
-// Extract text from a bundle, or bundles, into a separate file.
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 const path = require('path')
 
 module.exports = function(env) {
@@ -34,21 +38,27 @@ module.exports = function(env) {
         },
         {
           test: /\.less$/,
-          use: [{
-            loader: 'style-loader' // creates style nodes from JS strings
-          }, {
-            loader: 'css-loader' // translates CSS into CommonJS
-          }, {
-            loader: 'less-loader' // compiles Less to CSS
-          }]
+          use: [
+            'vue-style-loader', // creates style nodes from JS strings
+            'css-loader', // translates CSS into CommonJS
+            // compiles Less to CSS
+            {
+              loader: 'less-loader',
+              options: {
+                javascriptEnabled: true
+              }
+            }
+          ]
         },
         {
           test: /\.css$/,
-          use: env === 'prod' ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [ 'css-loader' ]
-          }):
-            [ 'style-loader', 'css-loader' ]
+          use: env === 'prod' ? [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            'css-loader',
+          ]:
+            [ 'vue-style-loader', 'css-loader' ]
         },
         {
           test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -57,17 +67,40 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      new VueLoaderPlugin(),
       new HtmlWebpackPlugin({template: './index.html'}),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity
+      new CircularDependencyPlugin({
+        // exclude detection of files based on a RegExp
+        exclude: /a\.js|node_modules/,
+        // add errors to webpack instead of warnings
+        failOnError: true,
+        // allow import cycles that include an asyncronous import,
+        // e.g. via import(/* webpackMode: "weak" */ './file.js')
+        allowAsyncCycles: false,
+        // set the current working directory for displaying module paths
+        // eslint-disable-next-line no-undef
+        cwd: process.cwd(),
       })
-    ]
+    ],
+    optimization: {
+      minimizer: [
+        new TerserPlugin({}),
+        new OptimizeCSSAssetsPlugin({})
+      ],
+      splitChunks: {
+        /*
+         * https://medium.com/dailyjs/webpack-4-splitchunks-plugin-d9fbbe091fd0
+         * https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
+         */
+        chunks: 'all'
+      }
+    }
   }
 
   switch (env) {
   case 'dev':
     console.log('=== In the development mode ===')
+    CONFIG.mode = 'development'
     CONFIG.plugins.push(new webpack.HotModuleReplacementPlugin())
     CONFIG.devServer = {
       // contentBase: '', # Confuse
@@ -77,6 +110,7 @@ module.exports = function(env) {
     break
   case 'prod':
     console.log('=== In the production mode ===')
+    CONFIG.mode = 'production'
     // Resolving the ERROR in js/backstage.js from UglifyJs
     CONFIG.module.rules.push(
       {
@@ -84,11 +118,9 @@ module.exports = function(env) {
         loader: 'babel-loader'
       }
     )
-    CONFIG.plugins.push(new webpack.optimize.UglifyJsPlugin())
-    CONFIG.plugins.push(new ExtractTextPlugin('[name].css'))
-    // Turn on Production Mode
-    CONFIG.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+    CONFIG.plugins.push(new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }))
     break
   }

@@ -28,6 +28,7 @@ let router = new VueRouter({
         './views/account/Login.vue'
       ),
       beforeEnter: (to, from, next) => {
+        console.log(to)
         if (store.getters.isAuthenticated) {
           next('/home')
         } else {

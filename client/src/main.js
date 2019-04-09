@@ -4,7 +4,9 @@ import App from './App.vue'
 import router from './router'
 /** Store **/
 import store from './store/'
+// api
 import AuthService from './api/auth.service'
+import HTTP from './api/http-common'
 /** Style **/
 import './styles/index.less'
 /** iView **/
@@ -31,18 +33,31 @@ function initialisation() {
   })
 }
 
-(function () {
-  if (localStorage.getItem('token')) {
-    return AuthService.getCurrentUser()
-      .then(user => {
-        store.dispatch('autoLogin', user)
-        initialisation()
-      })
-      /*eslint no-unused-vars: ["error", {"args": "none"}]*/
-      .catch(err => {
-        initialisation()
-      })
-  } else {
-    initialisation()
+/*
+ * Add HTTP response interceptor
+ * Should not put into the api/http-common.js,
+ * it will raise a Circular dependency error 
+ */
+HTTP.interceptors.response.use(function (response) {
+  return response
+}, function(error) {
+  if (error.response.status === 401) {
+    store.dispatch('logout')
+    router.push('/login')
   }
-})()
+  return Promise.reject(error.response.data)
+})
+
+if (localStorage.getItem('token')) {
+  AuthService.getCurrentUser()
+    .then(user => {
+      store.dispatch('autoLogin', user)
+      initialisation()
+    })
+    /*eslint no-unused-vars: ["error", {"args": "none"}]*/
+    .catch(err => {
+      initialisation()
+    })
+} else {
+  initialisation()
+}
