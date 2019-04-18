@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "iview": "^3.3.3",
+    "iview": "^3.4.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
+    "vue-router": "^3.0.6",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
@@ -35,15 +35,15 @@
     "html-webpack-plugin": "^4.0.0-beta.5",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.5.0",
+    "mini-css-extract-plugin": "^0.6.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "terser-webpack-plugin": "^1.2.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.29.6",
+    "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.0"
+    "webpack-dev-server": "^3.3.1"
   }
 }
