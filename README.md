@@ -1,4 +1,8 @@
 # Koa Vue Fullstack Boilerplate
+##### 🎉🎉🎉 Upgrade Webpack to v4!
+<small>Project based on Webpack3 is [Release](https://github.com/yunhan0/koa-vue-fullstack/releases).</small>
+
+### Preface
 ##### Vue.js, Koa.js, Node.js, and MongoDB fullstack lightweight example application. Authentication, CRUD, and access control included.
 This project aims to build a small but structured full-stack application, so it would be relatively clear for a programmer/beginner to understand how to build a website from scratch.
 
@@ -15,12 +19,12 @@ password: 123456
     - [Koa](http://koajs.com/)
     - Koa Router, Koa Cors, Koa Bodyparser
     - Mongoose
-    - Node v8.9.4
+    - Node ~~v8.9.4~~ v10.12.0
 - Client
     - [Vue](https://vuejs.org/)
     - [iView](https://www.iviewui.com/)
     - [Axios](https://github.com/axios/axios) (HTTP Client Library)
-    - Webpack
+    - ~~Webpack 3~~ Webpack 4
     - WebpackDevServer (Development mode only)
 
 ### Architecture
