@@ -1,6 +1,6 @@
 # Koa Vue Fullstack Boilerplate
 ##### 🎉🎉🎉 Upgrade Webpack to v4!
-<small>Project based on Webpack3 is [Release](https://github.com/yunhan0/koa-vue-fullstack/releases).</small>
+<sup> Project based on Webpack3 is in [Releases](https://github.com/yunhan0/koa-vue-fullstack/releases). </sup>
 
 ### Preface
 ##### Vue.js, Koa.js, Node.js, and MongoDB fullstack lightweight example application. Authentication, CRUD, and access control included.
