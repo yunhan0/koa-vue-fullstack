@@ -3,14 +3,16 @@
     <Row :gutter="16">
       <Col
         :md="{span: 12}"
-        :sm="{span: 24}">
+        :sm="{span: 24}"
+      />
       <!-- Begin Change Password -->
-      <ChangePassword/>
+      <ChangePassword />
       <!-- End Change Password -->
       </Col>
       <Col
         :md="{span: 12}"
-        :sm="{span: 24}">
+        :sm="{span: 24}"
+      />
       Col-12
       </Col>
     </Row>

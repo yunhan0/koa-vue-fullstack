@@ -1,17 +1,19 @@
 <template>
   <Card dis-hover>
     <p slot="title">
-      <Icon type="stats-bars"/>
+      <Icon type="stats-bars" />
       Total Users: {{ users.length }}
     </p>
     <Row>
       <Col
         :md="{span: 6}"
-        :sm="{span: 24}">
+        :sm="{span: 24}"
+      />
       <Input
         v-model="criteria"
         placeholder="Please input email to search"
-        icon="search">
+        icon="search"
+      />
       </Input>
       </Col>
     </Row>
@@ -20,17 +22,18 @@
       :loading="loading"
       :columns="columns"
       :data="filteredUsers"
-      border/>
+      border
+    />
   </Card>
 </template>
 
 <script>
-import { Form, FormItem, Table, Icon, Poptip } from 'iview'
+import { Table, Icon, Poptip } from 'iview'
 import UserResource from '../../api/user.service'
 
 export default {
   components: {
-    Form, FormItem, Table, Icon, Poptip
+    Table, Icon, Poptip
   },
   data() {
     return {

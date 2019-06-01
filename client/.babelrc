@@ -1,13 +1,11 @@
 {
-  "presets": [
-    ["env",  {
-      "targets": {
-        "uglify" : true
-      }
+  "presets": [ "@babel/preset-env" ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-object-rest-spread",
+    ["import", {
+      "libraryName": "iview",
+      "libraryDirectory": "src/components"
     }]
-  ],
-  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread", ["import", {
-    "libraryName": "iview",
-    "libraryDirectory": "src/components"
-  }]]
+  ]
 }

@@ -1,21 +1,25 @@
 <template>
   <Layout>
     <Sider
+      v-model="isCollapsed"
       :style="{background: '#fff'}"
       :collapsed-width="78"
-      v-model="isCollapsed"
-      collapsible>
-      <app-sider :is-collapsed="isCollapsed"/>
+      collapsible
+    >
+      <app-sider :is-collapsed="isCollapsed" />
     </Sider>
     <Layout :style="{padding: '0 24px 24px'}">
       <Breadcrumb :style="{margin: '24px 0'}">
         <BreadcrumbItem
           v-if="$route.path!== '/home'"
-          to="/home"> Home </BreadcrumbItem>
+          to="/home"
+        >
+          Home
+        </BreadcrumbItem>
         <BreadcrumbItem>{{ $route.name }}</BreadcrumbItem>
       </Breadcrumb>
       <Content>
-        <router-view/>
+        <router-view />
       </Content>
     </Layout>
   </Layout>

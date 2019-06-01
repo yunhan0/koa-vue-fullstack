@@ -7,27 +7,32 @@
       <!-- Begin: Form -->
       <Form
         ref="loginForm"
-        :model="loginForm">
+        :model="loginForm"
+      >
         <FormItem
           :rules="[
             { required: true, message: 'Email is required'},
             { type: 'email', message: 'Please input correct email address'}
           ]"
           label="Email"
-          prop="email">
+          prop="email"
+        >
           <Input
             v-model="loginForm.email"
-            placeholder="email">
+            placeholder="email"
+          />
           </Input>
         </FormItem>
         <FormItem
           :rules="[{ required: true, message: 'Password is required'}]"
           label="Password"
-          prop="password">
+          prop="password"
+        >
           <Input
             v-model="loginForm.password"
             placeholder="password"
-            type="password">
+            type="password"
+          />
           </Input>
         </FormItem>
         <!--
@@ -39,14 +44,17 @@
           <Button
             type="primary"
             long
-            @click="submit('loginForm')">
+            @click="submit('loginForm')"
+          >
             Login
           </Button>
         </FormItem>
       </Form>
       <p>
         Don't have an account?
-        <router-link to="/signup">Sign up</router-link>
+        <router-link to="/signup">
+          Sign up
+        </router-link>
       </p>
     </Card>
   </Content>

@@ -5,13 +5,15 @@
     :class="menuitemClasses"
     theme="light"
     width="auto"
-    @on-select="handleClickMenu">
+    @on-select="handleClickMenu"
+  >
     <MenuItem
       v-for="item in permittedMenuItems"
       :key="item.title"
-      :name="item.path">
-    <Icon :type="item.icon"/>
-    <span>{{ item.title }}</span>
+      :name="item.path"
+    >
+      <Icon :type="item.icon" />
+      <span>{{ item.title }}</span>
     </MenuItem>
   </Menu>
 </template>

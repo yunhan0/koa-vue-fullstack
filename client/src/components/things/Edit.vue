@@ -2,30 +2,39 @@
   <div style="display:inline">
     <Button
       type="primary"
-      @click="openModal"> Edit </Button>
+      @click="openModal"
+    >
+      Edit
+    </Button>
     <Modal
       v-model="editModal"
-      title="Edit Thing">
+      title="Edit Thing"
+    >
       <!-- Begin: Form -->
       <Form
         ref="thingForm"
         :model="thingForm"
-        :label-width="60">
+        :label-width="60"
+      >
         <FormItem
           :rules="[{ required: true, message: 'this is required'}]"
           label="Title"
-          prop="name">
+          prop="name"
+        >
           <Input
             v-model="thingForm.name"
-            placeholder="Type anything">
+            placeholder="Type anything"
+          />
           </Input>
         </FormItem>
         <FormItem
           label="Detail"
-          prop="info">
+          prop="info"
+        >
           <Input
             v-model="thingForm.info"
-            placeholder="Type more details">
+            placeholder="Type more details"
+          />
           </Input>
         </FormItem>
       </Form>
@@ -35,7 +44,8 @@
           type="primary"
           size="large"
           long
-          @click="edit('thingForm')">
+          @click="edit('thingForm')"
+        >
           Save
         </Button>
       </div>

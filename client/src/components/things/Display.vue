@@ -9,8 +9,9 @@
       :columns="columns"
       :data="things"
       border
-      stripe/>
-      <!-- End: Table of things -->
+      stripe
+    />
+    <!-- End: Table of things -->
   </Card>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
   <Row :gutter="30">
-    <Col>
-    <ThingCreate/>
-		</Col>
+    <Col />
+    <ThingCreate />
+    </Col>
     <br>
-    <Col>
-    <ThingDisplay/>
-		</Col>
+    <Col />
+    <ThingDisplay />
+    </Col>
   </Row>
 </template>
 

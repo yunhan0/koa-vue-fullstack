@@ -2,19 +2,25 @@
   <Header>
     <Menu
       mode="horizontal"
-      theme="dark">
-      <div class="layout-logo"/>
+      theme="dark"
+    >
+      <div class="layout-logo" />
       <div
         v-if="isAuthenticated"
-        class="layout-nav">
+        class="layout-nav"
+      >
         <Dropdown @on-click="handleClickUserDropdown">
           <a href="javascript:void(0)">
             {{ getCurrentUser.name }}
-            <Icon type="arrow-down-b"/>
+            <Icon type="arrow-down-b" />
           </a>
           <DropdownMenu slot="list">
-            <DropdownItem name="settings">Settings</DropdownItem>
-            <DropdownItem name="logout">Logout</DropdownItem>
+            <DropdownItem name="settings">
+              Settings
+            </DropdownItem>
+            <DropdownItem name="logout">
+              Logout
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>

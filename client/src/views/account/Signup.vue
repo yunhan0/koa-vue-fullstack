@@ -8,54 +8,66 @@
       <Form
         ref="signupForm"
         :model="signupForm"
-        :rules="ruleSignup">
+        :rules="ruleSignup"
+      >
         <FormItem
           label="Name"
-          prop="name">
+          prop="name"
+        >
           <Input
             v-model="signupForm.name"
-            placeholder="name">
+            placeholder="name"
+          />
           </Input>
         </FormItem>
         <FormItem
           label="Email"
-          prop="email">
+          prop="email"
+        >
           <Input
             v-model="signupForm.email"
             type="email"
-            placeholder="email">
+            placeholder="email"
+          />
           </Input>
         </FormItem>
         <FormItem
           label="Password"
-          prop="password">
+          prop="password"
+        >
           <Input
             v-model="signupForm.password"
             type="password"
-            placeholder="password">
+            placeholder="password"
+          />
           </Input>
         </FormItem>
         <FormItem
           label="Confirm Password"
-          prop="retypePwd">
+          prop="retypePwd"
+        >
           <Input
             v-model="signupForm.retypePwd"
             type="password"
-            placeholder="type password again">
+            placeholder="type password again"
+          />
           </Input>
         </FormItem>
         <FormItem>
           <Button
             type="success"
             long
-            @click="submit('signupForm')">
+            @click="submit('signupForm')"
+          >
             Sign me up!
           </Button>
         </FormItem>
       </Form>
       <p>
         Already have an account?
-        <router-link to="/login">Login here</router-link>
+        <router-link to="/login">
+          Login here
+        </router-link>
       </p>
     </Card>
   </Content>

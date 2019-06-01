@@ -1,5 +1,7 @@
 <template>
-  <Footer class="text-center">2018 &copy; Footer </Footer>
+  <Footer class="text-center">
+    2018 &copy; Footer
+  </Footer>
 </template>
 
 <script>

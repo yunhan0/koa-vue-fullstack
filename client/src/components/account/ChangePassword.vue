@@ -7,35 +7,43 @@
       ref="changePwdForm"
       :model="changePwdForm"
       :rules="ruleChangePwd"
-      :label-width="90">
+      :label-width="90"
+    >
       <FormItem
         label="Current"
-        prop="oldPassword">
+        prop="oldPassword"
+      >
         <Input
           v-model="changePwdForm.oldPassword"
-          type="password">
+          type="password"
+        />
         </Input>
       </FormItem>
       <FormItem
         label="New"
-        prop="newPassword">
+        prop="newPassword"
+      >
         <Input
           v-model="changePwdForm.newPassword"
-          type="password">
+          type="password"
+        />
         </Input>
       </FormItem>
       <FormItem
         label="Retype New"
-        prop="retypePwd">
+        prop="retypePwd"
+      >
         <Input
           v-model="changePwdForm.retypePwd"
-          type="password">
+          type="password"
+        />
         </Input>
       </FormItem>
       <FormItem>
         <Button
           type="primary"
-          @click="changePwd('changePwdForm')">
+          @click="changePwd('changePwdForm')"
+        >
           Save Changes
         </Button>
       </FormItem>

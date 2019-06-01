@@ -1,26 +1,21 @@
 const webpack = require('webpack')
 // Simplifies creation of HTML files to serve your webpack bundles
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-/*
- * Minify your JavaScript
- * const UglifyJSPlufin = require('uglifyjs-webpack-plugin')
- */
-
-// Extract text from a bundle, or bundles, into a separate file.
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
 
 module.exports = function(env) {
   var CONFIG = {
     entry: {
       app: './src/main.js',
-      vendor: ['vue', 'vue-router', 'vuex']
     },
+    plugins: [
+      new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
+    ],
     output: {
       /*global __dirname*/
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].bundle.js',
-      chunkFilename: '[name].[chunkhash:8].js' // Used for code spliting
     },
     module: {
       rules: [
@@ -44,11 +39,7 @@ module.exports = function(env) {
         },
         {
           test: /\.css$/,
-          use: env === 'prod' ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [ 'css-loader' ]
-          }):
-            [ 'style-loader', 'css-loader' ]
+          use: ['style-loader', 'css-loader']
         },
         {
           test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -58,16 +49,35 @@ module.exports = function(env) {
     },
     plugins: [
       new HtmlWebpackPlugin({template: './index.html'}),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity
-      })
-    ]
+      new VueLoaderPlugin()
+    ],
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              // get the name. E.g. node_modules/packageName/not/this/part.js
+              // or node_modules/packageName
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+              // npm package names are URL-safe, but some servers don't like @ symbols
+              return `npm.${packageName.replace('@', '')}`;
+            }
+          }
+        }
+      }
+    }
   }
 
   switch (env) {
   case 'dev':
     console.log('=== In the development mode ===')
+    CONFIG.mode = 'development'
     CONFIG.plugins.push(new webpack.HotModuleReplacementPlugin())
     CONFIG.devServer = {
       // contentBase: '', # Confuse
@@ -77,15 +87,7 @@ module.exports = function(env) {
     break
   case 'prod':
     console.log('=== In the production mode ===')
-    // Resolving the ERROR in js/backstage.js from UglifyJs
-    CONFIG.module.rules.push(
-      {
-        test: /iview.src.*?js$/,
-        loader: 'babel-loader'
-      }
-    )
-    CONFIG.plugins.push(new webpack.optimize.UglifyJsPlugin())
-    CONFIG.plugins.push(new ExtractTextPlugin('[name].css'))
+    CONFIG.mode = 'production'
     // Turn on Production Mode
     CONFIG.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

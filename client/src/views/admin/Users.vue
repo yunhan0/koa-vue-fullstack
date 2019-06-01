@@ -1,9 +1,9 @@
 <template>
   <div>
     <Row>
-      <Col>
-      <UserTable/>
-			</Col>
+      <Col />
+      <UserTable />
+      </Col>
     </Row>
   </div>
 </template>
