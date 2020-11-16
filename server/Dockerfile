@@ -1,5 +1,5 @@
-# Use an node 8 runtime as a parent image
-FROM node:8.9.4
+# Use an node 10 runtime as a parent image
+FROM node:10.12.0
 
 # Set environment vaiable: server port as 3002
 ENV AUTH_SECRET=vHJcV7
