@@ -28,6 +28,6 @@ jobs:
         context: ./server
         file: ./server/Dockerfile
         push: true
-        tags: koa-vue-fullstack/server:latest
+        tags: yunhan0/koa-vue-fullstack:server
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}

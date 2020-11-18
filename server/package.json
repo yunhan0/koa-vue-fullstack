@@ -9,7 +9,7 @@
     "eslint": "./node_modules/.bin/eslint src/",
     "eslint-fix": "./node_modules/.bin/eslint src/ --fix",
     "start": "NODE_ENV=development nodemon src/entry.js",
-    "build": "NODE_ENV=production nodemon src/entry.js"
+    "build": "NODE_ENV=production node src/entry.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
