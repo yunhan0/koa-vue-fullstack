@@ -16,6 +16,7 @@ spec:
       containers:
         - name: koa-vue-fullstack-server
           image: yunhan0/koa-vue-fullstack:server
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
@@ -25,8 +26,7 @@ spec:
             httpGet:
               path: /health-check
               port: 3000
-            initialDelaySeconds: 3
-            periodSeconds: 3
+            initialDelaySeconds: 15
 
 ---
   apiVersion: v1
