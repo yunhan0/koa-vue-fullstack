@@ -7,7 +7,7 @@
 This project aims to build a small but structured full-stack application, so it would be relatively clear for a programmer/beginner to understand how to build a website from scratch.
 
 ### Demo:
-Click [here](http://yunhan.li/koa-vue-fullstack) to see demo website. Server is deployed on heroku's free plan :) 🐢🐢🐢.<br>
+Click [here](http://yunhan.li/koa-vue-fullstack) to see demo website.<br>
 <pre>
 email: admin@example.com
 password: 123456

@@ -18,6 +18,15 @@ spec:
           image: yunhan0/koa-vue-fullstack:server
           ports:
             - containerPort: 3000
+          env:
+            - name: DB_URI
+              value: mongodb://mongodb-service.yunhan.svc.cluster.local:27017/snapshot
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
   apiVersion: v1
