@@ -13,11 +13,30 @@
         labels:
           app: mongo
       spec:
+        volumes:
+          - name: mongodb-storage
+            persistentVolumeClaim:
+              claimName: mongodb-volume-claim
         containers:
           - name: mongo
             image: mongo:latest
             ports:
               - containerPort: 27017
+            volumeMounts:
+              - mountPath: /data/db
+                name: mongodb-storage
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
 
 ---
   apiVersion: v1
