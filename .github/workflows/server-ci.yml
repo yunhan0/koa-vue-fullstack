@@ -31,3 +31,9 @@ jobs:
         tags: yunhan0/koa-vue-fullstack:server
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
+    - name: Trigger deploy
+      uses: Consensys/kubernetes-action@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with:
+        args: apply ./kubernetes/server.yml
