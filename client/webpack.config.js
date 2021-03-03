@@ -9,9 +9,6 @@ module.exports = function(env) {
     entry: {
       app: './src/main.js',
     },
-    plugins: [
-      new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
-    ],
     output: {
       /*global __dirname*/
       path: path.resolve(__dirname, 'dist'),
@@ -52,6 +49,7 @@ module.exports = function(env) {
       new VueLoaderPlugin()
     ],
     optimization: {
+      moduleIds: 'deterministic',
       runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
@@ -74,8 +72,7 @@ module.exports = function(env) {
     }
   }
 
-  switch (env) {
-  case 'dev':
+  if (env.WEBPACK_SERVE) {
     console.log('=== In the development mode ===')
     CONFIG.mode = 'development'
     CONFIG.plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -84,15 +81,13 @@ module.exports = function(env) {
       hot: true,
       // historyApiFallback: true
     }
-    break
-  case 'prod':
+  } else {
     console.log('=== In the production mode ===')
     CONFIG.mode = 'production'
     // Turn on Production Mode
     CONFIG.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }))
-    break
   }
 
   return CONFIG
