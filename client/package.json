@@ -13,7 +13,7 @@
     "eslint-fix": "./node_modules/.bin/eslint src --ext .vue --fix"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "iview": "^2.12.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
